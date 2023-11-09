@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\contactController;
 use App\Http\Controllers\faqController;
+use App\Http\Controllers\homeController;
+use App\Http\Controllers\teamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/page', [faqController::class, 'faqPage']);
-Route::get('/data', [faqController::class, 'faq']);
+Route::get('/', [homeController::class, 'homePage']);
+Route::get('/team', [teamController::class, 'teamPage']);
+Route::get('/contact', [contactController::class, 'contactPage']);
+Route::get('/404', [homeController::class, 'errorPage']);

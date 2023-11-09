@@ -1,0 +1,9 @@
+@extends('layout.app')
+@section('content')
+    @include('component.nav')
+    @include('component.carousel')
+    @include('component.team')
+    @include('component.about')
+    @include('component.service')
+    @include('component.Footer')
+@endsection
