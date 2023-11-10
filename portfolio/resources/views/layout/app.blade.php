@@ -29,6 +29,18 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+
+    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('assets/js/axios.min.js')}}"></script>
+
+    <link href="{{asset('css2/bootstrap.css')}}" rel="stylesheet" />
+    <link href="{{asset('css2/animate.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('css2/fontawesome.css')}}" rel="stylesheet" />
+    <link href="{{asset('css2/style.css')}}" rel="stylesheet" />
+    <link href="{{asset('css2/toastify.min.css')}}" rel="stylesheet" />
+    <script src="{{asset('js2/toastify-js.js')}}"></script>
+    <script src="{{asset('js2/config.js')}}"></script>
+
 </head>
 
 <body>
@@ -62,6 +74,13 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('assets/js/main.js')}}"></script>
+
+    <script src="{{asset('assets/js/scripts.js')}}"></script>
+    <script src="{{asset('assets/js/magnific-popup.min.js')}}"></script>
+    <script src="{{asset('assets/js/popper.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script> --}}
+
+    <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
 
 </body>
 </html>

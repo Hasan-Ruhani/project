@@ -4,37 +4,32 @@
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                 <div class="position-relative h-100">
-                    <img class="img-fluid position-absolute w-100 h-100" src="{{asset('assets/img/about.jpg')}}" alt="" style="object-fit: cover;">
+                    <img id="img" class="img-fluid position-absolute w-100 h-100" alt="" style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                <h6 class="section-title bg-white text-start text-primary pe-3">H A S A N</h6>
-                <h1 class="mb-4">Welcome to Islam Safari</h1>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                <div class="row gy-2 gx-4 mb-4">
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Skilled Instructors</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Online Classes</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>International Certificate</p>
-                    </div>
-                </div>
-                <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                <h6 id="name" class="section-title bg-white text-start text-primary pe-3"></h6>
+                <h1 id="designation" class="mb-4"></h1>
+                <p id="description" class="mb-4"></p>
             </div>
         </div>
     </div>
 </div>
 <!-- About End -->
+
+<script>
+    blogDetails();
+
+    async function blogDetails() {
+        let searchParams = new URLSearchParams(window.location.search);
+        let id = searchParams.get('id');
+
+        let res = await axios.get("/memberDetail/" + id);
+        let Details = await res.data['data'];
+
+        document.getElementById('img').src=Details[0]['image'];
+        document.getElementById('name').textContent = Details[0]['name'];
+        document.getElementById('designation').textContent = Details[0]['designation'];
+        document.getElementById('description').textContent = Details[0]['description'];
+    }
+</script>

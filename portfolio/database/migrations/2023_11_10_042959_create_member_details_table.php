@@ -11,11 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faq_table', function (Blueprint $table) {
+        Schema::create('member_details', function (Blueprint $table) {
             $table->id();
-            
-            $table->string('queation', 1000);
-            $table->string('answer', 1000);
+
+            $table->string('name', 50);
+            $table->string('designation', 50);
+            $table->string('description', 2000);
+            $table->string('image', 1000);
+
+            $table->string('social_link1', 500);
+            $table->string('social_link2', 500);
+            $table->string('social_link3', 500);
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('faq_table');
+        Schema::dropIfExists('member_details');
     }
 };

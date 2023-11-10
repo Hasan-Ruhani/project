@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\blogController;
 use App\Http\Controllers\contactController;
-use App\Http\Controllers\faqController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\memberController;
 use App\Http\Controllers\teamController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +21,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// page
 Route::get('/', [homeController::class, 'homePage']);
 Route::get('/team', [teamController::class, 'teamPage']);
 Route::get('/contact', [contactController::class, 'contactPage']);
-Route::get('/blog', [blogController::class, 'blogPage']);
+Route::get('/blog', [memberController::class, 'blogPage']);
 Route::get('/404', [homeController::class, 'errorPage']);
+
+// backend
+Route::get('/memberList', [memberController::class, 'memberList']);  
+Route::get('/memberDetail/{id}', [memberController::class, 'memberDetail']);  

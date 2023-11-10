@@ -5,80 +5,58 @@
             <h6 class="section-title bg-white text-center text-primary px-3">Instructors</h6>
             <h1 class="mb-5">Expert Instructors</h1>
         </div>
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="team-item bg-light">
-                    <div class="overflow-hidden">
-                        <a href="{{url("/blog")}}"><img class="img-fluid" src="{{asset('assets/img/team-1.jpg')}}" alt=""></a>
-                    </div>
-                    <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                        <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-0"><a href="{{url("/blog")}}" class="nav-item nav-link">Instructor Name</a></h5>
-                        <small>Designation</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item bg-light">
-                    <div class="overflow-hidden">
-                        <a href="{{url("/blog")}}"><img class="img-fluid" src="{{asset('assets/img/team-2.jpg')}}" alt=""></a>
-                    </div>
-                    <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                        <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-0"><a href="{{url("/blog")}}" class="nav-item nav-link">Instructor Name</a></h5>
-                        <small>Designation</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="team-item bg-light">
-                    <div class="overflow-hidden">
-                        <a href="{{url("/blog")}}"><img class="img-fluid" src="{{asset('assets/img/team-3.jpg')}}" alt=""></a>
-                    </div>
-                    <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                        <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-0"><a href="{{url("/blog")}}" class="nav-item nav-link">Instructor Name</a></h5>
-                        <small>Designation</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="team-item bg-light">
-                    <div class="overflow-hidden">
-                        <a href="{{url("/blog")}}"><img class="img-fluid" src="{{asset('assets/img/team-4.jpg')}}" alt=""></a>
-                    </div>
-                    <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
-                        <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center p-4">
-                        <h5 class="mb-0"><a href="{{url("/blog")}}" class="nav-item nav-link">Instructor Name</a></h5>
-                        <small>Designation</small>
-                    </div>
-                </div>
-            </div>
+        <div id="memberList" class="row g-4">
+            
         </div>
     </div>
 </div>
 <!-- Team End -->
+
+
+<script>
+teamExpert();
+    async function teamExpert(){
+        let res=await axios.get("/memberList");
+        $("#memberList").empty()
+
+
+        res.data['data'].forEach((item,i)=>{
+            let EachItem= `<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item bg-light">
+                    <div class="overflow-hidden">
+                         <a href="/blog?id=${item['id']}"><img class="img-fluid" src="${item['image']}" alt=""></a>
+                    </div>
+                    <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                        <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4">
+                        <h5 class="mb-0"><a href="/blog?id=${item['id']}" class="nav-item nav-link">${item['name']}</a></h5>
+                        <small>${item['designation']}</small>
+                    </div>
+                </div>
+            </div>`
+            $("#memberList").append(EachItem);
+        })
+
+
+
+
+        // res.data['data'].forEach((item,i)=>{
+        //     let EachItem= `<div class="p-2 col-2">
+        //         <div class="item">
+        //             <div class="categories_box">
+        //                 <a href="/by-category?id=${item['id']}">
+        //                     <img src="${item['categoryImg']}" alt="cat_img1"/>
+        //                     <span>${item['categoryName']}</span>
+        //                 </a>
+        //             </div>
+        //         </div>
+        //     </div>`
+        //     $("#TopCategoryItem").append(EachItem);
+        // })
+    }
+</script>
