@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class MemberDetail extends Model
 {
-    use HasFactory;
+    protected $fillable = ['name', 'designation', 'description', 'image', 'social_link1', 'social_link2', 'social_link3'];
 }

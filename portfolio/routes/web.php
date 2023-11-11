@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\contactController;
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\memberController;
 use App\Http\Controllers\teamController;
@@ -31,3 +32,7 @@ Route::get('/404', [homeController::class, 'errorPage']);
 // backend
 Route::get('/memberList', [memberController::class, 'memberList']);  
 Route::get('/memberDetail/{id}', [memberController::class, 'memberDetail']);  
+
+// dashboard backend
+Route::post('/createMember', [dashboardController::class, 'createMember']);
+Route::post('/deleteMember', [dashboardController::class, 'deleteMember']);
