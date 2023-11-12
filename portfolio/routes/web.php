@@ -36,3 +36,4 @@ Route::get('/memberDetail/{id}', [memberController::class, 'memberDetail']);
 // dashboard backend
 Route::post('/createMember', [dashboardController::class, 'createMember']);
 Route::post('/deleteMember', [dashboardController::class, 'deleteMember']);
+Route::post('/updateMember', [dashboardController::class, 'updateMember']);

@@ -29,7 +29,7 @@ teamExpert();
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
                             <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-linkedin"></i></a>
                             <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
@@ -41,22 +41,5 @@ teamExpert();
             </div>`
             $("#memberList").append(EachItem);
         })
-
-
-
-
-        // res.data['data'].forEach((item,i)=>{
-        //     let EachItem= `<div class="p-2 col-2">
-        //         <div class="item">
-        //             <div class="categories_box">
-        //                 <a href="/by-category?id=${item['id']}">
-        //                     <img src="${item['categoryImg']}" alt="cat_img1"/>
-        //                     <span>${item['categoryName']}</span>
-        //                 </a>
-        //             </div>
-        //         </div>
-        //     </div>`
-        //     $("#TopCategoryItem").append(EachItem);
-        // })
     }
 </script>
