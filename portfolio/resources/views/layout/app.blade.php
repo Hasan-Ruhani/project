@@ -29,17 +29,10 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('assets/js/axios.min.js')}}"></script>
 
-    <link href="{{asset('css2/bootstrap.css')}}" rel="stylesheet" />
-    <link href="{{asset('css2/animate.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('css2/fontawesome.css')}}" rel="stylesheet" />
-    <link href="{{asset('css2/style.css')}}" rel="stylesheet" />
-    <link href="{{asset('css2/toastify.min.css')}}" rel="stylesheet" />
-    <script src="{{asset('js2/toastify-js.js')}}"></script>
-    <script src="{{asset('js2/config.js')}}"></script>
+
 
 </head>
 
@@ -47,12 +40,19 @@
 
 
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    {{-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
-    </div>
+    </div> --}}
     <!-- Spinner End -->
+
+
+    <div id="loader" class="LoadingOverlay d-none">
+        <div class="Line-Progress">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
 
 
 
@@ -79,8 +79,6 @@
     <script src="{{asset('assets/js/magnific-popup.min.js')}}"></script>
     <script src="{{asset('assets/js/popper.min.js')}}"></script>
     {{-- <script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script> --}}
-
-    <script src="{{asset('js/bootstrap.bundle.js')}}"></script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
         <div class="card px-5 py-5">
             <div class="row justify-content-between ">
                 <div class="align-items-center col">
-                    <h4>Product</h4>
+                    <h4>Dashboard</h4>
                 </div>
                 <div class="align-items-center col">
                     <button data-bs-toggle="modal" data-bs-target="#create-modal" class="float-end btn m-0 btn-sm bg-gradient-primary">Create</button>
@@ -17,8 +17,8 @@
                     <th>No</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Price</th>
-                    <th>Unit</th>
+                    <th>Designation</th>
+                    <th>Profile</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -36,28 +36,48 @@
     getList();
     async function getList() {
         showLoader();
-        let res = await axios.get("list-product");
+        let res = await axios.get("memberList");
         hideLoader();
 
-        let tableList = $("#tableList");
-        let tableData = $("#tableData");
+         let tableList = $("#tableList");
+         let tableData = $("#tableData");
 
-        tableData.DataTable().destroy();
-        tableList.empty();
+    //    console.log((res.data.data));
+   
 
-        res.data.forEach(function (item, index){
+    //     res.data.data.forEach(function (item, index){
+    //         console.log(item['name']);
+    //     })
+
+
+
+    //    console.log((res));
+
+        // console.log(res.data.data);
+
+        // res.data.data.forEach(function (item, index){
+        //     console.log(item['name']);
+        // })
+
+        // tableData.DataTable().destroy();
+        // tableList.empty();
+
+        //  new DataTable(tableData);
+
+        res.data.data.forEach(function (item, index){
             let row = `<tr>
                             <td>${index+1}</td>
-                            <td><img class="w-15 h-auto" alt="" src="${item['img_url']}"></td>
+                            <td><img class="w-15 h-auto" alt="" src="${item['image']}"></td>
                             <td>${item['name']}</td>
-                            <td>${item['price']}</td>
-                            <td>${item['unit']}</td>
+                            <td>${item['designation']}</td>
+
+                            <td> <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Profile</button> </td>
                             <td>
                                 <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
                                 <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>
                             </td>
                        </tr>`
-                       tableList.append(row);
+        tableList.append(row);
         });
 
         $('.editBtn').on('click', async function () {
@@ -76,7 +96,7 @@
             $("#deleteFilePath").val(path);
         });
 
-        new DataTable('#tableData', {
+        new DataTable(tableData, {
             // order: [[0, 'desc']],
             lengthMenu: [5, 10, 15, 20, 30]
         });

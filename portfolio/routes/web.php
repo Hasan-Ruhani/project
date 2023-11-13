@@ -28,9 +28,10 @@ Route::get('/team', [teamController::class, 'teamPage']);
 Route::get('/contact', [contactController::class, 'contactPage']);
 Route::get('/blog', [memberController::class, 'blogPage']);
 Route::get('/404', [homeController::class, 'errorPage']);
+Route::get('/dashboard', [dashboardController::class, 'dashboardPage']);
 
 // backend
-Route::get('/memberList', [memberController::class, 'memberList']);  
+Route::get('/memberList', [dashboardController::class, 'memberList']);  
 Route::get('/memberDetail/{id}', [memberController::class, 'memberDetail']);  
 
 // dashboard backend

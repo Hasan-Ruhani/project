@@ -14,11 +14,6 @@ class memberController extends Controller
         return view("pages.blogPage");
     }
 
-    public function memberList(): JsonResponse{
-        $data = MemberDetail::all();
-        return ResponseHelper::Out('success', $data, 200);
-    }
-
 
     public function memberDetail(Request $request):JsonResponse{
 

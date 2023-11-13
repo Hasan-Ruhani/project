@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update Member</h5>
             </div>
             <div class="modal-body">
                 <form id="update-form">
@@ -11,22 +11,22 @@
                             <div class="col-12 p-1">
 
 
-                                <label class="form-label">Category</label>
+                                {{-- <label class="form-label">Category</label>
                                 <select type="text" class="form-control form-select" id="productCategoryUpdate">
                                     <option value="">Select Category</option>
-                                </select>
+                                </select> --}}
 
                                 <label class="form-label">Name</label>
-                                <input type="text" class="form-control" id="productNameUpdate">
-                                <label class="form-label">Price</label>
-                                <input type="text" class="form-control" id="productPriceUpdate">
-                                <label class="form-label">Unit</label>
-                                <input type="text" class="form-control" id="productUnitUpdate">
+                                <input type="text" class="form-control" id="memberNameUpdate">
+                                <label class="form-label">Designation</label>
+                                <input type="text" class="form-control" id="memberDesignationUpdate">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-control" id="memberDescriptionUpdate">
                                 <br/>
                                 <img class="w-15" id="oldImg" src="{{asset('images/default.jpg')}}"/>
                                 <br/>
                                 <label class="form-label">Image</label>
-                                <input oninput="oldImg.src=window.URL.createObjectURL(this.files[0])"  type="file" class="form-control" id="productImgUpdate">
+                                <input oninput="oldImg.src=window.URL.createObjectURL(this.files[0])"  type="file" class="form-control" id="memberImgUpdate">
 
                                 <input type="text" class="d-none" id="updateID">
                                 <input type="text" class="d-none" id="filePath">
@@ -51,13 +51,13 @@
 <script>
 
 
-async function UpdateFillCategoryDropDown(){
-        let res = await axios.get("/list-category")
-        res.data.forEach(function (item,i) {
-            let option=`<option value="${item['id']}">${item['name']}</option>`
-            $("#productCategoryUpdate").append(option);
-        })
-    }
+// async function UpdateFillCategoryDropDown(){
+//         let res = await axios.get("/list-category")
+//         res.data.forEach(function (item,i) {
+//             let option=`<option value="${item['id']}">${item['name']}</option>`
+//             $("#productCategoryUpdate").append(option);
+//         })
+//     }
 
 
     async function FillUpUpdateForm(id,filePath){
@@ -68,15 +68,15 @@ async function UpdateFillCategoryDropDown(){
 
 
         showLoader();
-        await UpdateFillCategoryDropDown();
+        // await UpdateFillCategoryDropDown();
 
-        let res=await axios.post("/product-by-id",{id:id})
+        let res=await axios.post("/memberList",{id:id})
         hideLoader();
 
-        document.getElementById('productNameUpdate').value=res.data['name'];
-        document.getElementById('productPriceUpdate').value=res.data['price'];
-        document.getElementById('productUnitUpdate').value=res.data['unit'];
-        document.getElementById('productCategoryUpdate').value=res.data['category_id'];
+        document.getElementById('memberNameUpdate').value=res.data['name'];
+        document.getElementById('memberDesignationUpdate').value=res.data['designation'];
+        document.getElementById('memberDescriptionUpdate').value=res.data['description'];
+        // document.getElementById('memberCategoryUpdate').value=res.data['category_id'];
 
     }
 
@@ -84,26 +84,23 @@ async function UpdateFillCategoryDropDown(){
 
     async function update() {
 
-        let productCategoryUpdate=document.getElementById('productCategoryUpdate').value;
-        let productNameUpdate = document.getElementById('productNameUpdate').value;
-        let productPriceUpdate = document.getElementById('productPriceUpdate').value;
-        let productUnitUpdate = document.getElementById('productUnitUpdate').value;
+        // let productCategoryUpdate=document.getElementById('productCategoryUpdate').value;
+        let memberNameUpdate = document.getElementById('memberNameUpdate').value;
+        let memberDesignationUpdate = document.getElementById('memberDesignationUpdate').value;
+        let memberDescriptionUpdate = document.getElementById('memberDescriptionUpdate').value;
         let updateID=document.getElementById('updateID').value;
         let filePath=document.getElementById('filePath').value;
-        let productImgUpdate = document.getElementById('productImgUpdate').files[0];
+        let memberImgUpdate = document.getElementById('memberImgUpdate').files[0];
 
 
-        if (productCategoryUpdate.length === 0) {
-            errorToast("Product Category Required !")
+        if(memberNameUpdate.length===0){
+            errorToast("Name Required !")
         }
-        else if(productNameUpdate.length===0){
-            errorToast("Product Name Required !")
+        else if(memberDesignationUpdate.length===0){
+            errorToast("Member Designation Required !")
         }
-        else if(productPriceUpdate.length===0){
-            errorToast("Product Price Required !")
-        }
-        else if(productUnitUpdate.length===0){
-            errorToast("Product Unit Required !")
+        else if(memberDescriptionUpdate.length===0){
+            errorToast("Member Description Required !")
         }
 
         else {
@@ -111,12 +108,11 @@ async function UpdateFillCategoryDropDown(){
             document.getElementById('update-modal-close').click();
 
             let formData=new FormData();
-            formData.append('img',productImgUpdate)
+            formData.append('image',memberImgUpdate)
             formData.append('id',updateID)
-            formData.append('name',productNameUpdate)
-            formData.append('price',productPriceUpdate)
-            formData.append('unit',productNameUpdate)
-            formData.append('category_id',productCategoryUpdate)
+            formData.append('name',memberNameUpdate)
+            formData.append('designation',memberDesignationUpdate)
+            formData.append('description',memberDescriptionUpdate)
             formData.append('file_path',filePath)
 
             const config = {
@@ -126,7 +122,7 @@ async function UpdateFillCategoryDropDown(){
             }
 
             showLoader();
-            let res = await axios.post("/update-product",formData,config)
+            let res = await axios.post("/updateMember",formData,config)
             hideLoader();
 
             if(res.status===200 && res.data===1){

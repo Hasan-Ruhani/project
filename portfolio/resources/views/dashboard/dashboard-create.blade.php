@@ -9,27 +9,20 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 p-1">
-
-                                <label class="form-label">Category</label>
-                                <select type="text" class="form-control form-select" id="productCategory">
-                                    <option value="">Select Category</option>
-                                </select>
-
                                 <label class="form-label">Name</label>
-                                <input type="text" class="form-control" id="productName">
-                                <label class="form-label">Price</label>
-                                <input type="text" class="form-control" id="productPrice">
-                                <label class="form-label">Unit</label>
-                                <input type="text" class="form-control" id="productUnit">
+                                <input type="text" class="form-control" id="memberName">
+                                <label class="form-label">Designation</label>
+                                <input type="text" class="form-control" id="memberDesignation">
+                                <label class="form-label">Description</label>
+                                <input type="text" class="form-control" id="memberDescriprion">
+                                {{-- <textarea class="form-control" id="memberDescriprion"></textarea> --}}
 
                                 <br/>
                                 <img class="w-15" id="newImg" src="{{asset('images/default.jpg')}}"/>
                                 <br/>
 
                                 <label class="form-label">Image</label>
-                                <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="productImg">
-
-
+                                <input oninput="newImg.src=window.URL.createObjectURL(this.files[0])" type="file" class="form-control" id="memberImage">
                             </div>
                         </div>
                     </div>
@@ -46,43 +39,29 @@
 
 <script>
 
-    FillCategoryDropDown();
-
-    async function FillCategoryDropDown() {
-        let res = await axios.get("/list-category");
-        res.data.forEach(function(item, i){
-            let option = `<option value="${item['id']}">${item['name']}</option>`
-            $("#productCategory").append(option);
-        });
-    }
-
-
+//  Save();
     async function Save() {
-        let productCategory = document.getElementById('productCategory').value;
-        let productName = document.getElementById('productName').value;
-        let productPrice = document.getElementById('productPrice').value;
-        let productUnit = document.getElementById('productUnit').value;
-        let productImg = document.getElementById('productImg').files[0];
+        let memberName = document.getElementById('memberName').value;
+        let memberDesignation = document.getElementById('memberDesignation').value;
+        let memberDescriprion = document.getElementById('memberDescriprion').value;
+        let memberImg = document.getElementById('memberImage').files[0];
 
-        if(productCategory.length === 0){
-            errorToast("Category Required");
-        }
-
-        else if(productName.length === 0){
+        if(memberName.length === 0){
             errorToast("Name Required");
         }
-
-        else if(productPrice.length === 0){
-            errorToast("Price Required");
-        }
-
-        else if(productUnit.length === 0){
-            errorToast("Unit Required");
-        }
         
-        else if(!productImg){
-            errorToast("Image Required");
-        }
+
+        // else if(memberDesignation.length === 0){
+        //     errorToast("Designation Required");
+        // }
+
+        // else if(memberDescriprion.length === 0){
+        //     errorToast("Descriprion Required");
+        // }
+        
+        // else if(!memberImg){
+        //     errorToast("Image Required");
+        // }
 
 
         else{
@@ -90,11 +69,10 @@
             document.getElementById('modal-close').click();
 
             let formData = new FormData();
-            formData.append('img', productImg);
-            formData.append('name', productName);
-            formData.append('price', productPrice);
-            formData.append('unit', productUnit);
-            formData.append('category_id', productCategory);
+            formData.append('image', memberImg);
+            formData.append('name', memberName);
+            formData.append('designation', memberDesignation);
+            formData.append('description', memberDescriprion);
 
             const config = {          // when transfer a file then its code must 
                 headers: {
@@ -103,13 +81,13 @@
             }
 
             showLoader();
-            let res = await axios.post("/create-product", formData, config);
+            let res = await axios.post("/createMember", formData, config);
             hideLoader();
 
             if(res.status === 201){
-                successToast('New Product Added');
+                successToast('New Member Added');
                 document.getElementById("save-form").reset();
-                await getList();
+                // await getList();
             }
             else{
                 errorToast("Request Fail !");

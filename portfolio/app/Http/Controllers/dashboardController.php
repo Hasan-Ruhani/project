@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\ResponseHelper;
 use Illuminate\Support\Facades\File;
 use App\Models\MemberDetail;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class dashboardController extends Controller
 {
+
+    public function dashboardPage(){
+        return view("pages.dashboard");
+    }
+
     function createMember(Request $request){
         // $user_id = $request->header('id');
 
@@ -41,6 +48,11 @@ class dashboardController extends Controller
         File::delete($filePath);
         return MemberDetail::where('id', $member_id) -> delete();
         // return MemberDetail::where('id', $member_id) -> where('user_id', $user_id) -> delete();
+    }
+
+    public function memberList(): JsonResponse{
+        $data = MemberDetail::all();
+        return ResponseHelper::Out('success', $data, 200);
     }
 
 
