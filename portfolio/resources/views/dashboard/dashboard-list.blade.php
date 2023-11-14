@@ -59,8 +59,8 @@
         //     console.log(item['name']);
         // })
 
-        // tableData.DataTable().destroy();
-        // tableList.empty();
+        tableData.DataTable().destroy();
+        tableList.empty();
 
         //  new DataTable(tableData);
 

@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Member</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update Information</h5>
             </div>
             <div class="modal-body">
                 <form id="update-form">
@@ -22,6 +22,14 @@
                                 <input type="text" class="form-control" id="memberDesignationUpdate">
                                 <label class="form-label">Description</label>
                                 <input type="text" class="form-control" id="memberDescriptionUpdate">
+
+                                <label class="form-label">Facebook</label>
+                                <input type="text" class="form-control" id="facebook">
+                                <label class="form-label">Github</label>
+                                <input type="text" class="form-control" id="github">
+                                <label class="form-label">Linkedin</label>
+                                <input type="text" class="form-control" id="linkedin">
+
                                 <br/>
                                 <img class="w-15" id="oldImg" src="{{asset('images/default.jpg')}}"/>
                                 <br/>
@@ -50,16 +58,6 @@
 
 <script>
 
-
-// async function UpdateFillCategoryDropDown(){
-//         let res = await axios.get("/list-category")
-//         res.data.forEach(function (item,i) {
-//             let option=`<option value="${item['id']}">${item['name']}</option>`
-//             $("#productCategoryUpdate").append(option);
-//         })
-//     }
-
-
     async function FillUpUpdateForm(id,filePath){
 
         document.getElementById('updateID').value=id;
@@ -70,12 +68,16 @@
         showLoader();
         // await UpdateFillCategoryDropDown();
 
-        let res=await axios.post("/memberList",{id:id})
+        let res=await axios.get("/memberList",{id:id})
         hideLoader();
 
         document.getElementById('memberNameUpdate').value=res.data['name'];
         document.getElementById('memberDesignationUpdate').value=res.data['designation'];
         document.getElementById('memberDescriptionUpdate').value=res.data['description'];
+
+        document.getElementById('facebook').value=res.data['social_link1'];
+        document.getElementById('github').value=res.data['social_link2'];
+        document.getElementById('linkedin').value=res.data['social_link3'];
         // document.getElementById('memberCategoryUpdate').value=res.data['category_id'];
 
     }
@@ -88,6 +90,11 @@
         let memberNameUpdate = document.getElementById('memberNameUpdate').value;
         let memberDesignationUpdate = document.getElementById('memberDesignationUpdate').value;
         let memberDescriptionUpdate = document.getElementById('memberDescriptionUpdate').value;
+
+        let facebook = document.getElementById('facebook').value;
+        let github = document.getElementById('github').value;
+        let linkedin = document.getElementById('linkedin').value;
+
         let updateID=document.getElementById('updateID').value;
         let filePath=document.getElementById('filePath').value;
         let memberImgUpdate = document.getElementById('memberImgUpdate').files[0];
@@ -102,6 +109,9 @@
         else if(memberDescriptionUpdate.length===0){
             errorToast("Member Description Required !")
         }
+        else if(facebook.length===0){
+            errorToast("Facebook URL Required !")
+        }
 
         else {
 
@@ -113,6 +123,11 @@
             formData.append('name',memberNameUpdate)
             formData.append('designation',memberDesignationUpdate)
             formData.append('description',memberDescriptionUpdate)
+
+            formData.append('social_link1',facebook)
+            formData.append('social_link2',github)
+            formData.append('social_link3',linkedin)
+            
             formData.append('file_path',filePath)
 
             const config = {
