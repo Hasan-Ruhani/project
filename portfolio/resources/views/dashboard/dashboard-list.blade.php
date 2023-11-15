@@ -71,7 +71,8 @@
                             <td>${item['name']}</td>
                             <td>${item['designation']}</td>
 
-                            <td> <button data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Profile</button> </td>
+                            <td> <a href="/blog?id=${item['id']}"> <button class="btn btn-sm btn-outline-success">View Details</button> </a> </td>
+                            
                             <td>
                                 <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn editBtn btn-sm btn-outline-success">Edit</button>
                                 <button data-path="${item['img_url']}" data-id="${item['id']}" class="btn deleteBtn btn-sm btn-outline-danger">Delete</button>

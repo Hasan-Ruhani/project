@@ -66,9 +66,7 @@
 
 
         showLoader();
-        // await UpdateFillCategoryDropDown();
-
-        let res=await axios.get("/memberList",{id:id})
+        let res=await axios.get("/memberDetail/" + id);
         hideLoader();
 
         document.getElementById('memberNameUpdate').value=res.data['name'];
@@ -98,7 +96,6 @@
         let updateID=document.getElementById('updateID').value;
         let filePath=document.getElementById('filePath').value;
         let memberImgUpdate = document.getElementById('memberImgUpdate').files[0];
-
 
         if(memberNameUpdate.length===0){
             errorToast("Name Required !")
@@ -151,5 +148,5 @@
         }
     }
 
-   
 </script>
+
