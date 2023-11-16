@@ -29,8 +29,8 @@ teamExpert();
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
                             <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-linkedin"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-github"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link2']}"><i class="fab fa-linkedin"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link3']}"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">

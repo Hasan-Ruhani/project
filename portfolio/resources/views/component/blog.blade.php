@@ -24,7 +24,7 @@
         let searchParams = new URLSearchParams(window.location.search);
         let id = searchParams.get('id');
 
-        let res = await axios.get("/memberDetail/" + id);
+        let res = await axios.post("/memberDetail/" + id);
         let Details = await res.data['data'];
 
         document.getElementById('img').src=Details[0]['image'];

@@ -36,7 +36,7 @@
                                 <label class="form-label">Image</label>
                                 <input oninput="oldImg.src=window.URL.createObjectURL(this.files[0])"  type="file" class="form-control" id="memberImgUpdate">
 
-                                <input type="text" class="d-none" id="updateID">
+                                <input type="text" id="updateID">
                                 <input type="text" class="d-none" id="filePath">
 
 
@@ -66,7 +66,7 @@
 
 
         showLoader();
-        let res=await axios.get("/memberDetail/" + id);
+        let res=await axios.post("/memberDetail/" + id); // this code doesn't work yet
         hideLoader();
 
         document.getElementById('memberNameUpdate').value=res.data['name'];
@@ -76,7 +76,6 @@
         document.getElementById('facebook').value=res.data['social_link1'];
         document.getElementById('github').value=res.data['social_link2'];
         document.getElementById('linkedin').value=res.data['social_link3'];
-        // document.getElementById('memberCategoryUpdate').value=res.data['category_id'];
 
     }
 

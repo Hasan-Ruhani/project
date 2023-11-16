@@ -5,6 +5,7 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\memberController;
 use App\Http\Controllers\teamController;
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // page
+Route::get('/userLogin',[userController::class,'LoginPage']);
+Route::get('/userRegistration',[userController::class,'RegistrationPage']);
+Route::get('/sendOtp',[userController::class,'SendOtpPage']);
+Route::get('/verifyOtp',[userController::class,'VerifyOTPPage']);
+Route::get('/resetPassword',[userController::class,'ResetPasswordPage']);
+
+// ..........................................................................
+
 Route::get('/', [homeController::class, 'homePage']);
 Route::get('/team', [teamController::class, 'teamPage']);
 Route::get('/contact', [contactController::class, 'contactPage']);
@@ -32,7 +41,7 @@ Route::get('/dashboard', [dashboardController::class, 'dashboardPage']);
 
 // backend
 Route::get('/memberList', [dashboardController::class, 'memberList']);  
-Route::get('/memberDetail/{id}', [memberController::class, 'memberDetail']);  
+Route::post('/memberDetail/{id}', [memberController::class, 'memberDetail']);  
 
 // dashboard backend
 Route::post('/createMember', [dashboardController::class, 'createMember']);

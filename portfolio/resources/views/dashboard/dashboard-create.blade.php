@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create Member</h5>
             </div>
             <div class="modal-body">
                 <form id="save-form">
@@ -14,7 +14,7 @@
                                 <label class="form-label">Designation</label>
                                 <input type="text" class="form-control" id="memberDesignation">
                                 <label class="form-label">Description</label>
-                                <input type="text" class="form-control" id="memberDescription">
+                                <textarea type="text" class="form-control" id="memberDescription"> </textarea>
 
                                 <label class="form-label">Facebook</label>
                                 <input type="text" class="form-control" id="facebook">
@@ -55,7 +55,27 @@
 
         if (memberName.length === 0) {
             errorToast("Name Required");
-        } else {
+        } 
+        else if (memberDesignation.length === 0) {
+            errorToast("Designation Required");
+        } 
+        else if (memberDescription.length === 0) {
+            errorToast("Description Required");
+        } 
+        else if (facebook.length === 0) {
+            errorToast("Facebook Required");
+        } 
+        else if (github.length === 0) {
+            errorToast("Github Required");
+        } 
+        else if (linkedin.length === 0) {
+            errorToast("Linkedin Required");
+        } 
+        else if (!memberImg) {
+            errorToast("Profile Image Required");
+        } 
+
+        else {
             document.getElementById('modal-close').click();
 
             let formData = new FormData();
