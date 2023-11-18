@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table -> id();
+
+            $table -> stirng('name', 20);
+            $table -> string('email', 50) -> unique();
+            $table -> string('password', 50);
+            $table -> string('confirm_password', 50);
+            $table -> string('otp', 10);
+            
+            $table -> timestamp('created_at')->useCurrent();
+            $table -> timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

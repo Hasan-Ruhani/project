@@ -23,6 +23,19 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// Web API Routes
+Route::post('/user-registration',[UserController::class,'userRegistration']);
+Route::post('/user-login',[UserController::class,'userLogin']);
+Route::post('/send-otp',[UserController::class,'sendOTPCode']);
+Route::post('/verify-otp',[UserController::class,'verifyOTP']);
+Route::post('/reset-password',[UserController::class,'resetPassword'])->middleware([TokenVerificationMiddleware::class]);
+
+Route::get('/user-profile',[UserController::class,'userProfile'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/user-update',[UserController::class,'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
+
+// User Logout
+Route::get('/logout',[UserController::class,'userLogout']);
+
 // page
 Route::get('/userLogin',[userController::class,'LoginPage']);
 Route::get('/userRegistration',[userController::class,'RegistrationPage']);

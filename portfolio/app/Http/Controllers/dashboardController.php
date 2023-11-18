@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helper\ResponseHelper;
+use App\Models\Profile;
 use Illuminate\Support\Facades\File;
-use App\Models\MemberDetail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -16,20 +16,19 @@ class dashboardController extends Controller
     }
 
     function createMember(Request $request){
-        // $user_id = $request->header('id');
+         $user_id = $request->header('id');
 
         $img = $request->file('image');
 
         $t = time();
         $file_name = $img->getClientOriginalName();
-        // $img_name = "{$user_id}-{$t}-{$file_name}";
-        $img_name = "{$t}-{$file_name}";
+        $img_name = "{$user_id}-{$t}-{$file_name}";
         $img_url = "uploads/{$img_name}";
 
         $img -> move(public_path('uploads'), $img_name);
 
         // save to database
-        return MemberDetail::create([
+        return Profile::where($user_id, $request -> input('id')) -> create([
             'name' => $request->input('name'),
             'designation' => $request->input('designation'),
             'description' => $request->input('description'),

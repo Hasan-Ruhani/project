@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FaqTable extends Model
+class Review extends Model
 {
-    protected $fillable = ['queation', 'answer'];
+    protected $fillable = ['reivew'];
 }
