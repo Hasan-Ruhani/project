@@ -24,17 +24,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Web API Routes
-Route::post('/user-registration',[UserController::class,'userRegistration']);
-Route::post('/user-login',[UserController::class,'userLogin']);
-Route::post('/send-otp',[UserController::class,'sendOTPCode']);
-Route::post('/verify-otp',[UserController::class,'verifyOTP']);
-Route::post('/reset-password',[UserController::class,'resetPassword'])->middleware([TokenVerificationMiddleware::class]);
+Route::post('/user-registration',[userController::class,'userRegistration']);
+Route::post('/user-login',[userController::class,'userLogin']);
+Route::post('/send-otp',[userController::class,'sendOTPCode']);
+Route::post('/verify-otp',[userController::class,'verifyOTP']);
+Route::post('/reset-password',[userController::class,'resetPassword'])->middleware([TokenVerificationMiddleware::class]);
 
-Route::get('/user-profile',[UserController::class,'userProfile'])->middleware([TokenVerificationMiddleware::class]);
-Route::post('/user-update',[UserController::class,'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/user-profile',[userController::class,'userProfile']);//->middleware([TokenVerificationMiddleware::class]);
+Route::post('/user-update',[userController::class,'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
 
 // User Logout
-Route::get('/logout',[UserController::class,'userLogout']);
+Route::get('/logout',[userController::class,'userLogout']);
 
 // page
 Route::get('/userLogin',[userController::class,'LoginPage']);
@@ -53,10 +53,10 @@ Route::get('/404', [homeController::class, 'errorPage']);
 Route::get('/dashboard', [dashboardController::class, 'dashboardPage']);
 
 // backend
-Route::get('/memberList', [dashboardController::class, 'memberList']);  
-Route::post('/memberDetail/{id}', [memberController::class, 'memberDetail']);  
+Route::get('/profileList', [dashboardController::class, 'memberList']);  
+Route::post('/userProfile', [dashboardController::class, 'userProfile']);  
 
 // dashboard backend
-Route::post('/createMember', [dashboardController::class, 'createMember']);
-Route::post('/deleteMember', [dashboardController::class, 'deleteMember']);
-Route::post('/updateMember', [dashboardController::class, 'updateMember']);
+Route::post('/createProfile', [dashboardController::class, 'createProfile']);
+Route::post('/deleteProfile', [dashboardController::class, 'deleteProfile']);
+Route::post('/updateProfile', [dashboardController::class, 'updateProfile']);

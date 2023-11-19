@@ -15,8 +15,8 @@ class dashboardController extends Controller
         return view("pages.dashboard");
     }
 
-    function createMember(Request $request){
-         $user_id = $request->header('id');
+    function createProfile(Request $request){
+        $user_id = $request->header('id');
 
         $img = $request->file('image');
 
@@ -33,31 +33,41 @@ class dashboardController extends Controller
             'designation' => $request->input('designation'),
             'description' => $request->input('description'),
             'image' => $img_url,
-            'social_link1' => $request->input('social_link1'),
-            'social_link2' => $request->input('social_link2'),
-            'social_link3' => $request->input('social_link3'),
-            // 'user_id' => $user_id
+            'facebook' => $request->input('facebook'),
+            'github' => $request->input('github'),
+            'linkedin' => $request->input('linkedin'),
+            'user_id' => $user_id
         ]);
     }
 
-    function deleteMember(Request $request){
-        // $user_id = $request -> header('id');
-        $member_id = $request -> input('id');
+    function deleteProfile(Request $request){
+        $user_id = $request -> header('id');
+        $profile_id = $request -> input('id');
         $filePath = $request -> input('file_path');
         File::delete($filePath);
-        return MemberDetail::where('id', $member_id) -> delete();
-        // return MemberDetail::where('id', $member_id) -> where('user_id', $user_id) -> delete();
+        // return Profile::where('id', $member_id) -> delete();
+        return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> delete();
     }
 
-    public function memberList(): JsonResponse{
-        $data = MemberDetail::all();
+    public function profileList(): JsonResponse{
+        $data = Profile::all();
         return ResponseHelper::Out('success', $data, 200);
     }
 
+    function userProfile(Request $request){
+        $user_id = $request -> header('id');
+        $profile = Profile::where($user_id, $request -> input('id')) -> first();
+        return response() -> json([
+            'status' => 'success',
+            'message' => 'Request Successful',
+            'data' => $profile
+        ],200);
+    }
 
-    function updateMember(Request $request){
-        // $user_id = $request -> header('id');
-        $member_id = $request -> input('id');
+
+    function updateProfile(Request $request){
+        $user_id = $request -> header('id');
+        $profile_id = $request -> input('id');
 
         if($request -> hasFile('image')){
 
@@ -65,8 +75,7 @@ class dashboardController extends Controller
             $img = $request -> file('image');
             $t = time();
             $file_name = $img -> getClientOriginalName();
-            // $img_name = "{$user_id}-{$t}-{$file_name}";
-            $img_name = "{$t}-{$file_name}";
+            $img_name = "{$user_id}-{$t}-{$file_name}";
             $img_url = "uploads/{$img_name}";
             $img -> move(public_path('uploads'), $img_name);
 
@@ -75,20 +84,20 @@ class dashboardController extends Controller
             File::delete($file_path);
 
             // update Member
-            // return MemberDetail::where('id', $member_id) -> where('user_id', $user_id) -> update([
-            return MemberDetail::where('id', $member_id) -> update([
+            return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
+            // return MemberDetail::where('id', $member_id) -> update([
                 'name' => $request->input('name'),
                 'designation' => $request->input('designation'),
                 'description' => $request->input('description'),
                 'image' => $img_url,
-                'social_link1' => $request->input('social_link1'),
-                'social_link2' => $request->input('social_link2'),
-                'social_link3' => $request->input('social_link3'),
+                'facebook' => $request->input('facebook'),
+                'github' => $request->input('github'),
+                'linkedin' => $request->input('linkedin'),
                 ]);
         }
         else{
-            // return MemberDetail::where('id', $product_id) -> where('user_id', $user_id) -> update([
-            return MemberDetail::where('id', $member_id) -> update([
+            return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
+            // return MemberDetail::where('id', $member_id) -> update([
                 'name' => $request->input('name'),
                 'designation' => $request->input('designation'),
                 'description' => $request->input('description'),
