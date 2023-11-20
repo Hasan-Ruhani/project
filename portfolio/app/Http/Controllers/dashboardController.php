@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\ResponseHelper;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class dashboardController extends Controller
 
         // save to database
         return Profile::where($user_id, $request -> input('id')) -> create([
-            'name' => $request->input('name'),
+
             'designation' => $request->input('designation'),
             'description' => $request->input('description'),
             'image' => $img_url,
@@ -40,23 +41,15 @@ class dashboardController extends Controller
         ]);
     }
 
-    function deleteProfile(Request $request){
-        $user_id = $request -> header('id');
-        $profile_id = $request -> input('id');
-        $filePath = $request -> input('file_path');
-        File::delete($filePath);
-        // return Profile::where('id', $member_id) -> delete();
-        return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> delete();
-    }
-
-    public function profileList(): JsonResponse{
-        $data = Profile::all();
+    public function userList(): JsonResponse {
+        $data = User::with('profile') -> get();
         return ResponseHelper::Out('success', $data, 200);
     }
+    
 
     function userProfile(Request $request){
         $user_id = $request -> header('id');
-        $profile = Profile::where($user_id, $request -> input('id')) -> first();
+        $profile = User::where('id', $user_id) -> with('profile') -> first();
         return response() -> json([
             'status' => 'success',
             'message' => 'Request Successful',
@@ -85,27 +78,45 @@ class dashboardController extends Controller
 
             // update Member
             return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
-            // return MemberDetail::where('id', $member_id) -> update([
-                'name' => $request->input('name'),
-                'designation' => $request->input('designation'),
-                'description' => $request->input('description'),
-                'image' => $img_url,
-                'facebook' => $request->input('facebook'),
-                'github' => $request->input('github'),
-                'linkedin' => $request->input('linkedin'),
+                // return User::where('id', $user_id) -> where('id', $profile_id) -> update([
+
+                    // 'name' => $request->input('name'),
+                    // 'email' => $request->input('email'),
+                    // 'password' => $request->input('password'),
+                    // 'confirm_password' => $request->input('confirm_password'),
+                    
+                    'designation' => $request->input('designation'),
+                    'description' => $request->input('description'),
+                    'image' => $img_url,
+                    'facebook' => $request->input('facebook'),
+                    'github' => $request->input('github'),
+                    'linkedin' => $request->input('linkedin'),
+                    ]);
+            }
+            else{
+                return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
+    
+                    // 'name' => $request->input('name'),
+                    // 'email' => $request->input('email'),
+                    // 'password' => $request->input('password'),
+                    // 'confirm_password' => $request->input('confirm_password'),
+                    
+                    'designation' => $request->input('designation'),
+                    'description' => $request->input('description'),
+                    'facebook' => $request->input('facebook'),
+                    'github' => $request->input('github'),
+                    'linkedin' => $request->input('linkedin'),
                 ]);
         }
-        else{
-            return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
-            // return MemberDetail::where('id', $member_id) -> update([
-                'name' => $request->input('name'),
-                'designation' => $request->input('designation'),
-                'description' => $request->input('description'),
-                'social_link1' => $request->input('social_link1'),
-                'social_link2' => $request->input('social_link2'),
-                'social_link3' => $request->input('social_link3'),
-            ]);
-        }
 
+    }
+
+    function deleteProfile(Request $request){
+        $user_id = $request -> header('id');
+        $profile_id = $request -> input('id');
+        $filePath = $request -> input('file_path');
+        File::delete($filePath);
+        // return Profile::where('id', $member_id) -> delete();
+        return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> delete();
     }
 }

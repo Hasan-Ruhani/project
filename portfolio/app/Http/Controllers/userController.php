@@ -158,7 +158,7 @@ class userController extends Controller
 
     // function userProfile(Request $request){
     //     $user_id = $request -> header('id');
-    //     $profile = Profile::where($user_id, $request -> input('id')) -> first();
+    //     $profile = User::where($user_id, $request -> input('id')) -> with('profile') -> first();
     //     return response() -> json([
     //         'status' => 'success',
     //         'message' => 'Request Successful',

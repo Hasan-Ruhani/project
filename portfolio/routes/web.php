@@ -6,6 +6,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\memberController;
 use App\Http\Controllers\teamController;
 use App\Http\Controllers\userController;
+use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,7 @@ Route::post('/send-otp',[userController::class,'sendOTPCode']);
 Route::post('/verify-otp',[userController::class,'verifyOTP']);
 Route::post('/reset-password',[userController::class,'resetPassword'])->middleware([TokenVerificationMiddleware::class]);
 
-Route::get('/user-profile',[userController::class,'userProfile']);//->middleware([TokenVerificationMiddleware::class]);
+Route::get('/user-profile',[dashboardController::class,'userProfile'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/user-update',[userController::class,'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
 
 // User Logout
@@ -53,10 +54,10 @@ Route::get('/404', [homeController::class, 'errorPage']);
 Route::get('/dashboard', [dashboardController::class, 'dashboardPage']);
 
 // backend
-Route::get('/profileList', [dashboardController::class, 'memberList']);  
+Route::get('/userList', [dashboardController::class, 'userList']);  
 Route::post('/userProfile', [dashboardController::class, 'userProfile']);  
 
 // dashboard backend
-Route::post('/createProfile', [dashboardController::class, 'createProfile']);
+Route::post('/createProfile', [dashboardController::class, 'createProfile'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/deleteProfile', [dashboardController::class, 'deleteProfile']);
-Route::post('/updateProfile', [dashboardController::class, 'updateProfile']);
+Route::post('/updateProfile', [dashboardController::class, 'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
