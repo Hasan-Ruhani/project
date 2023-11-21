@@ -154,50 +154,6 @@ class userController extends Controller
     function userLogout(){
         return redirect('/userLogin') -> cookie('token', '', -1);
     }
-
-
-    // function userProfile(Request $request){
-    //     $user_id = $request -> header('id');
-    //     $profile = User::where($user_id, $request -> input('id')) -> with('profile') -> first();
-    //     return response() -> json([
-    //         'status' => 'success',
-    //         'message' => 'Request Successful',
-    //         'data' => $profile
-    //     ],200);
-    // }
-
-    // function updateProfile(Request $request){
-    //     try{
-    //         $user_id = $request -> header('id');
-    //         $name = $request -> input('name');
-    //         $designation = $request -> input('designation');
-    //         $description = $request -> input('description');
-    //         $image = $request -> input('image');
-    //         $facebook = $request -> input('facebook');
-    //         $github = $request -> input('github');
-    //         $linkedin = $request -> input('linkedin');
-
-    //         Profile::where('user_id', $request -> input ('id')) -> update([
-    //             'name' => $name,
-    //             'designation' => $designation,
-    //             'description' => $description,
-    //             'image' => $image,
-    //             'facebook' => $facebook,
-    //             'github' => $github,
-    //             'linkedin' => $linkedin
-    //         ]);
-    //         return response()->json([
-    //             'status' => 'success',
-    //             'message' => 'Request Successful',
-    //         ],200);
-
-    //     }catch (Exception $exception){
-    //         return response()->json([
-    //             'status' => 'fail',
-    //             'message' => 'Something Went Wrong',
-    //         ],200);
-    //     }
-    // }
 }
 
 

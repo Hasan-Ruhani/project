@@ -16,8 +16,8 @@ return new class extends Migration
 
             $table -> string('review', 300);
 
-            $table -> unsignedBigInteger('user_id') -> unique();
-            $table->foreign('user_id')->references('id')->on('profiles') 
+            $table -> unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users') 
             -> restrictOnDelete() -> cascadeOnUpdate();
   
             $table -> timestamp('created_at')->useCurrent();

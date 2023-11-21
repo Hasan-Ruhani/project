@@ -77,13 +77,8 @@ class dashboardController extends Controller
             File::delete($file_path);
 
             // update Member
-            return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
-                // return User::where('id', $user_id) -> where('id', $profile_id) -> update([
 
-                    // 'name' => $request->input('name'),
-                    // 'email' => $request->input('email'),
-                    // 'password' => $request->input('password'),
-                    // 'confirm_password' => $request->input('confirm_password'),
+             $profile =  Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
                     
                     'designation' => $request->input('designation'),
                     'description' => $request->input('description'),
@@ -92,14 +87,23 @@ class dashboardController extends Controller
                     'github' => $request->input('github'),
                     'linkedin' => $request->input('linkedin'),
                     ]);
+
+                    $user =  User::where('id', $user_id) -> where('id', $profile_id) -> update([
+
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password'),
+                    'confirm_password' => $request->input('confirm_password'),
+                    ]);
+
+                    if (!$user  || !$profile ) {
+                        return false;
+                    } else {
+                        return true;
+                    }
             }
             else{
-                return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
-    
-                    // 'name' => $request->input('name'),
-                    // 'email' => $request->input('email'),
-                    // 'password' => $request->input('password'),
-                    // 'confirm_password' => $request->input('confirm_password'),
+                 $profile = Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
                     
                     'designation' => $request->input('designation'),
                     'description' => $request->input('description'),
@@ -107,6 +111,20 @@ class dashboardController extends Controller
                     'github' => $request->input('github'),
                     'linkedin' => $request->input('linkedin'),
                 ]);
+
+                $user = User::where('id', $user_id) -> where('id', $profile_id) -> update([
+
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password'),
+                    'confirm_password' => $request->input('confirm_password'),
+                    ]);
+
+                    if (!$user  || !$profile ) {
+                        return false;
+                    } else {
+                        return true;
+                    }
         }
 
     }

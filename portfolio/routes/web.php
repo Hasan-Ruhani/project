@@ -4,6 +4,7 @@ use App\Http\Controllers\contactController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\memberController;
+use App\Http\Controllers\reviewController;
 use App\Http\Controllers\teamController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\TokenVerificationMiddleware;
@@ -59,5 +60,14 @@ Route::post('/userProfile', [dashboardController::class, 'userProfile']);
 
 // dashboard backend
 Route::post('/createProfile', [dashboardController::class, 'createProfile'])->middleware([TokenVerificationMiddleware::class]);
-Route::post('/deleteProfile', [dashboardController::class, 'deleteProfile']);
+Route::post('/deleteProfile', [dashboardController::class, 'deleteProfile'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/updateProfile', [dashboardController::class, 'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
+
+// review
+Route::post('/createReview', [reviewController::class, 'createReview'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/userReview', [reviewController::class, 'userReview']);
+
+// specific review
+
+Route::post('/createSpcReview', [reviewController::class, 'createSpcReview'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/spcUserReview', [reviewController::class, 'spcUserReview']);
