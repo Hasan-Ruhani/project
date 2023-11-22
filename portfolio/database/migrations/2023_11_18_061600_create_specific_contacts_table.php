@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('specific_contacts', function (Blueprint $table) {
             $table -> id();
 
-            $table -> unsignedBigInteger('user_id') -> unique();
+            $table -> unsignedBigInteger('profile_id');
             $table -> string('name', 50);
             $table -> string('email', 50);
+            $table -> string('clint_email', 50);
             $table -> string('subject', 50);
             $table -> string('message', 1000);
             
-            $table->foreign('user_id')->references('id')->on('users') 
+            $table->foreign('profile_id')->references('id')->on('profiles') 
             -> restrictOnDelete() -> cascadeOnUpdate();
   
             $table -> timestamp('created_at')->useCurrent();

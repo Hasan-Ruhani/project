@@ -25,10 +25,6 @@ class User extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function spcReview(): HasMany
-    {
-        return $this->hasMany(SpecificReview::class);
-    }
 
     public function contact(): HasMany
     {

@@ -24,4 +24,9 @@ class Profile extends Model
     {
         return $this->BelongsTo(User::class);
     }
+
+    public function spcContact(): HasMany
+    {
+        return $this->hasMany(SpecificContact::class);
+    }
 }
