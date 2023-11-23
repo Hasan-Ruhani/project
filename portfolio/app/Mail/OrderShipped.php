@@ -9,25 +9,25 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public $data;
-    public function __construct($data)
+    public function __construct()
     {
-     $this->data = $data;
+        //
     }
+
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Mail',
+            subject: 'Order Shipped',
         );
     }
 
@@ -37,7 +37,7 @@ class ContactMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.ContactMail',
+            markdown: 'emails.orders.shipped',
         );
     }
 

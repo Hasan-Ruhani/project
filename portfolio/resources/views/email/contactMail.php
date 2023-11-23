@@ -1,4 +1,4 @@
-<div style="font-family: Helvetica, Arial, sans-serif; min-width: 1000px; overflow:auto; line-height: 2">
+<!-- <div style="font-family: Helvetica, Arial, sans-serif; min-width: 1000px; overflow:auto; line-height: 2">
     <div style="margin:50px auto; width:70%; padding:20px 0">
         <div style="border-bottom:1px solid #eee">
             <a href="" style="font-size:1.4em; color: #00466a; text-decoration:none; font-weight:600">Your Brand</a>
@@ -16,4 +16,10 @@
             <p>California</p>
         </div>
     </div>
-</div>
+</div> -->
+
+@component('mail::message', ['order' => $order])
+this is {{$order}}
+@endcomponent
+
+

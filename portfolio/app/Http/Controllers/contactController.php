@@ -15,34 +15,6 @@ class contactController extends Controller
         return view("pages.contactPage");
     }
 
-    // public function createSpcContact(Request $request){
-
-    //     $profile_id = $request->input('profile_id');
-    //     $profile = Profile::where('id', $profile_id)->first();
-
-    //     if ($profile) {
-    //         $clint_Email = $profile->user->email;
-
-    //         $data = [
-    //             'profile_id' => $profile_id,
-    //             'name' => $request->input('name'),
-    //             'email' => $request->input('email'),
-    //             'subject' => $request->input('subject'),
-    //             'message' => $request->input('message'),
-    //         ];
-
-    //         $contact = SpecificContact::create($data);
-    //         $response = [
-    //             'contact' => $contact,
-    //             'clint_Email' => $clint_Email,
-    //         ];
-
-    //         return $response;
-    //     } else {
-    //         return 'Customer profile not exists';
-    //     }
-    // }
-
     public function createSpcContact(Request $request){
 
         $profile_id = $request->input('profile_id');
@@ -59,15 +31,11 @@ class contactController extends Controller
                 'message' => $request->input('message'),
             ];
 
-            $contact = SpecificContact::create($data);
+           $contact = SpecificContact::create($data);
+
             if ($contact) {
-                // Mail::to($clint_Email)->send(new contactMail($contact));
-                Mail::to($clint_Email)->send(new contactMail(
-                    $contact->name,
-                    $contact->email,
-                    $contact->message
-                ));
-                
+               Mail::to($clint_Email)->send(new contactMail($data));
+               
             }
 
             return $contact;
@@ -89,31 +57,5 @@ class contactController extends Controller
             return 'No contact found for the user.';
         }
     }
-
-
-    // function sendOTPCode(Request $request){
-
-    //     $email = $request -> input('email');
-    //     $otp = rand(100000,999999);
-    //     $count = User::where('email','=',$email) -> count();
-
-    //     if($count==1){
-    //         // OTP Email Address
-    //         Mail::to($email) -> send(new OTPMail($otp));
-    //         // OTO Code Table Update
-    //         User::where('email','=',$email) -> update(['otp' => $otp]);
-
-    //         return response() -> json([
-    //             'status' => 'success',
-    //             'message' => '4 Digit OTP Code has been send to your email !'
-    //         ],200);
-    //     }
-    //     else{
-    //         return response()->json([
-    //             'status' => 'failed',
-    //             'message' => 'unauthorized'
-    //         ]);
-    //     }
-    // }
     
 }
