@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 
     // Admin..............................................
     // Route::middleware(['adminAuth']) -> group(function() {
-        Route::get('/user-profile',[dashboardController::class,'userProfile'])->middleware([adminMiddleware::class]);
+        // Route::get('/user-profile',[dashboardController::class,'userProfile'])->middleware([adminMiddleware::class]);
         // Route::post('/user-update',[userController::class,'updateProfile']);
 
     // });
@@ -68,7 +68,7 @@ Route::get('/dashboard', [dashboardController::class, 'dashboardPage']);
 
 // backend
 Route::get('/userList', [dashboardController::class, 'userList']);  
-Route::post('/userProfile', [dashboardController::class, 'userProfile']);  
+Route::get('/profileDetail/{id}', [dashboardController::class, 'profileDetail']);  
 
 // dashboard backend
 Route::post('/createProfile', [dashboardController::class, 'createProfile'])->middleware([TokenVerificationMiddleware::class]);

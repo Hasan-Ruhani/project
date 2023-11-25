@@ -41,6 +41,13 @@ class dashboardController extends Controller
         ]);
     }
 
+    public function profileDetail(Request $request):JsonResponse{
+
+        $data=User::where('id',$request->id) -> with('profile') -> get();
+
+        return ResponseHelper::Out('success',$data,200);
+    }
+
     public function userList(): JsonResponse {
         $data = User::with('profile') -> get();
         return ResponseHelper::Out('success', $data, 200);

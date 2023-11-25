@@ -20,6 +20,11 @@ class Profile extends Model
         'linkedin'
     ];
 
+    public function admin(): BelongsTo
+    {
+        return $this->BelongsTo(Admin::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->BelongsTo(User::class);

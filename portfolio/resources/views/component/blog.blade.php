@@ -24,12 +24,12 @@
         let searchParams = new URLSearchParams(window.location.search);
         let id = searchParams.get('id');
 
-        let res = await axios.post("/memberDetail/" + id);
+        let res = await axios.get("/profileDetail/" + id);
         let Details = await res.data['data'];
 
-        document.getElementById('img').src=Details[0]['image'];
-        document.getElementById('name').textContent = Details[0]['name'];
-        document.getElementById('designation').textContent = Details[0]['designation'];
-        document.getElementById('description').textContent = Details[0]['description'];
+        document.getElementById('img').src=Details[0]['profile'].image;
+        document.getElementById('name').textContent = Details[0]['profile'].name;
+        document.getElementById('designation').textContent = Details[0]['profile'].designation;
+        document.getElementById('description').textContent = Details[0]['profile'].description;
     }
 </script>

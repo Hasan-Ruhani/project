@@ -16,7 +16,9 @@
 <script>
 teamExpert();
     async function teamExpert(){
-        let res=await axios.get("/memberList");
+        let res=await axios.get("/userList");
+        // console.log(res);
+        // console.log(res.data.data[0].profile.image);
         $("#memberList").empty()
 
 
@@ -24,18 +26,18 @@ teamExpert();
             let EachItem= `<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item bg-light">
                     <div class="overflow-hidden">
-                         <a href="/blog?id=${item['id']}"><img class="img-fluid" src="${item['image']}" alt=""></a>
+                         <a href="/blog?id=${item['id']}"><img class="img-fluid" src="${item['profile'].image}" alt=""></a>
                     </div>
                     <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
                         <div class="bg-light d-flex justify-content-center pt-2 px-1">
-                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link1']}"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link2']}"><i class="fab fa-linkedin"></i></a>
-                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['social_link3']}"><i class="fab fa-github"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['profile'].facebook}"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['profile'].linkedin}"><i class="fab fa-linkedin"></i></a>
+                            <a class="btn btn-sm-square btn-primary mx-1" href="${item['profile'].github}"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4">
                         <h5 class="mb-0"><a href="/blog?id=${item['id']}" class="nav-item nav-link">${item['name']}</a></h5>
-                        <small>${item['designation']}</small>
+                        <small>${item['profile'].designation}</small>
                     </div>
                 </div>
             </div>`
