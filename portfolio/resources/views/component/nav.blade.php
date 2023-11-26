@@ -16,7 +16,7 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                 <div class="dropdown-menu fade-down m-0">
-                    <a href="{{url("/userLogin")}}" class="dropdown-item">Profile</a>
+                    <a href="{{url("/profile")}}" class="dropdown-item">Profile</a>
                     <a href="{{url("/user-logout")}}" class="dropdown-item">Logout</a>
                 </div>
             </div>

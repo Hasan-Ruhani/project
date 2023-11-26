@@ -5,11 +5,12 @@
                 <div class="card-body">
                     <h4>ENTER OTP CODE</h4>
                     <br/>
-                    <label>4 Digit Code Here</label>
+                    <label>6 Digit Code Here</label>
                     <input id="otp" placeholder="Code" class="form-control" type="text"/>
                     <br/>
                     <button onclick="VerifyOtp()"  class="btn w-100 float-end btn-primary">Next</button>
                 </div>
+                <a href="{{url('/sendOtp')}}">Resend OTP</a>
             </div>
         </div>
     </div>

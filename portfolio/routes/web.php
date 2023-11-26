@@ -57,6 +57,10 @@ Route::get('/sendOtp',[userController::class,'SendOtpPage']);
 Route::get('/verifyOtp',[userController::class,'VerifyOTPPage']);
 Route::get('/resetPassword',[userController::class,'ResetPasswordPage']);
 
+// profile page
+Route::get('/profile',[dashboardController::class,'profilePage'])->middleware([TokenVerificationMiddleware::class]);
+
+
 // ..........................................................................
 
 Route::get('/', [homeController::class, 'homePage']);

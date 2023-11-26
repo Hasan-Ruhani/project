@@ -22,7 +22,7 @@ return new class extends Migration
             $table -> string('message', 1000);
             
             $table->foreign('profile_id')->references('id')->on('profiles') 
-            -> restrictOnDelete() -> cascadeOnUpdate();
+            -> cascadeOnDelete() -> cascadeOnUpdate();
   
             $table -> timestamp('created_at')->useCurrent();
             $table -> timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

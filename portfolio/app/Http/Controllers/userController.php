@@ -137,7 +137,8 @@ class userController extends Controller
         try{
             $email = $request -> header('email');
             $password = $request -> input('password');
-            User::where('email','=',$email) -> update(['password'=>$password]);
+            $confirm_password = $request -> input('confirm_password');
+            User::where('email','=',$email) -> update(['password'=>$password, 'confirm_password'=>$confirm_password]);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Request Successful',

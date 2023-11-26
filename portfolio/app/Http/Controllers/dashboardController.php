@@ -16,6 +16,10 @@ class dashboardController extends Controller
         return view("pages.dashboard");
     }
 
+    public function profilePage(){
+        return view("pages.profile.profile");
+    }
+
     function createProfile(Request $request){
         $user_id = $request->header('id');
 
