@@ -15,9 +15,18 @@ class contactController extends Controller
         return view("pages.contactPage");
     }
 
+    // public function createSpcContact(Request $request){
+
+    //     $user_id = $request -> header('id');
+    //     $user = User::where('id', $user_id) -> first();
+    //     $profile_id = $user->profile->id;
+
+    //     return $profile_id;
+    // }
+
     public function createSpcContact(Request $request){
 
-        $profile_id = $request->input('profile_id');
+        $profile_id = $request->id;
         $profile = Profile::where('id', $profile_id)->first();
         
         if ($profile) {
@@ -33,10 +42,10 @@ class contactController extends Controller
 
            $contact = SpecificContact::create($data);
 
-            if ($contact) {
-               Mail::to($clint_Email)->send(new contactMail($data));
+            // if ($contact) {
+            //    Mail::to($clint_Email)->send(new contactMail($data));
                
-            }
+            // }
 
             return $contact;
         } else {

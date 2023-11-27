@@ -42,9 +42,6 @@ Route::post('/send-otp',[userController::class,'sendOTPCode']);
 Route::post('/verify-otp',[userController::class,'verifyOTP']);
 Route::post('/reset-password',[userController::class,'resetPassword'])->middleware([TokenVerificationMiddleware::class]);
 
-Route::get('/user-profile',[dashboardController::class,'userProfile'])->middleware([TokenVerificationMiddleware::class]);
-Route::post('/user-update',[userController::class,'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
-
 // User/Admin Logout
 Route::get('/admin-logout',[adminController::class,'adminLogout']);
 Route::get('/user-logout',[userController::class,'userLogout']);
@@ -76,6 +73,7 @@ Route::get('/profileDetail/{id}', [dashboardController::class, 'profileDetail'])
 
 // dashboard backend
 Route::post('/createProfile', [dashboardController::class, 'createProfile'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/user-profile',[dashboardController::class,'userProfile'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/deleteProfile', [dashboardController::class, 'deleteProfile'])->middleware([TokenVerificationMiddleware::class]);
 Route::post('/updateProfile', [dashboardController::class, 'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
 
@@ -88,5 +86,5 @@ Route::post('/createSpcReview', [reviewController::class, 'createSpcReview'])->m
 Route::get('/spcUserReview', [reviewController::class, 'spcUserReview']);
 
 // specific contact
-Route::post('/createSpcContact', [contactController::class, 'createSpcContact']);
+Route::post('/createSpcContact/{id}', [contactController::class, 'createSpcContact']);
 Route::get('/spcUserContact', [contactController::class, 'spcUserContact'])->middleware([TokenVerificationMiddleware::class]);

@@ -41,7 +41,8 @@ class dashboardController extends Controller
             'facebook' => $request->input('facebook'),
             'github' => $request->input('github'),
             'linkedin' => $request->input('linkedin'),
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'profile' => cookie('xxkyz365')
         ]);
     }
 
@@ -71,7 +72,8 @@ class dashboardController extends Controller
 
     function updateProfile(Request $request){
         $user_id = $request -> header('id');
-        $profile_id = $request -> input('id');
+        $user = User::where('id', $user_id) -> first();
+        $profile_id = $user->profile->id;
 
         if($request -> hasFile('image')){
 
@@ -89,7 +91,7 @@ class dashboardController extends Controller
 
             // update Member
 
-             $profile =  Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
+             $profile =  Profile::where('id', $profile_id) -> update([
                     
                     'designation' => $request->input('designation'),
                     'description' => $request->input('description'),
@@ -99,12 +101,10 @@ class dashboardController extends Controller
                     'linkedin' => $request->input('linkedin'),
                     ]);
 
-                    $user =  User::where('id', $user_id) -> where('id', $profile_id) -> update([
+                    $user =  User::where('id', $user_id) -> update([
 
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
-                    'password' => $request->input('password'),
-                    'confirm_password' => $request->input('confirm_password'),
                     ]);
 
                     if (!$user  || !$profile ) {
@@ -114,7 +114,7 @@ class dashboardController extends Controller
                     }
             }
             else{
-                 $profile = Profile::where('id', $profile_id) -> where('user_id', $user_id) -> update([
+                 $profile = Profile::where('id', $profile_id) -> update([
                     
                     'designation' => $request->input('designation'),
                     'description' => $request->input('description'),
@@ -123,12 +123,10 @@ class dashboardController extends Controller
                     'linkedin' => $request->input('linkedin'),
                 ]);
 
-                $user = User::where('id', $user_id) -> where('id', $profile_id) -> update([
+                $user = User::where('id', $user_id) -> update([
 
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
-                    'password' => $request->input('password'),
-                    'confirm_password' => $request->input('confirm_password'),
                     ]);
 
                     if (!$user  || !$profile ) {

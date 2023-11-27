@@ -11,14 +11,14 @@ use Illuminate\Http\Request;
 class memberController extends Controller
 {
     public function blogPage(){
-        return view("pages.blogPage");
+        return view("pages.profile.blogPage");
     }
 
 
-    public function memberDetail(Request $request):JsonResponse{
+    // public function memberDetail(Request $request):JsonResponse{
 
-        $data=MemberDetail::where('id',$request->id)->get();
+    //     $data=MemberDetail::where('id',$request->id)->get();
 
-        return ResponseHelper::Out('success',$data,200);
-    }
+    //     return ResponseHelper::Out('success',$data,200);
+    // }
 }

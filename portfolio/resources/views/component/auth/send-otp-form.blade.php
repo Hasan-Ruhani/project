@@ -5,7 +5,7 @@
                 <div class="card-body">
                     <h4>EMAIL ADDRESS</h4>
                     <br/>
-                    <label>Your email address</label>
+                    <label>First verify it's you!!</label>
                     <input id="email" placeholder="User Email" class="form-control" type="email"/>
                     <br/>
                     <button onclick="VerifyEmail()"  class="btn w-100 float-end btn-primary">Next</button>

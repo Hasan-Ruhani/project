@@ -58,6 +58,7 @@
                         <div class="row m-0 p-0">
                             <div class="col-md-4 p-2">
                                 <button onclick="onUpdate()" class="btn mt-3 w-100  btn-primary">Update</button>
+                                <a href="{{url('sendOtp')}}">Are you change your password?</a>
                             </div>
                         </div>
                     </div>
@@ -102,10 +103,11 @@
 
 
 
+
     async function onUpdate() {
 
-        // let productCategoryUpdate=document.getElementById('productCategoryUpdate').value;
         let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
         let designation = document.getElementById('designation').value;
         let description = document.getElementById('description').value;
 
@@ -138,9 +140,9 @@
         else if(linkedin.length===0){
             errorToast('Linkedin is required')
         }
-        else if(memberImgUpdate.length===0){
-            errorToast('Image is required')
-        }
+        // else if(memberImgUpdate.length===0){
+        //     errorToast('Image is required')
+        // }
 
         else {
 
@@ -148,6 +150,96 @@
             formData.append('image',memberImgUpdate)
             formData.append('id',updateID)
             formData.append('name',name)
+            formData.append('email',email)
+            formData.append('designation',designation)
+            formData.append('description',description)
+
+            formData.append('facebook',facebook)
+            formData.append('github',github)
+            formData.append('linkedin',linkedin)
+            
+            formData.append('file_path',filePath)
+
+            const config = {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            }
+
+            showLoader();
+            let res = await axios.post("/createProfile",formData,config)
+            console.log(res);
+            hideLoader();
+            // let data = res.data['data'];
+            // console.log(data);
+
+            if(res.status===200 && res.data===1){
+                successToast('Request completed');
+                // document.getElementById("user-profile").reset();
+                // await FillUpUpdateForm();
+            }
+            else{
+                errorToast("Request fail !")
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+    async function onUpdate() {
+
+        // let productCategoryUpdate=document.getElementById('productCategoryUpdate').value;
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let designation = document.getElementById('designation').value;
+        let description = document.getElementById('description').value;
+
+        let facebook = document.getElementById('facebook').value;
+        let github = document.getElementById('github').value;
+        let linkedin = document.getElementById('linkedin').value;
+
+        let updateID=document.getElementById('updateID').value;
+        let filePath=document.getElementById('filePath').value;
+        let memberImgUpdate = document.getElementById('memberImgUpdate').files[0];
+
+        if(email.length===0){
+        errorToast('Email is required')
+        }
+        else if(name.length===0){
+            errorToast('Name is required')
+        }
+        else if(designation.length===0){
+            errorToast('Designation is required')
+        }
+        else if(description.length===0){
+            errorToast('Description is required')
+        }
+        else if(facebook.length===0){
+            errorToast('Facebook is required')
+        }
+        else if(github.length===0){
+            errorToast('Github is required')
+        }
+        else if(linkedin.length===0){
+            errorToast('Linkedin is required')
+        }
+        // else if(memberImgUpdate.length===0){
+        //     errorToast('Image is required')
+        // }
+
+        else {
+
+            let formData=new FormData();
+            formData.append('image',memberImgUpdate)
+            formData.append('id',updateID)
+            formData.append('name',name)
+            formData.append('email',email)
             formData.append('designation',designation)
             formData.append('description',description)
 
@@ -165,13 +257,15 @@
 
             showLoader();
             let res = await axios.post("/updateProfile",formData,config)
-            console.log(res);
+            // server.log(res);
             hideLoader();
+            // let data = res.data['data'];
+            // console.log(data);
 
             if(res.status===200 && res.data===1){
                 successToast('Request completed');
-                // document.getElementById("update-form").reset();
-                // await getList();
+                // document.getElementById("user-profile").reset();
+                // await FillUpUpdateForm();
             }
             else{
                 errorToast("Request fail !")
