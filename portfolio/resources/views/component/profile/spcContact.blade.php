@@ -68,6 +68,7 @@
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
                                 <label for="message">Message</label>
+                                <input type="hidden" id="profile_id" value="{{ $profile_id }}">
                             </div>
                         </div>
                         <div class="col-12">
@@ -87,15 +88,18 @@
 
     function contactForm(){
      
-        let searchParams=new URLSearchParams(window.location.search);
-        let id=searchParams.get('id');
+        // let searchParams=new URLSearchParams(window.location.search);
+        // let id=searchParams.get('id');
+
+        let profileId = document.getElementById('profile_id').value;
+        console.log(profileId);
 
         let name = $('#name').val();
         let email = $('#email').val();
         let subject = $('#subject').val();
         let message = $('#message').val();
 
-        // console.log(id);
+        console.log(id);
 
         // if(name.length===0){
         //     alert('Name is required');

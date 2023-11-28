@@ -55,12 +55,20 @@
                             <input type="text" class="d-none" id="updateID">
                             <input type="text" class="d-none" id="filePath">
                         </div>
-                        <div class="row m-0 p-0">
+                        {{-- <div class="row m-0 p-0">
                             <div class="col-md-4 p-2">
                                 <button onclick="onUpdate()" class="btn mt-3 w-100  btn-primary">Update</button>
                                 <a href="{{url('sendOtp')}}">Are you change your password?</a>
                             </div>
+                        </div> --}}
+
+                        <div class="col-md-4 p-2">
+                            <button id="updateButton" onclick="onUpdate()" class="btn mt-3 w-100 btn-primary">Update Profile</button>
+                            <button id="createButton" onclick="onCreate()" class="btn mt-3 w-100 btn-primary">Create Profile</button>
+                            <a href="{{url('sendOtp')}}">Are you change your password?</a>
                         </div>
+
+                        
                     </div>
                 </div>
             </div>
@@ -68,20 +76,33 @@
     </div>
 </div>
 
-<script>
-    FillUpUpdateForm();
-    // onUpdate();
 
+<script>
+
+    FillUpUpdateForm();
     async function FillUpUpdateForm(){
 
         let id = document.getElementById('updateID').value;
-        // let filePath = document.getElementById('oldImg').src;
+        // // let filePath = document.getElementById('oldImg').src;
+        
+        
         showLoader();
 
         let res = await axios.get("/user-profile/" + id);
         let data = res.data['data'];
 
         hideLoader();
+
+        if (data['profile']) {
+            // Profile is available, show the "Update" button
+            document.getElementById('updateButton').style.display = 'block';
+            document.getElementById('createButton').style.display = 'none';
+        } 
+        else {
+            // Profile is not available, show the "Create" button
+            document.getElementById('updateButton').style.display = 'none';
+            document.getElementById('createButton').style.display = 'block';
+        }
 
         document.getElementById('name').value=data['name'];
         document.getElementById('email').value=data['email'];
@@ -104,7 +125,7 @@
 
 
 
-    async function onUpdate() {
+    async function onCreate() {
 
         let name = document.getElementById('name').value;
         let email = document.getElementById('email').value;
@@ -168,12 +189,9 @@
 
             showLoader();
             let res = await axios.post("/createProfile",formData,config)
-            console.log(res);
             hideLoader();
-            // let data = res.data['data'];
-            // console.log(data);
 
-            if(res.status===200 && res.data===1){
+            if(res.status===201){
                 successToast('Request completed');
                 // document.getElementById("user-profile").reset();
                 // await FillUpUpdateForm();
@@ -207,6 +225,8 @@
         let updateID=document.getElementById('updateID').value;
         let filePath=document.getElementById('filePath').value;
         let memberImgUpdate = document.getElementById('memberImgUpdate').files[0];
+
+        // console.log("ID value:", id);
 
         if(email.length===0){
         errorToast('Email is required')

@@ -42,7 +42,6 @@ class dashboardController extends Controller
             'github' => $request->input('github'),
             'linkedin' => $request->input('linkedin'),
             'user_id' => $user_id,
-            'profile' => cookie('xxkyz365')
         ]);
     }
 

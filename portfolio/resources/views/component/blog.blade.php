@@ -28,7 +28,7 @@
         let Details = await res.data['data'];
 
         document.getElementById('img').src=Details[0]['profile'].image;
-        document.getElementById('name').textContent = Details[0]['profile'].name;
+        document.getElementById('name').textContent = Details[0]['name'];
         document.getElementById('designation').textContent = Details[0]['profile'].designation;
         document.getElementById('description').textContent = Details[0]['profile'].description;
     }

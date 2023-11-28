@@ -40,7 +40,7 @@ class contactController extends Controller
                 'message' => $request->input('message'),
             ];
 
-           $contact = SpecificContact::create($data);
+           $contact = SpecificContact::create($data, ['profile_id' => $profile_id]);
 
             // if ($contact) {
             //    Mail::to($clint_Email)->send(new contactMail($data));
@@ -52,6 +52,7 @@ class contactController extends Controller
             return 'Customer profile not exists';
         }
     }
+    
 
 
 
