@@ -83,7 +83,7 @@ Route::get('/userReview', [reviewController::class, 'userReview']);
 
 // specific review
 Route::post('/createSpcReview', [reviewController::class, 'createSpcReview'])->middleware([TokenVerificationMiddleware::class]);
-Route::get('/spcUserReview', [reviewController::class, 'spcUserReview']);
+Route::get('/spcUserReview/{id}', [reviewController::class, 'spcUserReview']);
 
 // specific contact
 Route::post('/createSpcContact/{id}', [contactController::class, 'createSpcContact']);

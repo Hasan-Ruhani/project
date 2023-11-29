@@ -54,8 +54,20 @@ class ReviewController extends Controller
         }
     }
 
-    public function spcUserReview(){
-        return User::with('spcReview') -> get();
+    public function spcUserReview(Request $request){
+        $profile_id = $request->input('id');
+        $profile = SpecificReview::where('profile_id', $profile_id) -> get();
+
+        return $profile;
+    
+        // if ($profile) {
+        //     $reviews = $profile->spcReview;
+        //     return $reviews;
+        // } else {
+        //     return response()->json(['message' => 'Profile not found'], 404);
+        // }
     }
     
+    
+    // return User::with('spcReview') -> get();
 }

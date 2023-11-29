@@ -40,12 +40,11 @@ class contactController extends Controller
                 'message' => $request->input('message'),
             ];
 
-           $contact = SpecificContact::create($data, ['profile_id' => $profile_id]);
+           $contact = SpecificContact::create($data);
 
-            // if ($contact) {
-            //    Mail::to($clint_Email)->send(new contactMail($data));
-               
-            // }
+            if ($contact) {
+               Mail::to($clint_Email)->send(new contactMail($data));
+            }
 
             return $contact;
         } else {

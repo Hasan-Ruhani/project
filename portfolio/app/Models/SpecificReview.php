@@ -14,4 +14,9 @@ class SpecificReview extends Model
     {
         return $this->BelongsTo(User::class);
     }
+
+    public function spcReview(): BelongsTo
+    {
+        return $this->BelongsTo(Profile::class);
+    }
 }

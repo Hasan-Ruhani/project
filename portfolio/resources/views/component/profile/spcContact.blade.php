@@ -48,10 +48,11 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                <input type="text" class="form-control" id="fulName" placeholder="Your Name">
                                 <label for="name">Your Name</label>
                             </div>
                         </div>
+                        
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="email" class="form-control" id="email" placeholder="Your Email">
@@ -68,12 +69,13 @@
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
                                 <label for="message">Message</label>
-                                <input type="hidden" id="profile_id" value="{{ $profile_id }}">
+                                <input type="text" id="profile_id" class="d-none">
                             </div>
                         </div>
                         <div class="col-12">
-                            <button onclick="contactForm()" class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                            <button class="btn btn-primary w-100 py-3" type="button" onclick="contactForm()">Send Message</button>
                         </div>
+                        
                     </div>
               
             </div>
@@ -84,52 +86,66 @@
 
 <script>
 
+        catchId();
+        async function catchId(){       // this function use for only get profile id
+            
+            let searchParams = new URLSearchParams(window.location.search);
+            let id = searchParams.get('id');
 
+            let ress = await axios.get("/profileDetail/" + id);
+            let details = ress.data.data;
+            let profile_id = details[0].profile.id;
+            // let profile_id = '';
+            document.getElementById('profile_id').value=profile_id;
+            // console.log('Profile ID:', profile_id);
+        }
 
-    function contactForm(){
-     
-        // let searchParams=new URLSearchParams(window.location.search);
-        // let id=searchParams.get('id');
+        async function contactForm() {
 
-        let profileId = document.getElementById('profile_id').value;
-        console.log(profileId);
+        let name = document.getElementById('fulName').value;
+        let email = document.getElementById('email').value;
+        let subject = document.getElementById('subject').value;
+        let message = document.getElementById('message').value;
+        let profile_id = document.getElementById('profile_id').value;;
+        // console.log('Profile ID:', profile_id);
+        // console.log('Name:', name);
+        // console.log('Email:', email);
+        // console.log('Subject:', subject);
+        // console.log('Message:', message);
 
-        let name = $('#name').val();
-        let email = $('#email').val();
-        let subject = $('#subject').val();
-        let message = $('#message').val();
+        if (name.length === 0) {
+            alert('Name is required');
+        } 
+        if (email.length === 0) {
+            alert('Email is required');
+        } 
+        else if (subject.length === 0) {
+            alert('Subject is required');
+        } 
+        else if (message.length === 0) {
+            alert('Message is required');
+        }
 
-        console.log(id);
+        else { 
+            let res = await axios.post(`/createSpcContact/${profile_id}`, {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            });
 
-        // if(name.length===0){
-        //     alert('Name is required');
-        // }
-        // else if(email.length===0){
-        //     alert('Email is required');
-        // }
-        // else if(subject.length===0){
-        //     alert('Subject is required');
-        // }
-        // else if(message.length===0){
-        //     alert('Information is required');
-        // }
+            if (res.status === 201) {
 
-        // else {
-            let res =  axios.post(`/createSpcContact/${id}`);
+                $("input[type=text], textarea, input[type=email]").val("");  // it work for reset all contact field
+                alert('Congratulation! We have received your email');
+                // document.getElementById("contactForm").reset();
+                // await blogDetails();
+            }
 
-            // let data = res.data['data'];
-            console.log(res);
-
-            if(res.status===200 && res.data===1){
-                alert('Request completed');
-                // document.getElementById("update-form").reset();
-                // await getList();
+            else{
+                alert('Something went wrong!!');
             }
         }
-    // }
-
-        
-
-    
+    }
 
 </script>
