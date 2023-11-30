@@ -12,11 +12,12 @@ class SpecificReview extends Model
 
     public function user(): BelongsTo
     {
-        return $this->BelongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function spcReview(): BelongsTo
+    public function profile(): BelongsTo
     {
-        return $this->BelongsTo(Profile::class);
+        return $this->belongsTo(Profile::class);
     }
 }
+

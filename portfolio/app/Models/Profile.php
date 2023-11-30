@@ -20,20 +20,20 @@ class Profile extends Model
         'linkedin'
     ];
 
-    public function admin(): BelongsTo
-    {
-        return $this->BelongsTo(Admin::class);
-    }
+    // public function admin(): BelongsTo
+    // {
+    //     return $this->BelongsTo(Admin::class);
+    // }
 
     public function user(): BelongsTo
     {
         return $this->BelongsTo(User::class);
     }
 
-    public function spcReview()
-    {
-        return $this->hasMany(SpecificReview::class);
-    }
+    // public function spcReview()
+    // {
+    //     return $this->hasMany(SpecificReview::class);
+    // }
 
     public function spcContact(): HasMany
     {

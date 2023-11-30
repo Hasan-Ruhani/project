@@ -106,7 +106,7 @@
         let email = document.getElementById('email').value;
         let subject = document.getElementById('subject').value;
         let message = document.getElementById('message').value;
-        let profile_id = document.getElementById('profile_id').value;;
+        let profile_id = document.getElementById('profile_id').value;
         // console.log('Profile ID:', profile_id);
         // console.log('Name:', name);
         // console.log('Email:', email);

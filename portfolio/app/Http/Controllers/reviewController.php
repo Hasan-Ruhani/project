@@ -36,7 +36,7 @@ class ReviewController extends Controller
 
     public function createSpcReview(Request $request){
         $user_id = $request->header('id');
-        $profile_id = $request->input('profile_id');
+        $profile_id = $request->profile_id;
         $profile = Profile::where('id', $profile_id)->first();
     
         if ($profile) {
@@ -54,20 +54,20 @@ class ReviewController extends Controller
         }
     }
 
-    public function spcUserReview(Request $request){
-        $profile_id = $request->input('id');
-        $profile = SpecificReview::where('profile_id', $profile_id) -> get();
+public function spcUserReview(Request $request){
+    $profile_id = $request->id;
+    
+    $profile = SpecificReview::with('user')->where('profile_id', $profile_id)->get();
 
-        return $profile;
-    
-        // if ($profile) {
-        //     $reviews = $profile->spcReview;
-        //     return $reviews;
-        // } else {
-        //     return response()->json(['message' => 'Profile not found'], 404);
-        // }
+    if ($profile->isEmpty()) {
+        return response()->json(['message' => 'No matching records found'], 404);
     }
-    
+
+    return $profile;
+    // return User::with('spcReview') -> get();   // all records
+}
+
+ 
     
     // return User::with('spcReview') -> get();
 }
