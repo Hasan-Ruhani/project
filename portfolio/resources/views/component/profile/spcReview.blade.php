@@ -121,20 +121,6 @@ function test() {
 spcReview(5);
 
 
-
-// getId();
-//     function getId() {
-//         let searchParams = new URLSearchParams(window.location.search);
-//         let id = searchParams.get('id');
-
-//         let ress = await axios.get("/profileDetail/" + id);
-//         let details = ress.data.data;
-//         let profile_id = details[0].profile.id;
-//         document.getElementById('profile_id').value = profile_id;
-
-//         spcReview(profile_id);
-//         // test();
-//     }
     
 
 </script>

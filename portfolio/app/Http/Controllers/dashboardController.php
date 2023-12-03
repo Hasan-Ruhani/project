@@ -142,7 +142,7 @@ class dashboardController extends Controller
         $profile_id = $request -> input('id');
         $filePath = $request -> input('file_path');
         File::delete($filePath);
-        // return Profile::where('id', $member_id) -> delete();
+        
         return Profile::where('id', $profile_id) -> where('user_id', $user_id) -> delete();
     }
 }
