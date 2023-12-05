@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="container">
+    {{-- <div class="container">
       <div class="copyright">
         &copy; Copyright <strong><span>Gp</span></strong>. All Rights Reserved
       </div>
@@ -69,5 +69,5 @@
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
-    </div>
+    </div> --}}
   </footer><!-- End Footer -->
