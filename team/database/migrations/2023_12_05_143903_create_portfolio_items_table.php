@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('portfolio_items', function (Blueprint $table) {
             $table -> id();
+            $table -> unsignedBigInteger('category_id');
             $table -> string('title', 50);
             $table -> string('short_des', 200);
+            $table -> string('image', 200);
   
-            $table -> unsignedBigInteger('category_id');
             $table -> foreign('category_id') -> references('id') -> on('categories')
                    -> restrictOnDelete() -> cascadeOnUpdate();
 

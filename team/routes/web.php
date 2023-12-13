@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\portfolioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,11 @@ use Illuminate\Support\Facades\Route;
 
     // category
     Route::post('/createCategory', [categoryController::class, 'createCategory']);
+    Route::get('/allCategory', [categoryController::class, 'allCategory']);
+    Route::post('/deleteCategory/{id}', [categoryController::class, 'deleteCategory']);
+
+    // portfolio
+    Route::post('/portfolioItem/{id}', [portfolioController::class, 'createPortfolio_item']);
+    Route::get('/portfolioBy_category/{id}', [portfolioController::class, 'portfolioBy_category']);
+    Route::get('/allPortfolio', [portfolioController::class, 'allPortfolio']);
+    Route::post('/deletePortfolio/{id}', [portfolioController::class, 'deletePortfolio']);
