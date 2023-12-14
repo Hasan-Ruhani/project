@@ -28,13 +28,9 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Gp
-  * Updated: Nov 25 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <!-- JavaScript -->
+  <script src="{{asset('assets/js2/jquery-3.7.1.min.js')}}"></script>
+  <script src="{{asset('assets/js2/axios.min.js')}}"></script>
 </head>
 
 <body>

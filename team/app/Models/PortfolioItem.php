@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PortfolioItem extends Model
 {
-    protected $fillable = ['title', 'short_des', 'category_id'];
+    protected $fillable = ['title', 'short_des', 'category_id', 'image'];
 
     public function category(): HasOne
     {

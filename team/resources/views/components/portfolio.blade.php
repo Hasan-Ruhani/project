@@ -7,18 +7,12 @@
         <p>Check our Portfolio</p>
       </div>
 
-      <div class="row" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
-          </ul>
-        </div>
+      <div id="category" class="row" data-aos="fade-up" data-aos-delay="100">
+        
       </div>
+      
 
-      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+      {{-- <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
           <div class="portfolio-wrap">
@@ -146,7 +140,29 @@
           </div>
         </div>
 
-      </div>
+      </div> --}}
 
     </div>
   </section><!-- End Portfolio Section -->
+
+
+  <script>
+    category();
+
+    async function category() {
+        let res = await axios.get('/allCategory');
+        $("#category").empty();
+
+        res.data['data'].forEach((item, i) => {
+            let eachItem = `
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter=".filter-app">${item['name']}</li>
+                    </ul>
+                </div>
+            `;
+            $("#category").append(eachItem);
+        });
+    }
+</script>
