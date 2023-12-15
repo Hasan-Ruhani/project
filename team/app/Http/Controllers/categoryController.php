@@ -9,14 +9,16 @@ class categoryController extends Controller
 {
     public function createCategory(Request $request){
         $category = Category::create([
-            'name' => $request -> input('category')
+            'name' => $request->input('category')
         ]);
-        return $category;
+        return $category->toArray();
     }
+    
 
     public function allCategory(){
-        return Category::all();
+        return Category::all()->toArray();
     }
+    
 
     public function deleteCategory(Request $request) {
         $category_id = $request -> id;
