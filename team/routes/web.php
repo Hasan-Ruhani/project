@@ -3,6 +3,7 @@
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\portfolioController;
+use App\Http\Controllers\teamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,10 @@ use Illuminate\Support\Facades\Route;
     Route::get('/portfolioBy_category/{id}', [portfolioController::class, 'portfolioBy_category']);
     Route::get('/allPortfolio', [portfolioController::class, 'allPortfolio']);
     Route::post('/deletePortfolio/{id}', [portfolioController::class, 'deletePortfolio']);
+
+    // teamd
+    Route::post('/createProfile', [teamController::class, 'createProfile']); //->middleware([TokenVerificationMiddleware::class]);
+    Route::get('/user-profile',[teamController::class,'userProfile']); //->middleware([TokenVerificationMiddleware::class]);
+    Route::post('/deleteProfile', [teamController::class, 'deleteProfile']); //->middleware([TokenVerificationMiddleware::class]);
+    Route::post('/updateProfile', [teamController::class, 'updateProfile']); //->middleware([TokenVerificationMiddleware::class]);
+
