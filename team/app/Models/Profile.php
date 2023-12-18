@@ -14,6 +14,7 @@ class Profile extends Model
         'user_id', 
         'designation', 
         'description', 
+        'skill', 
         'image', 
         'facebook', 
         'github', 

@@ -63,4 +63,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/user-profile',[teamController::class,'userProfile'])->middleware([TokenVerificationMiddleware::class]);
     Route::post('/deleteProfile', [teamController::class, 'deleteProfile'])->middleware([TokenVerificationMiddleware::class]);
     Route::post('/updateProfile', [teamController::class, 'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
+    Route::get('/userList', [teamController::class, 'userList']);  ; 
+    Route::get('/profileDetail/{id}', [teamController::class, 'profileDetail']);
+    Route::get('/profileDetails', [teamController::class, 'profileDetail_page']);
+
 

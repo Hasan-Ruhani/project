@@ -20,6 +20,11 @@ class teamController extends Controller
     //     return view("pages.profile.profile");
     // }
 
+    public function profileDetail_page(){
+        return view("pages.others.profile_details");
+    }
+    
+
     function createProfile(Request $request){
         $user_id = $request->header('id');
 
@@ -37,6 +42,7 @@ class teamController extends Controller
 
             'designation' => $request->input('designation'),
             'description' => $request->input('description'),
+            'skill' => $request->input('skill'),
             'image' => $img_url,
             'facebook' => $request->input('facebook'),
             'github' => $request->input('github'),
@@ -94,6 +100,7 @@ class teamController extends Controller
                     
                     'designation' => $request->input('designation'),
                     'description' => $request->input('description'),
+                    'skill' => $request->input('skill'),
                     'image' => $img_url,
                     'facebook' => $request->input('facebook'),
                     'github' => $request->input('github'),
@@ -117,6 +124,7 @@ class teamController extends Controller
                     
                     'designation' => $request->input('designation'),
                     'description' => $request->input('description'),
+                    'skill' => $request->input('skill'),
                     'facebook' => $request->input('facebook'),
                     'github' => $request->input('github'),
                     'linkedin' => $request->input('linkedin'),

@@ -24,9 +24,10 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/extra.css" rel="stylesheet">
 
   <!-- JavaScript -->
   <script src="{{asset('assets/js2/jquery-3.7.1.min.js')}}"></script>

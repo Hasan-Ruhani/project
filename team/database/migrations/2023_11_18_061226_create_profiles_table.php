@@ -17,6 +17,7 @@ return new class extends Migration
             $table -> unsignedBigInteger('user_id') -> unique();
             $table -> string('designation', 50);
             $table -> string('description', 2000);
+            $table -> string('skill', 200);
             $table -> string('image', 1000);
   
             $table -> string('facebook', 500);
