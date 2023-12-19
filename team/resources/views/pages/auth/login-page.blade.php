@@ -1,5 +1,5 @@
 @extends('layout.dash')
 @section('content')
-    @include('component.auth.login-form')
+    @include('components.auth.login-form')
 @endsection
 

@@ -1,4 +1,4 @@
 @extends('layout.dash')
 @section('content')
-    @include('component.auth.registration-form')
+    @include('components.auth.registration-form')
 @endsection

@@ -1,6 +1,6 @@
 @extends('layout.dash')
 @section('content')
-    @include('component.auth.send-otp-form')
+    @include('components.auth.send-otp-form')
 @endsection
 
 

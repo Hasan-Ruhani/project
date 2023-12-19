@@ -7,11 +7,11 @@
         <p>Check our Team</p>
       </div>
 
-      <div class="row">
+      <div id="memberList" class="row">
 
-        <div id="memberList" class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        
           
-        </div>
+        
       </div>
     </div>
   </section><!-- End Team Section -->
@@ -22,10 +22,11 @@
             let res=await axios.get("/userList");
             // console.log(res);
             // console.log(res.data.data[0].profile.image);
-            $("#memberList").empty()
+            // $("#memberList").empty()
     
             res.data['data'].forEach((item,i)=>{
-                let EachItem= `<div class="member" data-aos="fade-up" data-aos-delay="100">
+                let EachItem= `<div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                  <div class="member" data-aos="fade-up" data-aos-delay="100">
             <div class="member-img">
               <img src="${item['profile'].image}" class="img-fluid" alt="">
               <div class="social">
@@ -38,7 +39,8 @@
               <h4><a href="/profileDetails?id=${item['id']}" class="nav-item nav-link">${item['name']}</a></h4>
               <span>${item['profile'].designation}</span>
             </div>
-          </div>`
+          </div>
+        </div>`
                 $("#memberList").append(EachItem);
             });
         }
