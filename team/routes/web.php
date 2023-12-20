@@ -45,6 +45,11 @@ use Illuminate\Support\Facades\Route;
     // profile page
     Route::get('/profile',[teamController::class,'profilePage'])->middleware([TokenVerificationMiddleware::class]);
 
+    // dashboard backend
+    Route::post('/createProfile', [teamController::class, 'createProfile'])->middleware([TokenVerificationMiddleware::class]);
+    Route::get('/user-profile',[teamController::class,'userProfile'])->middleware([TokenVerificationMiddleware::class]);
+    Route::post('/deleteProfile', [teamController::class, 'deleteProfile'])->middleware([TokenVerificationMiddleware::class]);
+    Route::post('/updateProfile', [teamController::class, 'updateProfile'])->middleware([TokenVerificationMiddleware::class]);
 
     // category
     Route::post('/createCategory', [categoryController::class, 'createCategory']);

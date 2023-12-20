@@ -18,7 +18,7 @@
             @if(Cookie::get('token') !== null)
               <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                  <li><a href="#about">Dashboard</a></li>
+                  <li><a href="{{'/profile'}}">Dashboard</a></li>
                   <li><a href="{{'/user-logout'}}">Log Out</a></li>
                 </ul>
               </li>

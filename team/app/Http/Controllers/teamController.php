@@ -12,13 +12,13 @@ use Illuminate\Http\Request;
 class teamController extends Controller
 {
 
-    // public function dashboardPage(){
-    //     return view("pages.dashboard");
-    // }
+    public function dashboardPage(){
+        return view("pages.dashboard");
+    }
 
-    // public function profilePage(){
-    //     return view("pages.profile.profile");
-    // }
+    public function profilePage(){
+        return view("pages.profile");
+    }
 
     public function profileDetail_page(){
         return view("pages.others.profile_details");
