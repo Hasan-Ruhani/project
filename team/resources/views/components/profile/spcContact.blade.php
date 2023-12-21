@@ -6,9 +6,9 @@
         <h2>Contact</h2>
         <p>Contact Us</p>
       </div>
-
+      
       <div>
-        <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+        <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.929825726361!2d89.5297455741584!3d22.842081623041818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff9a931ae41367%3A0x2d04d8bf802ec945!2s172%20Rd%20no.%2013%2C%20Khulna!5e0!3m2!1sen!2sbd!4v1703139846814!5m2!1sen!2sbd" frameborder="0" allowfullscreen></iframe>
       </div>
 
       <div class="row mt-5">
@@ -18,19 +18,19 @@
             <div class="address">
               <i class="bi bi-geo-alt"></i>
               <h4>Location:</h4>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <p>13 no road, 170 no House, mujgunni residential area</p>
             </div>
 
             <div class="email">
               <i class="bi bi-envelope"></i>
               <h4>Email:</h4>
-              <p>info@example.com</p>
+              <p>info@gmail.com</p>
             </div>
 
             <div class="phone">
               <i class="bi bi-phone"></i>
               <h4>Call:</h4>
-              <p>+1 5589 55488 55s</p>
+              <p>+880 1786-490687</p>
             </div>
 
           </div>
@@ -52,14 +52,10 @@
               <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
             </div>
             <div class="form-group mt-3">
-              <textarea class="form-control" name="message" onclick="contactForm()" rows="5" placeholder="Message" required></textarea>
+              <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message" required></textarea>
+              <input type="text" id="profile_id" class="d-none">
             </div>
-            {{-- <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div> --}}
-            <div class="text-center"><button type="submit">Send Message</button></div>
+            <div class="text-center"><button type="submit" onclick="contactForm()">Send Message</button></div>
           </form>
 
         </div>
@@ -88,51 +84,45 @@
         }
 
         async function contactForm() {
+          let sendButton = document.querySelector('button[type="submit"]');
+          sendButton.disabled = true; // Disable the button to prevent multiple submissions
+          sendButton.innerHTML = 'Sending...'; // Change the button text to indicate sending
 
-        let name = document.getElementById('fulName').value;
-        let email = document.getElementById('email').value;
-        let subject = document.getElementById('subject').value;
-        let message = document.getElementById('message').value;
-        let profile_id = document.getElementById('profile_id').value;
-        console.log('Profile ID:', profile_id);
-        console.log('Name:', name);
-        console.log('Email:', email);
-        console.log('Subject:', subject);
-        console.log('Message:', message);
+          let name = document.getElementById('fulName').value;
+          let email = document.getElementById('email').value;
+          let subject = document.getElementById('subject').value;
+          let message = document.getElementById('message').value;
+          let profile_id = document.getElementById('profile_id').value;
 
-        if (name.length === 0) {
-            alert('Name is required');
-        } 
-        if (email.length === 0) {
-            alert('Email is required');
-        } 
-        else if (subject.length === 0) {
-            alert('Subject is required');
-        } 
-        else if (message.length === 0) {
-            alert('Message is required');
-        }
+          if (name.length === 0 || email.length === 0 || subject.length === 0 || message.length === 0) {
+            alert('All fields are required');
+              sendButton.innerHTML = 'Send Message'; // Change the button text back to original
+              sendButton.disabled = false; // Enable the button
+          } 
+          else {
+            try {
+                let res = await axios.post(`/createSpcContact/${profile_id}`, {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message
+                });
 
-        else { 
-            let res = await axios.post(`/createSpcContact/${profile_id}`, {
-                name: name,
-                email: email,
-                subject: subject,
-                message: message
-            });
-
-            if (res.status === 201) {
-
-                $("input[type=text], textarea, input[type=email]").val("");  // it work for reset all contact field
-                alert('Congratulation! We have received your email');
-                // document.getElementById("contactForm").reset();
-                // await blogDetails();
-            }
-
-            else{
+                if (res.status === 201) {
+                    $("input[type=text], textarea, input[type=email]").val(""); // Reset all contact fields
+                    // alert('Congratulations! We have received your email');
+                } else {
+                    alert('Something went wrong!!');
+                }
+              } 
+            catch (error) {
                 alert('Something went wrong!!');
+              } 
+            finally {
+                sendButton.innerHTML = 'Send Message'; // Change the button text back to original
+                sendButton.disabled = false; // Enable the button
+              }
             }
         }
-    }
 
 </script>

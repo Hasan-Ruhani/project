@@ -256,9 +256,9 @@
         else if(linkedin.length===0){
             errorToast('Linkedin is required')
         }
-        else if(!memberImgUpdate){
-            errorToast('Image is required')
-        }
+        // else if(!memberImgUpdate){
+        //     errorToast('Image is required')
+        // }
 
         else {
 

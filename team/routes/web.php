@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\contactController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\portfolioController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\teamController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\TokenVerificationMiddleware;
@@ -71,5 +73,14 @@ use Illuminate\Support\Facades\Route;
     Route::get('/userList', [teamController::class, 'userList']);  ; 
     Route::get('/profileDetail/{id}', [teamController::class, 'profileDetail']);
     Route::get('/profileDetails', [teamController::class, 'profileDetail_page']);
+
+    // specific review
+    Route::post('/createSpcReview/{profile_id}', [ReviewController::class, 'createSpcReview'])->middleware([TokenVerificationMiddleware::class]);
+    Route::get('/spcUserReview/{id}', [reviewController::class, 'spcUserReview']);
+
+    // specific contact
+    Route::post('/createSpcContact/{id}', [contactController::class, 'createSpcContact']);
+    Route::get('/spcUserContact', [contactController::class, 'spcUserContact'])->middleware([TokenVerificationMiddleware::class]);
+
 
 

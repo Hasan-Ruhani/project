@@ -1,126 +1,53 @@
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials" class="testimonials">
+    <div class="container" data-aos="zoom-in">
 
-<!-- Testimonial Start -->
-<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="container">
-        <div class="text-center">
-            <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
-            <h1 class="mb-5">Our Students Says!</h1>
+      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+
+          <div id="reviewList" class="swiper-slide">
+            
+          </div><!-- End testimonial item -->
         </div>
-        <div id="reviewList" class="owl-carousel testimonial-carousel position-relative">
-            <div class="testimonial-item text-center">
-                <img class="border rounded-circle p-2 mx-auto mb-3" src="{{asset('assets/img/testimonial-1.jpg')}}" style="width: 80px; height: 80px;">
-                <h5 class="mb-0">Client Name1</h5>
-                <p>Profession</p>
-                <div class="testimonial-text bg-light text-center p-4">
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                </div>
-            </div>
-            <div class="testimonial-item text-center">
-                <img class="border rounded-circle p-2 mx-auto mb-3" src="{{asset('assets/img/testimonial-2.jpg')}}" style="width: 80px; height: 80px;">
-                <h5 class="mb-0">Client Name2</h5>
-                <p>Profession</p>
-                <div class="testimonial-text bg-light text-center p-4">
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                </div>
-            </div>
-            <div class="testimonial-item text-center">
-                <img class="border rounded-circle p-2 mx-auto mb-3" src="{{asset('assets/img/testimonial-3.jpg')}}" style="width: 80px; height: 80px;">
-                <h5 class="mb-0">Client Name3</h5>
-                <p>Profession</p>
-                <div class="testimonial-text bg-light text-center p-4">
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                </div>
-            </div>
-            <div class="testimonial-item text-center">
-                <img class="border rounded-circle p-2 mx-auto mb-3" src="{{asset('assets/img/testimonial-4.jpg')}}" style="width: 80px; height: 80px;">
-                <h5 class="mb-0">Client Name4</h5>
-                <p>Profession</p>
-                <div class="testimonial-text bg-light text-center p-4">
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                </div>
-            </div>
-        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
     </div>
-</div>
-<!-- Testimonial End -->
+  </section><!-- End Testimonials Section -->
 
-<script>
+
+  <script>
+            
+        spcReview(5);
  
-     function spcReview(profile_id) {
-        // let res = axios.get(`/spcUserReview/${profile_id}`);
+        function spcReview() {
+            let searchParams = new URLSearchParams(window.location.search);
+            let id = searchParams.get('id');
+            console.log("id:", id);
+
+            axios.get("/spcUserReview/" + id)
+                .then((res) => {
+                    let user = res.data[0].user;
+                    console.log("info:", user);
+
+                    res.data.forEach((item, i) => {
+                        let EachItem = `<div class="testimonial-item">
+                            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                            <h3>${user.name}</h3>
+                            <h4>${user.email}</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                ${item.review}
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>`;
+                        $("#reviewList").append(EachItem);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error fetching user review data:", error);
+            });
+        }
 
 
-$.ajax({
-  type: "GET",
-  url: `http://127.0.0.1:8000/spcUserReview/${profile_id}`,
-  data: profile_id,
-  cache: false,
-  success: function(data){
-    console.log(data);
-    console.log(data[0]);
-    // let user = data[0].user; 
-
-
-        data.forEach((item, i) => {
-            let EachItem = ` <div class="testimonial-item text-center">
-                <img class="border rounded-circle p-2 mx-auto mb-3" src="{{asset('assets/img/testimonial-4.jpg')}}" style="width: 80px; height: 80px;">
-                <h5 class="mb-0">${i} </h5>
-                <p>Profession</p>
-                <div class="testimonial-text bg-light text-center p-4">
-                <p class="mb-0"> ${item.review} </p>
-                </div>
-            </div>`;
-            $("#reviewList").append(EachItem);
-        });
-
-
-        owl = $('#reviewList');
-
-owl.data('owlCarousel').destroy();
-  owl.owlCarousel({
-     loop:true,
-    margin:10,
-    nav:true,
-    items:4,
-  });
-  }
-});
-
-
-
-
-
-
-        // let user = res.data[0].user; 
-
-        // res.data.forEach((item, i) => {
-        //     let EachItem = `<div class="testimonial-item text-center">
-        //         <img class="border rounded-circle p-2 mx-auto mb-3" src="{{asset('assets/img/testimonial-1.jpg')}}" style="width: 80px; height: 80px;">
-        //         <h5 class="mb-0">${user.name}</h5>
-        //         <p>${user.email}</p>
-        //         <div class="testimonial-text bg-light text-center p-4">
-        //         <p class="mb-0">${item.review}</p>
-        //         </div>
-        //     </div>`;
-        //     $("#reviewList").append(EachItem);
-        // });
-    }
-
-function test() {
-    $("#reviewList").append(`<div class="testimonial-item text-center">
-                <img class="border rounded-circle p-2 mx-auto mb-3" src="{{asset('assets/img/testimonial-4.jpg')}}" style="width: 80px; height: 80px;">
-                <h5 class="mb-0">Client Name 10 </h5>
-                <p>Profession</p>
-                <div class="testimonial-text bg-light text-center p-4">
-                <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                </div>
-            </div>`);
-}
-
-
-spcReview(5);
-
-
-    
-
-</script>
+    </script>
