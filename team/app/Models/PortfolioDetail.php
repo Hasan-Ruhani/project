@@ -4,14 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class PortfolioDetail extends Model
 {
-    use HasFactory;
-
-    public function portfolioItem(): HasOne
+    protected $fillable = [
+        'category_id',
+        'head_line',
+        'short_des',
+        'description',
+        'client',
+        'date',
+        'project_url',
+        'front_img',
+        'image1',
+        'image2',
+        'image3',
+    ];
+    public function portfolioDetail(): HasMany
     {
-        return $this->hasOne(PortfolioItem::class);
+        return $this->hasMany(Category::class);
     }
 }
