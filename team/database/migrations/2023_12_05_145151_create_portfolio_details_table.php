@@ -21,10 +21,11 @@ return new class extends Migration
             $table -> string('date', 50);
             $table -> string('project_url', 500);
             
-            $table -> string('front_img', 200);
-            $table -> string('image1', 200);
-            $table -> string('image2', 200);
-            $table -> string('image3', 200);
+            // $table -> string('front_img', 200);
+            // $table -> string('image1', 200);
+            // $table -> string('image2', 200);
+            // $table -> string('image3', 200);
+            $table -> string('image') -> nullable();
   
             $table -> foreign('category_id') -> references('id') -> on('categories')
                 -> restrictOnDelete() -> cascadeOnUpdate();

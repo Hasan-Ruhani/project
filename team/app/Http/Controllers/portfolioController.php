@@ -14,34 +14,44 @@ class portfolioController extends Controller
     
         if (!$category) {
             return "Please insert category first";
-        } else {
-            $images = $request->file('images');
-            $imageUrls = [];
+        } 
+        else {
+            $imgData = []; // Initialize $imgData as an empty array
+            if($request->hasfile('images')) {
+                foreach($request->file('images') as $file)
+                {
+                    $name = $file->getClientOriginalName();
+                    $file->move(public_path().'/uploads/', $name);  
+                    $imgData[] = $name;  
+                }
+                $fileModal = new PortfolioDetail();
+                $fileModal->name = json_encode($imgData);
+                $fileModal->image_path = json_encode($imgData);
     
-            foreach ($images as $img) {
-                $t = time();
-                $file_name = $img->getClientOriginalName();
-                $img_name = "{$t}-{$file_name}";
-                $img_url = "uploads/{$img_name}";
-                $img->move(public_path('uploads'), $img_name);
-                $imageUrls[] = $img_url;
-            }
-    
-            $portfolioDetails = [];
-            foreach ($imageUrls as $img_url) {
+                $portfolioDetails = [];
                 $portfolioDetails[] = [
                     'category_id' => $category->id,
                     'head_line' => $request->input('head_line'),
-                    'image' => $img_url,
-                    'short_des' => $request->input('short_des')
+                    'image' => $fileModal,
+                    'short_des' => $request->input('short_des'),
+                    'description' => $request->input('description'),
+                    'client' => $request->input('client'),
+                    'date' => $request->input('date'),
+                    'project_url' => $request->input('project_url')
                 ];
+    
+                PortfolioDetail::insert($portfolioDetails);
+    
+                return $portfolioDetails;
+            } 
+            else {
+                return "No images were uploaded";
             }
-    
-            PortfolioDetail::insert($portfolioDetails);
-    
-            return "Portfolio items created successfully";
         }
     }
+    
+    
+    
     
 
     public function updatePortfolio_item(Request $request) {
