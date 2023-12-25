@@ -9,46 +9,59 @@ use Illuminate\Http\Request;
 class portfolioController extends Controller
 {
     public function createPortfolio_item(Request $request) {
-        $category_id = $request->id;
-        $category = Category::where('id', $category_id)->first();
+        // $category_id = $request -> id;
+        // $category = Category::where('id', $category_id) -> first();
     
-        if (!$category) {
-            return "Please insert category first";
-        } 
-        else {
-            $imgData = []; // Initialize $imgData as an empty array
-            if($request->hasfile('images')) {
-                foreach($request->file('images') as $file)
-                {
-                    $name = $file->getClientOriginalName();
-                    $file->move(public_path().'/uploads/', $name);  
-                    $imgData[] = $name;  
-                }
-                $fileModal = new PortfolioDetail();
-                $fileModal->name = json_encode($imgData);
-                $fileModal->image_path = json_encode($imgData);
+        // if (!$category) {
+        //     return "Please insert a valid category first";
+        // } else {
+        //     $filePaths = [];
+        //     foreach ($request->file('file') as $image) {
+        //         $imageName = $image->getClientOriginalName();
+        //         $image->move(public_path().'/images/', $imageName);
+        //         $filePaths[] = '/images/' . $imageName; // Store the full path
+        //     }
+        //     $images = json_encode($filePaths);
     
-                $portfolioDetails = [];
-                $portfolioDetails[] = [
-                    'category_id' => $category->id,
-                    'head_line' => $request->input('head_line'),
-                    'image' => $fileModal,
-                    'short_des' => $request->input('short_des'),
-                    'description' => $request->input('description'),
-                    'client' => $request->input('client'),
-                    'date' => $request->input('date'),
-                    'project_url' => $request->input('project_url')
-                ];
+        //     $portfolioDetail = new PortfolioDetail();
+        //     $portfolioDetail->category_id = $category->id;
+        //     $portfolioDetail->head_line = $request->input('head_line');
+        //     $portfolioDetail->image = $images; // Store the JSON-encoded image paths
+        //     $portfolioDetail->short_des = $request->input('short_des');
+        //     $portfolioDetail->description = $request->input('description');
+        //     $portfolioDetail->client = $request->input('client');
+        //     $portfolioDetail->date = $request->input('date');
+        //     $portfolioDetail->project_url = $request->input('project_url');
+        //     // Set other fields as needed
+        //     $portfolioDetail->save();
     
-                PortfolioDetail::insert($portfolioDetails);
-    
-                return $portfolioDetails;
-            } 
-            else {
-                return "No images were uploaded";
-            }
+        //     return $portfolioDetail; // Return the created portfolio item
+        // }
+
+
+
+        public function addProduct(Request $request)
+        {
+           $this->validate($request, [
+              'name' => 'required|string|max:255',
+              'description' => 'required|string|max:855',
+        ]);
+        $product = new Product;
+        $product->name = $request->name= 
+        $product->description = $request->description;
+        $product->save();
+        foreach ($request->file('images') as $imagefile) {
+          $image = new Image;
+          $path = $imagefile->store('/images/resource', ['disk' =>   'public']);
+          $image->url = $path;
+          $image->product_id = $product->id;
+          $image->save();
         }
     }
+    }
+    
+    
+    
     
     
     
