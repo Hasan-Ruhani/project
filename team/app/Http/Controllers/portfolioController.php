@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class portfolioController extends Controller
 {
-    public function createPortfolio_item(Request $request) {
+    // public function createPortfolio_item(Request $request) {
         // $category_id = $request -> id;
         // $category = Category::where('id', $category_id) -> first();
     
@@ -40,25 +40,37 @@ class portfolioController extends Controller
 
 
 
-        public function addProduct(Request $request)
+        public function createPortfolio_item(Request $request)
         {
-           $this->validate($request, [
-              'name' => 'required|string|max:255',
-              'description' => 'required|string|max:855',
-        ]);
-        $product = new Product;
-        $product->name = $request->name= 
-        $product->description = $request->description;
-        $product->save();
-        foreach ($request->file('images') as $imagefile) {
-          $image = new Image;
-          $path = $imagefile->store('/images/resource', ['disk' =>   'public']);
-          $image->url = $path;
-          $image->product_id = $product->id;
-          $image->save();
+            $category_id = $request -> id;
+            $category = Category::where('id', $category_id) -> first();
+        
+            if (!$category) {
+                return "Please insert a valid category first";
+            }
+
+            else
+            {
+                $imageUrls = [];
+                foreach ($request->file('file') as $imagefile) {
+                    $path = $imagefile->store('/images/resource', ['disk' => 'public']);
+                    $imageUrls[] = $path;
+                }
+              }
+
+            $product = new PortfolioDetail;
+            $product->category_id = $category->id;
+            $product->head_line = $request->input('head_line');
+            $product->short_des = $request->input('short_des');
+            $product->description = $request->input('description');
+            $product->client = $request->input('client');
+            $product->date = $request->input('date');
+            $product->project_url = $request->input('project_url');
+            $product->image = json_encode($imageUrls); // Serialize the array of image URLs
+            $product->save();
+            return $product;
+
         }
-    }
-    }
     
     
     

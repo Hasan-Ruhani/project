@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\portfolioController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\teamController;
+use App\Http\Controllers\testController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\TokenVerificationMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -59,7 +60,8 @@ use Illuminate\Support\Facades\Route;
     Route::post('/deleteCategory/{id}', [categoryController::class, 'deleteCategory']);
 
     // portfolio
-    Route::post('/portfolioItem/{id}', [portfolioController::class, 'createPortfolio_item']);
+    Route::post('/store', [testController::class, 'store']);
+    // Route::post('/portfolioItem/{id}', [portfolioController::class, 'createPortfolio_item']);
     Route::post('/portfolioItem_update/{id}', [portfolioController::class, 'updatePortfolio_item']);
     Route::get('/portfolioBy_category/{id}', [portfolioController::class, 'portfolioBy_category']);
     Route::get('/allPortfolio', [portfolioController::class, 'allPortfolio']);
@@ -73,7 +75,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/userList', [teamController::class, 'userList']);  ; 
     Route::get('/profileDetail/{id}', [teamController::class, 'profileDetail']);
     Route::get('/profileDetails', [teamController::class, 'profileDetail_page']);
-
+    
     // specific review
     Route::post('/createSpcReview/{profile_id}', [ReviewController::class, 'createSpcReview'])->middleware([TokenVerificationMiddleware::class]);
     Route::get('/spcUserReview/{id}', [reviewController::class, 'spcUserReview']);
@@ -81,6 +83,10 @@ use Illuminate\Support\Facades\Route;
     // specific contact
     Route::post('/createSpcContact/{id}', [contactController::class, 'createSpcContact']);
     Route::get('/spcUserContact', [contactController::class, 'spcUserContact'])->middleware([TokenVerificationMiddleware::class]);
+    
+    
+    
+  
 
 
 
