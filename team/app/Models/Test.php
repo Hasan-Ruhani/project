@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
-    use HasFactory;
-    protected $fillable = ['image'];
+    protected $fillable = ['name', 'url'];
 }

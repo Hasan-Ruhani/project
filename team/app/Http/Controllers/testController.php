@@ -9,28 +9,27 @@ class testController extends Controller
 {
     public function store(Request $request)
     {
-        $images = [];
+        $request->validate([
+            'name' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
 
-        if ($request->hasFile('files')) {
-            $test = Test::create(); // Create a new Test model
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->storeAs('public/images', $imageName);
+                $imageUrl = 'storage/images/' . $imageName;
 
-            foreach ($request->file('files') as $file) {
-                $fileName = time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path('uploads'), $fileName);
-                $images[] = $fileName; // Store the file names in an array
+                $test = new Test();
+                $test->name = $request->input('name');
+                $test->url = $imageUrl;
+                $test->save();
             }
 
-            // Associate the uploaded images with the Test model
-            foreach ($images as $image) {
-                $test->images()->create(['image' => $image]);
-            }
-
-            return "Images uploaded and associated with the Test model";
-        } else {
-            return "No files uploaded";
+            return 'Images uploaded successfully';
         }
+
+        return 'No images were uploaded';
     }
-
-
-        
 }
+
