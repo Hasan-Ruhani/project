@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class testController extends Controller
 {
+    public function view(){
+        return view('index');
+    }
     public function store(Request $request)
     {
         $request->validate([
