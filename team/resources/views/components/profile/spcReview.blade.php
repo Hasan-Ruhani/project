@@ -18,7 +18,7 @@
           </div>
         <div class="swiper-pagination"></div>
       </div>
-
+      
     </div>
   </section><!-- End Testimonials Section -->
 
@@ -30,15 +30,14 @@
           let res = await axios.get("/spcUserReview/" + id);
 
             if (res.data) {
-              console.log(res.data);
-              res.data.forEach((item, i) => {
-              console.log(item);
+              // console.log(res.data);
 
+              res.data.forEach((item, i) => {
               $newItem = `<div class="swiper-slide">
                 <div class="testimonial-item">
                   <img src="assets/img/testimonials/default.png" class="testimonial-img" alt="">
-                  <h3>${item.user.name}</h3>
-                  <h4>${item.user.email}</h4>
+                  <h3>${item.name}</h3>
+                  <h4>${item.email}</h4>
                   <p>
                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                       ${item.review}

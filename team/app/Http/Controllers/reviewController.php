@@ -35,15 +35,15 @@ class ReviewController extends Controller
     //.......................................Specific Reviews........................................
 
     public function createSpcReview(Request $request){
-        $user_id = $request->header('id');
         $profile_id = $request->profile_id;
         $profile = Profile::where('id', $profile_id)->first();
     
         if ($profile) {
             $data = [
-                'user_id' => $user_id,
                 'profile_id' => $profile_id,
-                'review' => $request->input('review'),
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'review' => $request->input('review')
             ];
     
             $review = SpecificReview::create($data);
@@ -57,7 +57,7 @@ class ReviewController extends Controller
 public function spcUserReview(Request $request){
     $profile_id = $request->id;
     
-    $profile = SpecificReview::with('user')->where('profile_id', $profile_id)->get();
+    $profile = SpecificReview::where('profile_id', $profile_id)->get();
 
     if ($profile->isEmpty()) {
         return response()->json(['message' => 'No matching records found'], 404);

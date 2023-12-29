@@ -31,11 +31,6 @@ class Profile extends Model
         return $this->BelongsTo(User::class);
     }
 
-    // public function spcReview()
-    // {
-    //     return $this->hasMany(SpecificReview::class);
-    // }
-
     public function spcContact(): HasMany
     {
         return $this->hasMany(SpecificContact::class);

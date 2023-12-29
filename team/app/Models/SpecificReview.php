@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SpecificReview extends Model
 {
-    protected $fillable = ['review', 'user_id', 'profile_id'];
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $fillable = ['review', 'name', 'email', 'profile_id'];
 
     public function profile(): BelongsTo
     {

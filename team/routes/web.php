@@ -60,9 +60,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/deleteCategory/{id}', [categoryController::class, 'deleteCategory']);
 
     // portfolio
-    Route::post('/store', [testController::class, 'store']);
-    Route::get('/view', [testController::class, 'view']);
-    // Route::post('/portfolioItem/{id}', [portfolioController::class, 'createPortfolio_item']);
+    Route::post('/portfolioItem/{id}', [portfolioController::class, 'createPortfolio_item']);
     Route::post('/portfolioItem_update/{id}', [portfolioController::class, 'updatePortfolio_item']);
     Route::get('/portfolioBy_category/{id}', [portfolioController::class, 'portfolioBy_category']);
     Route::get('/allPortfolio', [portfolioController::class, 'allPortfolio']);
@@ -78,7 +76,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/profileDetails', [teamController::class, 'profileDetail_page']);
     
     // specific review
-    Route::post('/createSpcReview/{profile_id}', [ReviewController::class, 'createSpcReview'])->middleware([TokenVerificationMiddleware::class]);
+    Route::post('/createSpcReview/{profile_id}', [ReviewController::class, 'createSpcReview']);
     Route::get('/spcUserReview/{id}', [reviewController::class, 'spcUserReview']);
 
     // specific contact
