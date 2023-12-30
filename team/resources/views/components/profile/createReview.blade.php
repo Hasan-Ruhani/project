@@ -12,7 +12,7 @@
           <form action="forms/contact.php" method="post" role="form" class="php-email-form">
             <div class="row">
               <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
+                <input type="text" name="name" class="form-control" id="cname" placeholder="Your Name">
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
                 <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
@@ -41,34 +41,34 @@
         let searchParams = new URLSearchParams(window.location.search);
         let id = searchParams.get('id');
         // let res = await axios.post("/createSpcReview/" + id);
-
-        let name = document.getElementById('name').value;
+        
+        let name = document.getElementById('cname').value;
         let email = document.getElementById('email').value;
         let review = document.getElementById('review').value;
 
         if(name.length === 0){
-            errorToast('Name is required');
+            alert('Name is required');
         }
         else if(email.length === 0){
-            errorToast('Name is required');
+          alert('Email is required');
         }
         else if(review.length === 0){
-            errorToast('Review is required');
+          alert('Review is required');
         }
         
         else{
-            console.log(res);
+            
             try {
-                let res = await axios.post(`/createSpcReview/" + id`, {
+                let res = await axios.post(`/createSpcReview/${id}`, {
                     name: name,
                     email: email,
                     review: review
                 });
                 
-
+                
                 if (res.status === 201) {
                     $("input[type=text], textarea, input[type=email]").val(""); // Reset all contact fields
-                    // alert('Congratulations! We have received your email');
+                    alert('Thanks for your comment');
                 } 
                 else {
                     alert('Something went wrong!!');
