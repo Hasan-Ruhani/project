@@ -19,6 +19,6 @@ Route::get('/', function () {
 });
 
 Route::controller(FileController::class)->group(function () {
-    Route::get('file-upload', 'index');
-    Route::post('file-upload', 'store')->name('file.store');
+    Route::get('file-show', 'index');
+    Route::post('file-upload', 'store');
 });

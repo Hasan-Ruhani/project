@@ -45,6 +45,15 @@ use Illuminate\Support\Facades\Route;
     Route::get('/verifyOtp',[userController::class,'VerifyOTPPage']);
     Route::get('/resetPassword',[userController::class,'ResetPasswordPage']);
 
+
+    // Route::get('/portfolio_dash',[portfolioController::class,'portfolio_dash']);
+
+
+    Route::get('/file-show',[portfolioController::class,'portfolio_dash']);
+    Route::post('/file-upload',[portfolioController::class,'image']);
+
+
+
     // profile page
     Route::get('/profile',[teamController::class,'profilePage'])->middleware([TokenVerificationMiddleware::class]);
 

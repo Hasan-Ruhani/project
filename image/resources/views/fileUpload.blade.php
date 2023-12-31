@@ -23,7 +23,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('file.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/file-upload') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">

@@ -20,7 +20,7 @@ class FileController extends Controller
     {
         if ($request->hasfile('images')) {
             foreach ($request->file('images') as $file) {
-                $path = $file->store('images', 'admin'); // This will save in 'storage/app/public/images'
+                $path = $file->store('images/all', 'admin'); // This will save in 'storage/app/public/images'
                 $images[] = $path; // This will store the path in the array
             }
         }

@@ -17,11 +17,7 @@ class PortfolioDetail extends Model
         'client',
         'date',
         'project_url',
-        // 'front_img',
-        // 'image1',
-        // 'image2',
-        // 'image3',
-        'image'
+        'front_img'
     ];
     public function portfolioDetail(): HasMany
     {

@@ -3,11 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\PortfolioDetail;
 use Illuminate\Http\Request;
 
 class portfolioController extends Controller
 {
+
+    public function portfolio_dash(){
+        return view('components\dashboard\portfolioItem');
+    }
+
+    public function image(Request $request){
+        if ($request->hasfile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('images', 'admin'); // This will save in 'storage/app/public/images'
+                $images[] = $path; // This will store the path in the array
+            }
+        }
+
+        foreach ($images as $image) {
+            Image::create([
+                'portfolio_id' => '0',
+                'filename' => basename($image) // Store just the filename
+            ]);
+        }
+
+        return back()->with('success', 'Images uploaded successfully');
+    }
+
     public function createPortfolio_item(Request $request) {
         $category_id = $request -> id;
         $category = Category::where('id', $category_id) -> first();
@@ -25,9 +49,13 @@ class portfolioController extends Controller
 
             return PortfolioDetail::create([
                 'category_id' => $category -> id,
-                'title' => $request -> input('title'),
-                'image' => $img_url,
-                'short_des' => $request -> input('short_des')
+                'head_line' => $request -> input('title'),
+                'front_img' => $img_url,
+                'short_des' => $request -> input('short_des'),
+                'description' => $request -> input('description'),
+                'client' => $request -> input('client'),
+                'date' => $request -> input('date'),
+                'project_url' => $request -> input('project_url')
             ]);
         }
     }
