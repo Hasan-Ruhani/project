@@ -49,7 +49,7 @@ class portfolioController extends Controller
 
             return PortfolioDetail::create([
                 'category_id' => $category -> id,
-                'head_line' => $request -> input('title'),
+                'head_line' => $request -> input('head_line'),
                 'front_img' => $img_url,
                 'short_des' => $request -> input('short_des'),
                 'description' => $request -> input('description'),
