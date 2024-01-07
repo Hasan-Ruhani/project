@@ -96,6 +96,9 @@
             let project_url = document.getElementById('project_url').value;
             let pimage = document.getElementById('pimage').files[0];
 
+            console.log(date);
+            console.log(project_url);
+
 
             if(head_line.length===0){
                 alert('Head Line is required')
@@ -106,15 +109,15 @@
 
             else {
 
-                // let formData=new FormData();
-                // formData.append('front_img',pimage)
-                // formData.append('head_line',head_line)
-                // formData.append('short_des',short_des)
-                // formData.append('description',description)
-                // formData.append('client',client)
-                // formData.append('date',date)
-                // formData.append('project_url',project_url)
-                // console.log(res);
+                let formData=new FormData();
+                formData.append('front_img',pimage)
+                formData.append('head_line',head_line)
+                formData.append('short_des',short_des)
+                formData.append('description',description)
+                formData.append('client',client)
+                formData.append('date',date)
+                formData.append('project_url',project_url)
+                console.log(formData);
                 const config = {
                     headers: {
                         'content-type': 'multipart/form-data'
@@ -122,20 +125,20 @@
                 }
 
                 // showLoader();
-                // let res = await axios.post("/portfolioItem/1",formData,config);
+                let res = await axios.post("/portfolioItem/1",formData,config);
                 // hideLoader();
 
-                let res = await axios.post("/portfolioItem/1",
-                    config,
-                    "front_img": pimage,
-                    "head_line": head_line,
-                    "short_des": short_des,
-                    "description": description,
-                    "client": client,
-                    "date": date,
-                    "project_url": project_url
-                    );
-                    console.log(res);
+                // let res = await axios.post("/portfolioItem/1",
+                //     config,
+                //     "front_img": pimage,
+                //     "head_line": head_line,
+                //     "short_des": short_des,
+                //     "description": description,
+                //     "client": client,
+                //     "date": date,
+                //     "project_url": project_url
+                //     );
+                //     console.log(res);
                 
                 if(res.status===201){
                     alert('Request completed');
