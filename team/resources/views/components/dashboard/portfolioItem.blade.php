@@ -3,8 +3,8 @@
 
 <head>
     <title>Test</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" ></script>
     <!-- JavaScript -->
     <script src="{{asset('assets/js2/jquery-3.7.1.min.js')}}"></script>
     <script src="{{asset('assets/js2/axios.min.js')}}"></script>
@@ -29,6 +29,18 @@
 
                 {{-- <form method="POST" enctype="multipart/form-data">
                     @csrf --}}
+
+                    <div class="mb-3">
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Category
+                            </button>
+                            <ul id="category" class="dropdown-menu">
+
+
+                            </ul>
+                          </div>
+                        </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="head_line">Head Line</label>
@@ -65,6 +77,8 @@
                         <input type="file" name="pimage" id="pimage" class="form-control">
                     </div>
 
+                    
+
                     {{-- <div class="mb-3">
                         <label class="form-label" for="inputFile">Select 2 or more images:</label>
                         <input type="file" name="images[]" id="inputFile" multiple
@@ -75,7 +89,7 @@
                     </div> --}}
 
                     <div class="mb-3">
-                        <button onclick="create_portfolio()" class="btn btn-success">Upload</button>
+                        <button onclick="portfolio()" class="btn btn-success">Upload</button>
                     </div>
 
                 {{-- </form> --}}
@@ -87,7 +101,26 @@
 
     <script>
 
-        async function create_portfolio(){
+        category();
+        // Inside the category function
+        async function category() {
+            let Cres = await axios.get("/allCategory");
+            console.log(Cres);
+            Cres.data.forEach((item, i) => {
+                let $allCategory = `<li><a class="dropdown-item" href="#" onclick="captureId(${item.id})">${item.name}</a></li>`;
+                $('#category').append($allCategory);
+            });
+        }
+        var capture_id = null;
+        function captureId(id) {
+            capture_id = id;
+        }
+        
+        function portfolio() {
+            create_portfolio(capture_id);
+        }
+        
+        async function create_portfolio(capture_id){
             let head_line = document.getElementById('head_line').value;
             let short_des = document.getElementById('short_des').value;
             let description = document.getElementById('description').value;
@@ -96,8 +129,8 @@
             let project_url = document.getElementById('project_url').value;
             let pimage = document.getElementById('pimage').files[0];
 
-            console.log(date);
-            console.log(project_url);
+            // console.log(id);
+            // console.log(project_url);
 
 
             if(head_line.length===0){
@@ -111,13 +144,14 @@
 
                 let formData=new FormData();
                 formData.append('front_img',pimage)
+                formData.append('category_id',1)
                 formData.append('head_line',head_line)
                 formData.append('short_des',short_des)
                 formData.append('description',description)
                 formData.append('client',client)
                 formData.append('date',date)
                 formData.append('project_url',project_url)
-                console.log(formData);
+                // console.log(formData);
                 const config = {
                     headers: {
                         'content-type': 'multipart/form-data'
@@ -125,20 +159,10 @@
                 }
 
                 // showLoader();
-                let res = await axios.post("/portfolioItem/1",formData,config);
-                // hideLoader();
+                let res = await axios.post(`/portfolioItem/${capture_id}`, formData, config);
 
-                // let res = await axios.post("/portfolioItem/1",
-                //     config,
-                //     "front_img": pimage,
-                //     "head_line": head_line,
-                //     "short_des": short_des,
-                //     "description": description,
-                //     "client": client,
-                //     "date": date,
-                //     "project_url": project_url
-                //     );
-                //     console.log(res);
+                // hideLoader();
+                    console.log(res);
                 
                 if(res.status===201){
                     alert('Request completed');

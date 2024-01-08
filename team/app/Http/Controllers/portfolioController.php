@@ -40,7 +40,7 @@ class portfolioController extends Controller
             return "Please insert category first";
         }
         else{
-            $img = $request->file('image');
+            $img = $request->file('pimage');
             $t = time();
             $file_name = $img->getClientOriginalName();
             $img_name = "{$t}-{$file_name}";

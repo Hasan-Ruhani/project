@@ -17,6 +17,7 @@ class categoryController extends Controller
     public function allCategory(){
         return Category::all()->toArray();
     }
+
         public function deleteCategory(Request $request) {
         $category_id = $request -> id;
         return Category::where('id', $category_id) -> delete();
