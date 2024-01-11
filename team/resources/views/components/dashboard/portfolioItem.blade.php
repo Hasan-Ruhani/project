@@ -44,37 +44,37 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="head_line">Head Line</label>
-                        <input type="text" name="head_line" id="head_line" class="form-control">
+                        <input type="text" id="head_line" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="short_des">Short Description</label>
-                        <input type="text" name="short_des" id="short_des" class="form-control">
+                        <input type="text" id="short_des" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="Description">Description</label>
-                        <input type="text" name="description" id="description" class="form-control">
+                        <input type="text" id="description" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="client">Client</label>
-                        <input type="text" name="client" id="client" class="form-control">
+                        <input type="text" id="client" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="date">Date</label>
-                        <input type="text" name="date" id="date" class="form-control">
+                        <input type="text" id="date" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="project_url">Project URL</label>
-                        <input type="text" name="project_url" id="project_url" class="form-control">
+                        <input type="text" id="project_url" class="form-control">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="image">Front Image</label>
-                        <input type="file" name="pimage" id="pimage" class="form-control">
+                        <input type="file" id="front_img" enctype="multipart/form-data" class="form-control">
                     </div>
 
                     
@@ -101,79 +101,100 @@
 
     <script>
 
-        category();
-        // Inside the category function
-        async function category() {
-            let Cres = await axios.get("/allCategory");
-            console.log(Cres);
-            Cres.data.forEach((item, i) => {
-                let $allCategory = `<li><a class="dropdown-item" href="#" onclick="captureId(${item.id})">${item.name}</a></li>`;
-                $('#category').append($allCategory);
-            });
-        }
-        var capture_id = null;
-        function captureId(id) {
-            capture_id = id;
-        }
-        
-        function portfolio() {
-            create_portfolio(capture_id);
-        }
-        
+            category();
+            
+            async function category() {
+                let Cres = await axios.get("/allCategory");
+                Cres.data.forEach((item, i) => {
+                    let $allCategory = `<li><a class="dropdown-item" href="#" onclick="captureId(${item.id})">${item.name}</a></li>`;
+                    $('#category').append($allCategory);
+                });
+            }
+            var capture_id = null;
+            function captureId(id) {
+                capture_id = id;
+            }
+            
+            function portfolio() {
+                create_portfolio(capture_id);
+            }
+
+
         async function create_portfolio(capture_id){
-            let head_line = document.getElementById('head_line').value;
-            let short_des = document.getElementById('short_des').value;
-            let description = document.getElementById('description').value;
-            let client = document.getElementById('client').value;
-            let date = document.getElementById('date').value;
-            let project_url = document.getElementById('project_url').value;
-            let pimage = document.getElementById('pimage').files[0];
+            try {
+                let head_line = document.getElementById('head_line').value;
+                let short_des = document.getElementById('short_des').value;
+                let description = document.getElementById('description').value;
+                let client = document.getElementById('client').value;
+                let date = document.getElementById('date').value;
+                let project_url = document.getElementById('project_url').value;
+                let front_img = document.getElementById('front_img').files[0];
 
-            // console.log(id);
-            // console.log(project_url);
+                if(!capture_id){
+                    alert('Insert category first');
+                } 
+                if(head_line.length === 0){
+                    alert('Head Line is required');
+                } 
+                else if(short_des.length === 0){
+                    alert('Short Description is required');
+                }
+                else if(description.length === 0){
+                    alert('Description is required');
+                } 
+                else if(client.length === 0){
+                    alert('Client is required');
+                } 
+                else if(date.length === 0){
+                    alert('Project date is required');
+                } 
+                else if(project_url.length === 0){
+                    alert('Project URL is required');
+                } 
+                else if(!front_img){
+                    alert('Thumbnail image is required');
+                } 
+                else {
+                    let formData = new FormData();
+                    formData.append('front_img', front_img);
+                    // formData.append('category_id', capture_id);   // this line doesn't nedded
+                    formData.append('head_line', head_line);
+                    formData.append('short_des', short_des);
+                    formData.append('description', description);
+                    formData.append('client', client);
+                    formData.append('date', date);
+                    formData.append('project_url', project_url);
 
+                    const config = {
+                        headers: {
+                            'content-type': 'multipart/form-data'
+                        }
+                    }
 
-            if(head_line.length===0){
-                alert('Head Line is required')
-            }
-            else if(short_des.length===0){
-                alert('Short Descriprion is required')
-            }
+                    // for (let [key, value] of formData.entries()) {
+                    //     console.log(`${key}: ${value}`);
+                    // }
 
-            else {
+                    let res = await axios.post(`/portfolioItem/${capture_id}`, formData, config);
+                    // console.log('err', res);
 
-                let formData=new FormData();
-                formData.append('front_img',pimage)
-                formData.append('category_id',1)
-                formData.append('head_line',head_line)
-                formData.append('short_des',short_des)
-                formData.append('description',description)
-                formData.append('client',client)
-                formData.append('date',date)
-                formData.append('project_url',project_url)
-                // console.log(formData);
-                const config = {
-                    headers: {
-                        'content-type': 'multipart/form-data'
+                    if(res.status === 201){
+                        alert('Request completed');
+                    } 
+                    else {
+                        alert("Request failed!");
                     }
                 }
-
-                // showLoader();
-                let res = await axios.post(`/portfolioItem/${capture_id}`, formData, config);
-
-                // hideLoader();
-                    console.log(res);
-                
-                if(res.status===201){
-                    alert('Request completed');
-                    // document.getElementById("user-profile").reset();
-                    // await FillUpUpdateForm();
-                }
-                else{
-                    alert("Request fail !")
-                }
             }
-
+            catch (error) {
+                // console.error('An error occurred:', error);
+                // if (error.response) {
+                //     console.error('Response data:', error.response.data);
+                //     console.error('Response status:', error.response.status);
+                //     console.error('Response headers:', error.response.headers);
+                // }
+                return "please uncomment console and check error!"
+            }
         }
 
     </script>

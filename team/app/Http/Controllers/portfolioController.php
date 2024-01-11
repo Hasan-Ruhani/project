@@ -33,32 +33,39 @@ class portfolioController extends Controller
     }
 
     public function createPortfolio_item(Request $request) {
-        $category_id = $request -> id;
-        $category = Category::where('id', $category_id) -> first();
+        $category_id = $request->id;
+        $category = Category::find($category_id);
         
-        if(!$category){
-            return "Please insert category first";
-        }
-        else{
-            $img = $request->file('pimage');
-            $t = time();
-            $file_name = $img->getClientOriginalName();
-            $img_name = "{$t}-{$file_name}";
-            $img_url = "uploads/{$img_name}";
-            $img -> move(public_path('uploads'), $img_name);
-
-            return PortfolioDetail::create([
-                'category_id' => $category -> id,
-                'head_line' => $request -> input('head_line'),
-                'front_img' => $img_url,
-                'short_des' => $request -> input('short_des'),
-                'description' => $request -> input('description'),
-                'client' => $request -> input('client'),
-                'date' => $request -> input('date'),
-                'project_url' => $request -> input('project_url')
-            ]);
+        if (!$category) {
+            return "Please insert a valid category first";
+        } 
+        else {
+            if ($request->hasFile('front_img')) {
+                $img = $request->file('front_img');
+                $t = time();
+    
+                $file_extension = $img->getClientOriginalName();
+                $img_name = "{$t}-{$file_extension}";
+                $img_url = "uploads/{$img_name}";
+                $img->move(public_path('uploads'), $img_name);
+    
+                return PortfolioDetail::create([
+                    'category_id' => $category->id,
+                    'head_line' => $request->input('head_line'),
+                    'front_img' => $img_url,
+                    'short_des' => $request->input('short_des'),
+                    'description' => $request->input('description'),
+                    'client' => $request->input('client'),
+                    'date' => $request->input('date'),
+                    'project_url' => $request->input('project_url')
+                ]);
+            } 
+            else {
+                return "No image found in the request";
+            }
         }
     }
+    
 
     public function updatePortfolio_item(Request $request) {
         $portfolio_id = $request->id;
