@@ -4,6 +4,8 @@
 <head>
     <title>Test</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="{{asset('assets/js2/jquery-3.7.1.min.js')}}"></script>
+    <script src="{{asset('assets/js2/axios.min.js')}}"></script>
 </head>
 
 <body>
@@ -17,34 +19,53 @@
 
             <div class="panel-body">
 
-                @if ($message = Session::get('success'))
+                {{-- @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
                         <strong>{{ $message }}</strong>
                     </div>
-                @endif
+                @endif --}}
 
-                <form action="{{ url('/file-upload') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                {{-- <form action="{{ url('/file-upload') }}" method="POST" enctype="multipart/form-data">
+                    @csrf --}}
 
                     <div class="mb-3">
                         <label class="form-label" for="inputFile">Select Files:</label>
-                        <input type="file" name="images[]" id="inputFile" multiple
-                            class="form-control @error('files') is-invalid @enderror">
+                        <input type="file" id="inputFile" class="form-control">
 
-                        @error('files')
+                        {{-- @error('files')
                             <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        @enderror --}}
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-success">Upload</button>
+                        <button type="submit" onclick="portfolio()" class="btn btn-success">Upload</button>
                     </div>
 
-                </form>
+                {{-- </form> --}}
 
             </div>
         </div>
     </div>
+
+
+    <script>
+        async function portfolio(){
+
+            let multi_img = document.getElementById('inputFile').files[0];
+
+            let fromData = new fromData();
+            formData.append('images', multi_img);
+
+            const config = {
+                    headers: {
+                        'content-type': 'multipart/form-data'
+                    }
+                }
+
+            let res = await axios.post('/file-upload', formData, config);
+        }
+    </script>
+
 </body>
 
 </html>

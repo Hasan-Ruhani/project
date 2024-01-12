@@ -16,6 +16,25 @@ class FileController extends Controller
         return view('fileUpload');
     }
 
+    // public function store(Request $request)
+    // {
+    //     if ($request->hasfile('images')) {
+    //         foreach ($request->file('images') as $file) {
+    //             $path = $file->store('images/all', 'admin'); // This will save in 'storage/app/public/images'
+    //             $images[] = $path; // This will store the path in the array
+    //         }
+    //     }
+
+    //     foreach ($images as $image) {
+    //         Image::create([
+    //             'related_id' => '0',
+    //             'filename' => basename($image) // Store just the filename
+    //         ]);
+    //     }
+
+    //     return back()->with('success', 'Images uploaded successfully');
+    // }
+    
     public function store(Request $request)
     {
         if ($request->hasfile('images')) {
