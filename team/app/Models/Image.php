@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Image extends Model
@@ -12,8 +13,9 @@ class Image extends Model
         'portfolio_id', 
         'filename'
     ];
-    // public function image(): HasMany
-    // {
-    //     return $this->hasMany(PortfolioDetail::class);
-    // }
+
+    public function portfolioDetail()
+    {
+        return $this->belongsTo(PortfolioDetail::class, 'portfolio_id');
+    }
 }

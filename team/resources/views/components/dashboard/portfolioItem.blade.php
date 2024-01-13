@@ -21,14 +21,14 @@
 
             <div class="panel-body">
 
-                @if ($message = Session::get('success'))
+                {{-- @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-block">
                         <strong>{{ $message }}</strong>
                     </div>
                 @endif
 
                 <form method="POST" enctype="multipart/form-data">
-                    @csrf
+                    @csrf --}}
 
                     <div class="mb-3">
                         <div class="dropdown">
@@ -78,26 +78,16 @@
                     </div>
 
                     
-
                     <div class="mb-3">
-                        <label class="form-label" for="inputFile">Select 2 or more images:</label>
-                        <input type="file" name="images[]" id="inputFile" multiple
-                            class="form-control @error('files') is-invalid @enderror">
-                        @error('files')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <label class="form-label" for="inputFile">Select Files:</label>
+                        <input type="file" id="inputFile" multiple class="form-control">
                     </div>
-                    
-                    {{-- <div class="mb-3">
-                        <label class="form-label" for="inputFile">Select 2 or more images:</label>
-                        <input type="file" id="inputFile" class="form-control">
-                    </div> --}}
 
                     <div class="mb-3">
                         <button onclick="portfolio()" class="btn btn-success">Upload</button>
                     </div>
 
-                </form>
+                {{-- </form> --}}
 
             </div>
         </div>
@@ -127,7 +117,7 @@
             let date = document.getElementById('date').value;
             let project_url = document.getElementById('project_url').value;
             let front_img = document.getElementById('front_img').files[0];
-            // let multi_img = document.getElementById('inputFile').files[0];
+            let files = document.getElementById('inputFile').files;
     
             if (!capture_id) {
                 alert('Insert category first');
@@ -154,9 +144,15 @@
                 formData.append('client', client);
                 formData.append('date', date);
                 formData.append('project_url', project_url);
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('images[]', files[i]);
+                    // formData.append('id', 1);
+                }
     
                 // let multiData = new FormData();
-                // multiData.append('images', multi_img);
+                // for (let i = 0; i < files.length; i++) {
+                //     multiData.append('images[]', files[i]);
+                // }
     
                 const config = {
                     headers: {
@@ -165,16 +161,17 @@
                 }
     
                 let res1 = await axios.post(`/portfolioItem/${capture_id}`, formData, config);
-                // let res2 = await axios.post(`/file-upload/`, multiData, config);
+                // let res2 = await axios.post(`/file-upload/`, formData, config);
     
                 if (res1.status === 201) {
-                    ['head_line', 'short_des', 'description', 'client', 'date', 'project_url', 'front_img'].forEach(field => document.getElementById(field).value = '');
+                    ['head_line', 'short_des', 'description', 'client', 'date', 'project_url', 'front_img', 'inputFile'].forEach(field => document.getElementById(field).value = '');
                     alert('Portfolio Item Added');
                 } else {
                     alert("Something went wrong!!");
                 }
             }
         }
+
     
         function portfolio() {
             create_portfolio(capture_id);

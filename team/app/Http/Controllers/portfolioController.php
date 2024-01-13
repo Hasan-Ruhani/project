@@ -14,32 +14,34 @@ class portfolioController extends Controller
         return view('components\dashboard\portfolioItem');
     }
 
-    public function image(Request $request){
-        if ($request->hasfile('images')) {
-            foreach ($request->file('images') as $file) {
-                $path = $file->store('images', 'admin'); // This will save in 'storage/app/public/images'
-                $images[] = $path; // This will store the path in the array
-            }
-        }
+    // public function image(Request $request){
+    //     if ($request->hasfile('images')) {
+    //         foreach ($request->file('images') as $file) {
+    //             $path = $file->store('images/all', 'admin');
+    //             $images[] = $path;
+    //         }
+    //     }
 
-        foreach ($images as $image) {
-            Image::create([
-                'portfolio_id' => '0',
-                'filename' => basename($image) // Store just the filename
-            ]);
-        }
+    //     foreach ($images as $image) {
+    //         Image::create([
+    //             'portfolio_id' => $request->input('id'),
+    //             'filename' => basename($image)
+    //         ]);
+    //     }
 
-        return back()->with('success', 'Images uploaded successfully');
-    }
+    //     return response()->json(['message' => 'Images uploaded successfully'], 201);
+    // }
 
     public function createPortfolio_item(Request $request) {
         $category_id = $request->id;
         $category = Category::find($category_id);
+
         
         if (!$category) {
             return "Please insert a valid category first";
-        } 
+        }
         else {
+     
             if ($request->hasFile('front_img')) {
                 $img = $request->file('front_img');
                 $t = time();
@@ -49,7 +51,7 @@ class portfolioController extends Controller
                 $img_url = "uploads/{$img_name}";
                 $img->move(public_path('uploads'), $img_name);
     
-                return PortfolioDetail::create([
+                $portfolio = PortfolioDetail::create([
                     'category_id' => $category->id,
                     'head_line' => $request->input('head_line'),
                     'front_img' => $img_url,
@@ -59,12 +61,31 @@ class portfolioController extends Controller
                     'date' => $request->input('date'),
                     'project_url' => $request->input('project_url')
                 ]);
-            } 
-            else {
+
+                if ($request->hasfile('images')) {
+                    foreach ($request->file('images') as $file) {
+                        $time = time();
+                        $file_name = $file->getClientOriginalName();
+                        $image_name = "{$time}-{$file_name}";
+                        $path = $file->store("images/{$image_name}", 'admin');
+                        Image::create([
+                            'portfolio_id' => $portfolio -> id,
+                            'filename' => basename($path)
+                        ]);
+                    }
+
+                } else {
+                    return "No image found in the request";
+                }
+
+                return response()->json(['message' => 'Data addeded successfully'], 201);
+
+            } else {
                 return "No image found in the request";
             }
+
         }
-    }
+    }    
     
 
     public function updatePortfolio_item(Request $request) {
@@ -91,6 +112,11 @@ class portfolioController extends Controller
         }
     }
     
+
+    public function portfolioDetail(Request $request){
+        $id = $request -> id;
+        return PortfolioDetail::where('id', $id) -> with('image') -> get();
+    }
 
     public function portfolioBy_category(Request $request) {
         $category_id = $request -> id;

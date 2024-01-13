@@ -19,8 +19,13 @@ class PortfolioDetail extends Model
         'project_url',
         'front_img'
     ];
-    public function portfolioDetail(): HasMany
+    public function portfolioDetail(): HasMany   // this mean one mane portfolio under in one category
     {
         return $this->hasMany(Category::class);
+    }
+
+    public function image(): HasMany
+    {
+        return $this->hasMany(Image::class);
     }
 }

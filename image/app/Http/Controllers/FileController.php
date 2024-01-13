@@ -35,22 +35,22 @@ class FileController extends Controller
     //     return back()->with('success', 'Images uploaded successfully');
     // }
     
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         if ($request->hasfile('images')) {
             foreach ($request->file('images') as $file) {
-                $path = $file->store('images/all', 'admin'); // This will save in 'storage/app/public/images'
-                $images[] = $path; // This will store the path in the array
+                $path = $file->store('images/all', 'admin');
+                $images[] = $path;
             }
         }
 
         foreach ($images as $image) {
             Image::create([
                 'related_id' => '0',
-                'filename' => basename($image) // Store just the filename
+                'filename' => basename($image)
             ]);
         }
 
-        return back()->with('success', 'Images uploaded successfully');
+        return response()->json(['message' => 'Images uploaded successfully'], 201);
     }
+
 }

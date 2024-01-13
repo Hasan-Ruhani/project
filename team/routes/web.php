@@ -70,6 +70,7 @@ use Illuminate\Support\Facades\Route;
 
     // portfolio
     Route::post('/portfolioItem/{id}', [portfolioController::class, 'createPortfolio_item']);
+    Route::get('/portfolioDetail/{id}', [portfolioController::class, 'portfolioDetail']);
     Route::post('/portfolioItem_update/{id}', [portfolioController::class, 'updatePortfolio_item']);
     Route::get('/portfolioBy_category/{id}', [portfolioController::class, 'portfolioBy_category']);
     Route::get('/allPortfolio', [portfolioController::class, 'allPortfolio']);
