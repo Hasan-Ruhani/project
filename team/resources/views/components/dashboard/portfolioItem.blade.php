@@ -21,15 +21,6 @@
 
             <div class="panel-body">
 
-                {{-- @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-block">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-
-                <form method="POST" enctype="multipart/form-data">
-                    @csrf --}}
-
                     <div class="mb-3">
                         <div class="dropdown">
                             <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -146,13 +137,7 @@
                 formData.append('project_url', project_url);
                 for (let i = 0; i < files.length; i++) {
                     formData.append('images[]', files[i]);
-                    // formData.append('id', 1);
                 }
-    
-                // let multiData = new FormData();
-                // for (let i = 0; i < files.length; i++) {
-                //     multiData.append('images[]', files[i]);
-                // }
     
                 const config = {
                     headers: {
@@ -161,7 +146,6 @@
                 }
     
                 let res1 = await axios.post(`/portfolioItem/${capture_id}`, formData, config);
-                // let res2 = await axios.post(`/file-upload/`, formData, config);
     
                 if (res1.status === 201) {
                     ['head_line', 'short_des', 'description', 'client', 'date', 'project_url', 'front_img', 'inputFile'].forEach(field => document.getElementById(field).value = '');

@@ -68,13 +68,17 @@ use Illuminate\Support\Facades\Route;
     Route::get('/allCategory', [categoryController::class, 'allCategory']);
     Route::post('/deleteCategory/{id}', [categoryController::class, 'deleteCategory']);
 
-    // portfolio
+    // portfolio backend
     Route::post('/portfolioItem/{id}', [portfolioController::class, 'createPortfolio_item']);
     Route::get('/portfolioDetail/{id}', [portfolioController::class, 'portfolioDetail']);
     Route::post('/portfolioItem_update/{id}', [portfolioController::class, 'updatePortfolio_item']);
     Route::get('/portfolioBy_category/{id}', [portfolioController::class, 'portfolioBy_category']);
     Route::get('/allPortfolio', [portfolioController::class, 'allPortfolio']);
     Route::post('/deletePortfolio/{id}', [portfolioController::class, 'deletePortfolio']);
+
+    // portfolio page
+    Route::get('/detail', [portfolioController::class, 'portfolioDetail_page']);
+
 
     // teamd
     Route::post('/createProfile', [teamController::class, 'createProfile'])->middleware([TokenVerificationMiddleware::class]);

@@ -13,9 +13,4 @@ class Image extends Model
         'portfolio_id', 
         'filename'
     ];
-
-    public function portfolioDetail()
-    {
-        return $this->belongsTo(PortfolioDetail::class, 'portfolio_id');
-    }
 }

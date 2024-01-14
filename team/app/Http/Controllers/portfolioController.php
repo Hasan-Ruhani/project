@@ -14,23 +14,9 @@ class portfolioController extends Controller
         return view('components\dashboard\portfolioItem');
     }
 
-    // public function image(Request $request){
-    //     if ($request->hasfile('images')) {
-    //         foreach ($request->file('images') as $file) {
-    //             $path = $file->store('images/all', 'admin');
-    //             $images[] = $path;
-    //         }
-    //     }
-
-    //     foreach ($images as $image) {
-    //         Image::create([
-    //             'portfolio_id' => $request->input('id'),
-    //             'filename' => basename($image)
-    //         ]);
-    //     }
-
-    //     return response()->json(['message' => 'Images uploaded successfully'], 201);
-    // }
+    public function portfolioDetail_page(){
+        return view('pages.others.portfolioDetails');
+    }
 
     public function createPortfolio_item(Request $request) {
         $category_id = $request->id;
@@ -114,9 +100,10 @@ class portfolioController extends Controller
     
 
     public function portfolioDetail(Request $request){
-        $id = $request -> id;
-        return PortfolioDetail::where('id', $id) -> with('image') -> get();
+        $id = $request->id;
+        return PortfolioDetail::with('images') -> with('category')->find($id);
     }
+    
 
     public function portfolioBy_category(Request $request) {
         $category_id = $request -> id;

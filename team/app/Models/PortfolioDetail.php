@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -19,13 +20,14 @@ class PortfolioDetail extends Model
         'project_url',
         'front_img'
     ];
-    public function portfolioDetail(): HasMany   // this mean one mane portfolio under in one category
+    public function category(): BelongsTo   // This means many portfolio falls under one category.
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public function image(): HasMany
+    public function images(): HasMany
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class, 'portfolio_id');
     }
+
 }
