@@ -41,6 +41,7 @@
         </div> --}}
 
 
+
         <div class="col-lg-8">
           <div id="image" class="portfolio-details-slider swiper">
             
@@ -50,6 +51,10 @@
 
         <div class="col-lg-4">
           <div class="portfolio-info">
+            <div>
+              <img src="{{ Storage::disk('user')->url('user/profile.jpg') }}" alt="demo">
+            </div>
+            
             <h3>Project information</h3>
             <ul>
               <li><strong>Category:</strong> <span id="category"></span></li>
@@ -98,9 +103,9 @@
 
       // images section
       images.forEach(function(image) {
-        $images = `<div class="swiper-wrapper align-items-center">
+      $images = `<div class="swiper-wrapper align-items-center">
           <div class="swiper-slide">
-            <img src="${image.filename}" alt="">
+            <img src="/storage/app/admin/${image.filename}" alt="">
           </div>
         </div>`;
         $('#image').append($images);

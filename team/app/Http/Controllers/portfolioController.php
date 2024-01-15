@@ -54,9 +54,14 @@ class portfolioController extends Controller
                         $file_name = $file->getClientOriginalName();
                         $image_name = "{$time}-{$file_name}";
                         $path = $file->store("images/{$image_name}", 'admin');
+                        // $path = $file->move(public_path('uploads'), $image_name);
+
+                        // $path = "multi_img/{$image_name}";
+                        // $file->move(public_path('multi_img'), $img_name);
+
                         Image::create([
                             'portfolio_id' => $portfolio -> id,
-                            'filename' => basename($path)
+                            'filename' => $path
                         ]);
                     }
 
