@@ -53,11 +53,16 @@ class portfolioController extends Controller
                         $time = time();
                         $file_name = $file->getClientOriginalName();
                         $image_name = "{$time}-{$file_name}";
-                        $path = $file->store("images/{$image_name}", 'admin');
-                        // $path = $file->move(public_path('uploads'), $image_name);
+                        $path = $file->store('multi_img', 'public');
 
-                        // $path = "multi_img/{$image_name}";
-                        // $file->move(public_path('multi_img'), $img_name);
+
+                        // if ($request->hasFile('images')) {
+                        //     $images = [];
+                        //     foreach ($request->file('images') as $file) {
+                        //         $path = $file->store('uploads', 'public');
+                        //         $images[] = $path;
+                        //     }
+                        // }
 
                         Image::create([
                             'portfolio_id' => $portfolio -> id,

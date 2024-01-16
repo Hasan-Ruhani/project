@@ -44,10 +44,17 @@ return [
             'throw' => false,
         ],
 
-        'admin' => [
+        // 'admin' => [
+        //     'driver' => 'local',
+        //     'root' => storage_path('app/admin'),
+        //     'url' => env('APP_URL') . '/storage',
+        //     'visibility' => 'public',
+        // ],
+        
+        'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/admin'),
-            'url' => env('APP_URL') . '/storage',
+            'root' => public_path('uploads'), // Change 'uploads' to the desired folder name
+            'url' => env('APP_URL').'/uploads', // Change '/uploads' to the desired URL path
             'visibility' => 'public',
         ],
 

@@ -44,10 +44,10 @@ return [
             'throw' => false,
         ],
 
-        'admin' => [
+        'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/admin'),
-            'url' => env('APP_URL') . '/storage',
+            'root' => public_path('uploads'), // Change 'uploads' to the desired folder name
+            'url' => env('APP_URL').'/multi_img', // Change '/uploads' to the desired URL path
             'visibility' => 'public',
         ],
 

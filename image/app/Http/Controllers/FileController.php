@@ -36,9 +36,10 @@ class FileController extends Controller
     // }
     
     public function store(Request $request){
-        if ($request->hasfile('images')) {
+        if ($request->hasFile('images')) {
+            $images = [];
             foreach ($request->file('images') as $file) {
-                $path = $file->store('images/all', 'admin');
+                $path = $file->store('uploads', 'public');
                 $images[] = $path;
             }
         }

@@ -44,17 +44,15 @@
 
         <div class="col-lg-8">
           <div id="image" class="portfolio-details-slider swiper">
-            
-            <div class="swiper-pagination"></div>
+              <div class="swiper-wrapper align-items-center">
+                  <!-- Swiper slides will be appended here -->
+              </div>
+              <div class="swiper-pagination"></div>
           </div>
-        </div>
+      </div>
 
         <div class="col-lg-4">
           <div class="portfolio-info">
-            <div>
-              <img src="{{ Storage::disk('user')->url('user/profile.jpg') }}" alt="demo">
-            </div>
-            
             <h3>Project information</h3>
             <ul>
               <li><strong>Category:</strong> <span id="category"></span></li>
@@ -102,16 +100,26 @@
       document.getElementById('projectLink').setAttribute('href', 'https://' + projectUrl);
 
       // images section
-      images.forEach(function(image) {
-      $images = `<div class="swiper-wrapper align-items-center">
-          <div class="swiper-slide">
-            <img src="/storage/app/admin/${image.filename}" alt="">
-          </div>
-        </div>`;
-        $('#image').append($images);
-      });
+      let $images = '';
+        images.forEach(function (image) {
+            // Each image should be a swiper-slide
+            $images += `
+                <div class="swiper-slide">
+                    <img src="/uploads/${image.filename}" alt="">
+                </div>
+            `;
+        });
 
+        $('#image .swiper-wrapper').html($images);
 
-    }
+        // Initialize the Swiper after setting the slides
+        var mySwiper = new Swiper('#image', {
+            // Your Swiper configuration options here
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+      }
 
   </script>
