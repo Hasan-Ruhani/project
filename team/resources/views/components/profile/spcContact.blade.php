@@ -39,13 +39,14 @@
 
         <div class="col-lg-8 mt-5 mt-lg-0">
 
+          {{-- <form action="forms/contact.php" method="post" role="form" class="php-email-form" onsubmit="contactForm(event)">   this method used for before run contactForm then execute javaScript   --}}
           <form action="forms/contact.php" method="post" role="form" class="php-email-form">
             <div class="row">
               <div class="col-md-6 form-group">
                 <input type="text" name="name" class="form-control" id="fulName" placeholder="Your Name" required>
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                <input type="email" class="form-control" id="claint_email" placeholder="Your Email" required>
               </div>
             </div>
             <div class="form-group mt-3">
@@ -55,6 +56,7 @@
               <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message" required></textarea>
               <input type="text" id="profile_id" class="d-none">
             </div>
+            {{-- <div class="text-center"><button type="submit">Send Message</button></div> --}}
             <div class="text-center"><button type="submit" onclick="contactForm()">Send Message</button></div>
           </form>
 
@@ -84,15 +86,21 @@
         }
 
         async function contactForm() {
+          // event.preventDefault();
           let sendButton = document.querySelector('button[type="submit"]');
           sendButton.disabled = true; // Disable the button to prevent multiple submissions
           sendButton.innerHTML = 'Sending...'; // Change the button text to indicate sending
 
           let name = document.getElementById('fulName').value;
-          let email = document.getElementById('email').value;
+          let email = document.getElementById('claint_email').value;
           let subject = document.getElementById('subject').value;
           let message = document.getElementById('message').value;
           let profile_id = document.getElementById('profile_id').value;
+
+          console.log(name);
+          console.log(email);
+          console.log(subject);
+          console.log(message);
 
           if (name.length === 0 || email.length === 0 || subject.length === 0 || message.length === 0) {
             alert('All fields are required');
@@ -108,7 +116,7 @@
                     message: message
                 });
 
-                if (res.status === 201) {
+                if ((res.status === 200) || (res.status === 201)) {
                     $("input[type=text], textarea, input[type=email]").val(""); // Reset all contact fields
                     // alert('Congratulations! We have received your email');
                 } else {

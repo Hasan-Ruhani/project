@@ -30,9 +30,9 @@
             <div class="member-img">
               <img src="${item['profile'].image}" class="img-fluid" alt="">
               <div class="social">
-                <a class="" target="_blank" href="https://${item['profile'].facebook}"><i class="bi bi-facebook"></i></a>
-                <a class="" target="_blank" href="https://${item['profile'].linkedin}"><i class="bi bi-linkedin"></i></a>
-                <a class="" target="_blank" href="https://${item['profile'].github}"><i class="bi bi-github"></i></a>
+                <a class="" target="_blank" href="${item['profile'].facebook}"><i class="bi bi-facebook"></i></a>
+                <a class="" target="_blank" href="${item['profile'].linkedin}"><i class="bi bi-linkedin"></i></a>
+                <a class="" target="_blank" href="${item['profile'].github}"><i class="bi bi-github"></i></a>
               </div>
             </div>
             <div class="member-info">

@@ -93,9 +93,13 @@
         document.getElementById('skill').textContent = Details[0]['profile'].skill;
         document.getElementById('date').textContent = formattedDate;
 
-        document.getElementById('facebook').setAttribute('href', 'https://' + Details[0]['profile'].facebook);
-        document.getElementById('linkedin').setAttribute('href', 'https://' + Details[0]['profile'].linkedin);
-        document.getElementById('github').setAttribute('href', 'https://' + Details[0]['profile'].github);
+        document.getElementById('facebook').setAttribute('href', Details[0]['profile'].facebook);     // this method use when user provide link with "https://"
+        document.getElementById('linkedin').setAttribute('href', Details[0]['profile'].linkedin);
+        document.getElementById('github').setAttribute('href', Details[0]['profile'].github);
+
+        // document.getElementById('facebook').setAttribute('href', 'https://' + Details[0]['profile'].facebook);   // this method use when user provide link without "https://"
+        // document.getElementById('linkedin').setAttribute('href', 'https://' + Details[0]['profile'].linkedin);
+        // document.getElementById('github').setAttribute('href', 'https://' + Details[0]['profile'].github);
 
 
     }
