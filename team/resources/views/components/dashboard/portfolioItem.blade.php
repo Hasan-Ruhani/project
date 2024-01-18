@@ -70,7 +70,7 @@
 
                     
                     <div class="mb-3">
-                        <label class="form-label" for="inputFile">Select Files:</label>
+                        <label class="form-label" for="inputFile">Select 2 or more image:</label>
                         <input type="file" id="inputFile" multiple class="form-control">
                     </div>
 

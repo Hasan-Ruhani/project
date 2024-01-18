@@ -57,7 +57,7 @@
               <input type="text" id="profile_id" class="d-none">
             </div>
             {{-- <div class="text-center"><button type="submit">Send Message</button></div> --}}
-            <div class="text-center"><button type="submit" onclick="contactForm()">Send Message</button></div>
+            <div class="text-center"><button id="submit_button" type="submit" onclick="contactForm()">Send Message</button></div>
           </form>
 
         </div>
@@ -87,21 +87,17 @@
 
         async function contactForm() {
           // event.preventDefault();
-          let sendButton = document.querySelector('button[type="submit"]');
-          sendButton.disabled = true; // Disable the button to prevent multiple submissions
-          sendButton.innerHTML = 'Sending...'; // Change the button text to indicate sending
+          let submit_button = document.getElementById('submit_button');          // this method when use id
+          // let sendButton = document.querySelector('button[type="submit"]');  // this method when use querySelector
+          submit_button.disabled = true; // Disable the button to prevent multiple submissions
+          submit_button.innerHTML = 'Sending...'; // Change the button text to indicate sending
 
           let name = document.getElementById('fulName').value;
           let email = document.getElementById('claint_email').value;
           let subject = document.getElementById('subject').value;
           let message = document.getElementById('message').value;
           let profile_id = document.getElementById('profile_id').value;
-
-          console.log(name);
-          console.log(email);
-          console.log(subject);
-          console.log(message);
-
+          
           if (name.length === 0 || email.length === 0 || subject.length === 0 || message.length === 0) {
             alert('All fields are required');
               sendButton.innerHTML = 'Send Message'; // Change the button text back to original
@@ -127,8 +123,8 @@
                 alert('Something went wrong!!');
               } 
             finally {
-                sendButton.innerHTML = 'Send Message'; // Change the button text back to original
-                sendButton.disabled = false; // Enable the button
+              submit_button.innerHTML = 'Send Message'; // Change the button text back to original
+              submit_button.disabled = false; // Enable the button
               }
             }
         }

@@ -5,7 +5,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2>Portfolio Details</h2>
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="{{'/'}}">Home</a></li>
           <li>Portfolio Details</li>
         </ol>
       </div>
@@ -18,30 +18,6 @@
     <div class="container">
 
       <div class="row gy-4">
-
-        {{-- <div class="col-lg-8">
-          <div class="portfolio-details-slider swiper">
-            <div class="swiper-wrapper align-items-center">
-
-              <div class="swiper-slide">
-                <img src="assets/img/portfolio/portfolio-1.jpg" alt="">
-              </div>
-
-              <div class="swiper-slide">
-                <img src="assets/img/portfolio/portfolio-2.jpg" alt="">
-              </div>
-
-              <div class="swiper-slide">
-                <img src="assets/img/portfolio/portfolio-3.jpg" alt="">
-              </div>
-
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div> --}}
-
-
-
         <div class="col-lg-8">
           <div id="image" class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
