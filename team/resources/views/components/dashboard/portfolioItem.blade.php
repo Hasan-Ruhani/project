@@ -40,15 +40,21 @@
 
         $('#ctg_button').on('click', async function () {
             let category = document.getElementById('category').value;
-            let res = await axios.post("/createCategory", { name: category });
+            let res = await axios.post("/createCategory", { category: category });
+            console.log(res);
 
-            if (res.data === 1) {
+            if (res.status === 200) {
                 $('#category_modal').modal('hide');
-                await getList();
+                alert("Category created successfully.");
+                // await getList();
+            } else if (res.status === 409) {
+                $('#category_modal').modal('hide');
+                alert("Category already exists!");
             } else {
                 alert("Something went wrong!!");
             }
         });
+
     </script>
 </body>
 
