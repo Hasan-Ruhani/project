@@ -26,8 +26,8 @@ class User extends Model
     }
 
 
-    public function contact(): HasMany
-    {
-        return $this->hasMany(Contact::class);
-    }
+    // public function contact(): HasMany
+    // {
+    //     return $this->hasMany(Contact::class);
+    // }
 }

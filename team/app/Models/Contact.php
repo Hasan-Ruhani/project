@@ -16,8 +16,8 @@ class Contact extends Model
         'user_id'
     ];
 
-    public function user(): BelongsTo
-    {
-        return $this->BelongsTo(User::class);
-    }
+    // public function user(): BelongsTo
+    // {
+    //     return $this->BelongsTo(User::class);
+    // }
 }

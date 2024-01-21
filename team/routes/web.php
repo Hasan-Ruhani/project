@@ -49,8 +49,8 @@ use Illuminate\Support\Facades\Route;
     // Route::get('/portfolio_dash',[portfolioController::class,'portfolio_dash']);
 
 
-    Route::get('/file-show',[portfolioController::class,'portfolio_dash']);
-    Route::post('/file-upload',[portfolioController::class,'image']);
+    Route::get('/file-show',[portfolioController::class,'portfolio_dash'])->middleware([TokenVerificationMiddleware::class]);
+    Route::post('/file-upload',[portfolioController::class,'image'])->middleware([TokenVerificationMiddleware::class]);
 
 
 
@@ -96,6 +96,11 @@ use Illuminate\Support\Facades\Route;
     // specific contact
     Route::post('/createSpcContact/{id}', [contactController::class, 'createSpcContact']);
     Route::get('/spcUserContact', [contactController::class, 'spcUserContact'])->middleware([TokenVerificationMiddleware::class]);
+
+    // all contact 
+    Route::post('/contact', [contactController::class, 'allContact']);
+    
+    
     
     
     
