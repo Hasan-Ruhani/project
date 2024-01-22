@@ -82,7 +82,6 @@
             let profile_id = details[0].profile.id;
             // let profile_id = '';
             document.getElementById('profile_id').value=profile_id;
-            // console.log('Profile ID:', profile_id);
         }
 
         async function contactForm() {

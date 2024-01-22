@@ -58,7 +58,7 @@ class contactController extends Controller
     public function allContact(Request $request){
         $emails = User::pluck('email')->all();
     
-        dd($emails); // Add this line for debugging
+        // dd($emails); // Add this line for debugging
     
         $data = [
             'name' => $request->input('name'),

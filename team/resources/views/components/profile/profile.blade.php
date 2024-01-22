@@ -285,15 +285,10 @@
 
             showLoader();
             let res = await axios.post("/updateProfile",formData,config)
-            // server.log(res);
             hideLoader();
-            // let data = res.data['data'];
-            // console.log(data);
 
             if(res.status===200 && res.data===1){
                 successToast('Request completed');
-                // document.getElementById("user-profile").reset();
-                // await FillUpUpdateForm();
             }
             else{
                 errorToast("Request fail !")

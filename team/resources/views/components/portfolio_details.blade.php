@@ -1,7 +1,6 @@
 <!-- ======= Breadcrumbs ======= -->
 <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
-
       <div class="d-flex justify-content-between align-items-center">
         <h2>Portfolio Details</h2>
         <ol>
@@ -57,6 +56,7 @@
       let searchParams = new URLSearchParams(window.location.search);
       let id = searchParams.get('id');
       let res =  await axios.get("/portfolioDetail/" + id);
+      
 
       let Details = res.data;
       let category = res.data['category'];

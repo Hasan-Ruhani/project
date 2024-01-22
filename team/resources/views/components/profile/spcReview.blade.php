@@ -30,8 +30,6 @@
           let res = await axios.get("/spcUserReview/" + id);
 
             if (res.data) {
-              // console.log(res.data);
-
               res.data.forEach((item, i) => {
               $newItem = `<div class="swiper-slide">
                 <div class="testimonial-item">

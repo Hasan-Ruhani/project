@@ -29,7 +29,6 @@
   async function portfolio_items() {
     let res = await axios.get('/allCategory');
     let res2 = await axios.get('/allPortfolio');
-    // console.log(res2);
     res.data.forEach((item, i) => {
         let eachItem = `<li data-filter=".filter-${item['id']}">${item['name']}</li>`;
         $("#portfolio-flters").append(eachItem);
