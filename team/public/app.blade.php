@@ -36,13 +36,9 @@
 
 <body>
 
-
-
-
   <div>
     @yield('content')
   </div>
-
 
 
   {{-- <div id="preloader"></div> --}}   {{-- its use for loading --}}
