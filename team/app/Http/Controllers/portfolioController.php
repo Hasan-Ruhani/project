@@ -11,7 +11,7 @@ class portfolioController extends Controller
 {
 
     public function portfolio_dash(){
-        return view('components\dashboard\portfolioItem');
+        return view('components.dashboard.portfolioItem');
     }
 
     public function portfolioDetail_page(){
@@ -34,7 +34,7 @@ class portfolioController extends Controller
     
                 $file_extension = $img->getClientOriginalName();
                 $img_name = "{$t}-{$file_extension}";
-                $img_url = "uploads/{$img_name}";
+                $img_url = "public/uploads/{$img_name}";
                 $img->move(public_path('uploads'), $img_name);
     
                 $portfolio = PortfolioDetail::create([

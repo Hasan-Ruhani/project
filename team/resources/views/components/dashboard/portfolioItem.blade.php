@@ -172,21 +172,53 @@
     
             if (!capture_id) {
                 alert('Insert category first');
-            } else if (head_line.length === 0) {
+            } 
+
+            else if (head_line.length === 0) {
                 alert('Head Line is required');
-            } else if (short_des.length === 0) {
-                alert('Short Description is required');
-            } else if (description.length === 0) {
-                alert('Description is required');
-            } else if (client.length === 0) {
+            } 
+            else if (head_line.length > 50) {
+              alert('Head Line Maximum 50 Characters');
+            } 
+
+            else if (client.length === 0) {
                 alert('Client is required');
-            } else if (date.length === 0) {
+            } 
+            else if (client.length > 50) {
+                alert('Client Maximum 50 Characters');
+            } 
+
+            else if (short_des.length === 0) {
+                alert('Short Description is required');
+            } 
+
+            else if (short_des.length > 200) {
+              alert('Short Description Maximum 200 Characters');
+            }
+
+            else if (description.length === 0) {
+                alert('Description is required');
+            } 
+            else if (description.length > 1000) {
+              alert('Description Maximum 1000 Characters');
+            }
+            
+
+            else if (date.length === 0) {
                 alert('Project date is required');
-            } else if (project_url.length === 0) {
+            } 
+            else if (project_url.length === 0) {
                 alert('Project URL is required');
-            } else if (!front_img) {
+            } 
+            else if (!front_img) {
                 alert('Thumbnail image is required');
-            } else {
+            } 
+
+            else if (files.length < 2) {
+                alert('Minimum 2 Multiple image is required');
+            } 
+            
+            else {
                 let formData = new FormData();
                 formData.append('front_img', front_img);
                 formData.append('head_line', head_line);

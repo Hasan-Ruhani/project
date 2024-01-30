@@ -34,6 +34,7 @@
   <script src="{{asset('assets/js2/axios.min.js')}}"></script>
 </head>
 
+
 <body>
 
   <div>
