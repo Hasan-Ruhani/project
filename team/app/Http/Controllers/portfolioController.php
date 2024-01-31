@@ -73,9 +73,7 @@ class portfolioController extends Controller
                 } else {
                     return "No image found in the request";
                 }
-
                 return response()->json(['message' => 'Data addeded successfully'], 201);
-
             } else {
                 return "No image found in the request";
             }
