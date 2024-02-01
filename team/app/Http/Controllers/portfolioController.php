@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class portfolioController extends Controller
 {
-
     public function portfolio_dash(){
         return view('components.dashboard.portfolioItem');
     }
