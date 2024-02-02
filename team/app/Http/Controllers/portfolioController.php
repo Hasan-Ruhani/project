@@ -54,7 +54,6 @@ class portfolioController extends Controller
                         $image_name = "{$time}-{$file_name}";
                         $path = $file->store('multi_img', 'public');
 
-
                         // if ($request->hasFile('images')) {
                         //     $images = [];
                         //     foreach ($request->file('images') as $file) {
