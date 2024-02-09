@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    @include('components.header')
+    {{-- @include('components.header') --}}
     {{-- @include('components.hero')
     @include('components.about')
     @include('components.services') --}}
