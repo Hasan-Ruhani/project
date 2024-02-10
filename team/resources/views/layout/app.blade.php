@@ -58,6 +58,7 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
+  <script type="text/javascript" src="assets/filter/js/jquery.filterizr.min.js"></script>
   <script src="assets/js/main.js"></script>
 
 </body>
