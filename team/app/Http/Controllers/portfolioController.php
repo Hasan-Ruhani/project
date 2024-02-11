@@ -33,7 +33,7 @@ class portfolioController extends Controller
     
                 $file_extension = $img->getClientOriginalName();
                 $img_name = "{$t}-{$file_extension}";
-                $img_url = "public/uploads/{$img_name}";
+                $img_url = "uploads/{$img_name}";
                 $img->move(public_path('uploads'), $img_name);
     
                 $portfolio = PortfolioDetail::create([

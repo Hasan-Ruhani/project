@@ -204,6 +204,7 @@
   /**
    * Porfolio isotope and filter
    */
+  $(document).ready(function(){
   window.addEventListener('load', () => {
     let portfolioContainer = select('.portfolio-container');
     if (portfolioContainer) {
@@ -230,6 +231,7 @@
     }
 
   });
+});
 
   /**
    * Initiate portfolio lightbox 
