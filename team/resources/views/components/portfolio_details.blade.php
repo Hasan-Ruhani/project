@@ -41,9 +41,7 @@
             <p id="description"></p>
           </div>
         </div>
-
       </div>
-
     </div>
   </section><!-- End Portfolio Details Section -->
 
