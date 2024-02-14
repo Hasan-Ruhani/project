@@ -21,7 +21,6 @@ class FileController extends Controller
         ]);
       
         $files = [];
-
         if ($request->file('files')){
 
             foreach($request->file('files') as $key => $file)
