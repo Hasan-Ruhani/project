@@ -13,6 +13,8 @@
   <link href="assets/img/cfs_logo.png" rel="icon">
   <link href="assets/img/cfs_logo.png" rel="apple-touch-icon">
 
+  <link rel="stylesheet" href="assets/index.css" />
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -24,6 +26,13 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
   
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -32,6 +41,17 @@
   <!-- JavaScript -->
   <script src="{{asset('assets/js2/jquery-3.7.1.min.js')}}"></script>
   <script src="{{asset('assets/js2/axios.min.js')}}"></script>
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"
+>
+</script>
+<script type="text/javascript" src="assets/jquery.filterizr.min.js"></script>
+
+
 </head>
 
 <body>
@@ -56,6 +76,13 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+
+
+
+
+
+
+
 
   <!-- Template Main JS File -->
   <script type="text/javascript" src="assets/filter/js/jquery.filterizr.min.js"></script>

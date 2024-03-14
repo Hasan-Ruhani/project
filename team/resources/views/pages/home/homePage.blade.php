@@ -4,7 +4,7 @@
     @include('components.hero')
     @include('components.about')
     @include('components.services')
-    @include('components.portfolio')
+    @include('components.portfolio_custom')
     @include('components.testimonial')
     @include('components.team')
     @include('components.contact')
