@@ -12,7 +12,6 @@
     </ul>
   </div>
 
-
   <div class="row push-down">
     <!-- This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
     attribute, which starts from the value 1 and goes up from there -->
