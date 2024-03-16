@@ -50,7 +50,7 @@
 
     window.filterizr = new window.Filterizr('.portfolio-item', {
         controlsSelector: '.fltr-controls',
-        gutterPixels: 20,
+        gutterPixels: 5,
         spinner: {
           enabled: true,
         },

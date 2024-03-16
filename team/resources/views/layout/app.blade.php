@@ -13,8 +13,6 @@
   <link href="assets/img/cfs_logo.png" rel="icon">
   <link href="assets/img/cfs_logo.png" rel="apple-touch-icon">
 
-  <link rel="stylesheet" href="assets/index.css" />
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -43,13 +41,12 @@
   <script src="{{asset('assets/js2/axios.min.js')}}"></script>
 
 
-  <script
+  {{-- <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"
 >
-</script>
-<script type="text/javascript" src="assets/jquery.filterizr.min.js"></script>
+</script> --}}
 
 
 </head>
@@ -85,7 +82,7 @@
 
 
   <!-- Template Main JS File -->
-  <script type="text/javascript" src="assets/filter/js/jquery.filterizr.min.js"></script>
+  {{-- <script type="text/javascript" src="assets/filter/js/jquery.filterizr.min.js"></script> --}}
   <script src="assets/js/main.js"></script>
 
 </body>
