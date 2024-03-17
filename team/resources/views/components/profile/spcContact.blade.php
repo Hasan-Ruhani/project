@@ -85,47 +85,44 @@
         }
 
         async function contactForm() {
-          // event.preventDefault();
-          let submit_button = document.getElementById('submit_button');          // this method when use id
-          // let sendButton = document.querySelector('button[type="submit"]');  // this method when use querySelector
-          submit_button.disabled = true; // Disable the button to prevent multiple submissions
-          submit_button.innerHTML = 'Sending...'; // Change the button text to indicate sending
+          let submit_button = document.getElementById('submit_button');
+
+          submit_button.disabled = true;
+          submit_button.innerHTML = 'Sending...';
 
           let name = document.getElementById('fulName').value;
           let email = document.getElementById('claint_email').value;
           let subject = document.getElementById('subject').value;
           let message = document.getElementById('message').value;
           let profile_id = document.getElementById('profile_id').value;
-          
-          if (name.length === 0 || email.length === 0 || subject.length === 0 || message.length === 0) {
-            alert('All fields are required');
-              sendButton.innerHTML = 'Send Message'; // Change the button text back to original
-              sendButton.disabled = false; // Enable the button
-          } 
-          else {
-            try {
-                let res = await axios.post(`/createSpcContact/${profile_id}`, {
-                    name: name,
-                    email: email,
-                    subject: subject,
-                    message: message
-                });
 
-                if ((res.status === 200) || (res.status === 201)) {
-                    $("input[type=text], textarea, input[type=email]").val(""); // Reset all contact fields
-                    // alert('Congratulations! We have received your email');
-                } else {
-                    alert('Something went wrong!!');
-                }
-              } 
-            catch (error) {
-                alert('Something went wrong!!');
-              } 
-            finally {
+          if (name.length === 0 || email.length === 0 || subject.length === 0 || message.length === 0) {
+              alert('All fields are required');
               submit_button.innerHTML = 'Send Message'; // Change the button text back to original
               submit_button.disabled = false; // Enable the button
+          } else {
+              try {
+                  let res = await axios.post(`/createSpcContact/${profile_id}`, {
+                      name: name,
+                      email: email,
+                      subject: subject,
+                      message: message
+                  });
+
+                  if ((res.status === 200) || (res.status === 201)) {
+                      $("input[type=text], textarea, input[type=email]").val(""); // Reset all contact fields
+                      // alert('Congratulations! We have received your email');
+                  } else {
+                      alert('Something went wrong!!');
+                  }
+              } catch (error) {
+                  alert('Something went wrong!!');
+              } finally {
+                  submit_button.innerHTML = 'Send Message'; // Change the button text back to original
+                  submit_button.disabled = false; // Enable the button
               }
-            }
-        }
+          }
+      }
+
 
 </script>
