@@ -109,6 +109,9 @@
                       message: message
                   });
 
+                 console.log("res: ", res);
+                 console.log("data: ", res.data);
+
                   if ((res.status === 200) || (res.status === 201)) {
                       $("input[type=text], textarea, input[type=email]").val(""); // Reset all contact fields
                       // alert('Congratulations! We have received your email');
