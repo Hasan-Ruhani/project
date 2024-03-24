@@ -54,7 +54,6 @@ class contactController extends Controller
     }
 
 
-
     public function allContact(Request $request){
         $emails = User::pluck('email')->all();
     
