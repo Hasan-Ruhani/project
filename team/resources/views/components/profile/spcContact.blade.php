@@ -32,9 +32,7 @@
               <h4>Call:</h4>
               <p>+880 1786-490687</p>
             </div>
-
           </div>
-
         </div>
 
         <div class="col-lg-8 mt-5 mt-lg-0">
