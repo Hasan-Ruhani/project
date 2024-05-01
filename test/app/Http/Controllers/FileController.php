@@ -29,7 +29,6 @@ class FileController extends Controller
                 $fileName = time().rand(1,99).'.'.$file->extension();  
                 $file->move(public_path('uploads'), $fileName);
                 $files[]['name'] = $fileName;
-
             }
         }
   
