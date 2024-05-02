@@ -35,7 +35,6 @@ class FileController extends Controller
         foreach ($files as $key => $file) {
             File::create($file);
         }
-     
         return back()
                 ->with('success','You have successfully upload file.');
    
