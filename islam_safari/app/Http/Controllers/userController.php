@@ -39,25 +39,36 @@ class userController extends Controller
 
     function userRegistration(Request $request){
         try {
+            // Check if the email already exists
+            $existingUser = User::where('email', $request->input('email'))->first();
+            if ($existingUser) {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'Email already exists'
+                ], 200);
+            }
+    
+            // Create the new user
             User::create([
-                'name' => $request -> input('name'),
-                'email' => $request -> input('email'),
-                'password' => $request -> input('password'),
-                'confirm_password' => $request -> input('confirm_password'),
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => bcrypt($request->input('password')),
+                'confirm_password' => bcrypt($request->input('confirm_password')),
             ]);
+    
             return response()->json([
                 'status' => 'success',
                 'message' => 'User Registration Successfully'
-            ],200);
-
+            ], 200);
+    
         } catch (Exception $e) {
-            return response() -> json([
+            return response()->json([
                 'status' => 'failed',
                 'message' => 'User Registration Failed'
-            ],200);
-
+            ], 200);
         }
     }
+    
 
     function userLogin(Request $request){
        $count = User::where('email','=',$request -> input('email'))
