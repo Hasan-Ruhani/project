@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 class contactController extends Controller
 {
     public function contactPage(){
-        return view("pages.contactPage");
+        return view("pages.index.contactPage");
     }
 
     // public function createSpcContact(Request $request){

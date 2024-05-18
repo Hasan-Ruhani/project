@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <head>
+        <meta charset="utf-8">
+        <title>THEMosque - Mosque Website Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
 
-  <title>CFS</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+        <link href=
+        "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+                  rel="stylesheet">
 
-  <!-- Favicons -->
-  <link href="assets/img/cfs_logo.png" rel="icon">
-  <link href="assets/img/cfs_logo.png" rel="apple-touch-icon">
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <!-- Libraries Stylesheet -->
+        <link href="assets/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-  <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-      crossorigin="anonymous"
-    />
-  
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/extra.css" rel="stylesheet">
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- JavaScript -->
-  <script src="{{asset('assets/js2/jquery-3.7.1.min.js')}}"></script>
-  <script src="{{asset('assets/js2/axios.min.js')}}"></script>
+        <!-- Template Stylesheet -->
+        <link href="assets/css/style.css" rel="stylesheet">
 
+        {{-- backend script --}}
+        <script src="{{asset('assets/js2/jquery-3.7.1.min.js')}}"></script>
+        <script src="{{asset('assets/js2/axios.min.js')}}"></script>
 
-  {{-- <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"
->
-</script> --}}
+        <link href="{{asset('assets/css2/jquery.dataTables.min.css')}}" rel="stylesheet" />
+    
 
+        {{-- <link href="{{asset('assets/css2/bootstrap.css')}}" rel="stylesheet" /> --}}
+        <link href="{{asset('assets/css2/animate.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('assets/css2/fontawesome.css')}}" rel="stylesheet" />
+        <link href="{{asset('assets/css2/style.css')}}" rel="stylesheet" />
+        <link href="{{asset('assets/css2/toastify.min.css')}}" rel="stylesheet" />
+    
+        <script src="{{asset('assets/js2/jquery-3.7.1.min.js')}}"></script>
+        <script src="{{asset('assets/js2/jquery.dataTables.min.js')}}"></script>
+    
+        <script src="{{asset('assets/js2/toastify-js.js')}}"></script>
+        <script src="{{asset('assets/js2/config.js')}}"></script>
+    
+        <script src="{{asset('assets/js2/axios.min.js')}}"></script>
 
-</head>
+    </head>
 
-<body>
+    <body>
 
 
 
@@ -60,31 +63,20 @@
     @yield('content')
   </div>
 
+        
+   <!-- JavaScript Libraries -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="{{asset('assets/lib/wow/wow.min.js')}}"></script>
+   <script src="{{asset('assets/lib/easing/easing.min.js')}}"></script>
+   <script src="{{asset('assets/lib/waypoints/waypoints.min.js')}}"></script>
+   <script src="{{asset('assets/lib/owlcarousel/owl.carousel.min.js')}}"></script>
 
+   <!-- Template Javascript -->
+   <script src="{{asset('assets/js/main.js')}}"></script>
 
-  {{-- <div id="preloader"></div> --}}   {{-- its use for loading --}}
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-
-
-
-
-
-
-
-  <!-- Template Main JS File -->
-  {{-- <script type="text/javascript" src="assets/filter/js/jquery.filterizr.min.js"></script> --}}
-  <script src="assets/js/main.js"></script>
-
+   {{-- backedn script --}}
+   <script src="{{asset('assets/js2/bootstrap.bundle.js')}}"></script>
 </body>
 
 </html>

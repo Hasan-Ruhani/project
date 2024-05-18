@@ -14,21 +14,21 @@ use Illuminate\View\View;
 class userController extends Controller
 {
     function LoginPage():View{
-        return view('pages.auth.login-page');
+        return view('pages.index.loginPage');
     }
 
     function RegistrationPage():View{
-        return view('pages.auth.registration-page');
+        return view('pages.index.regestrationPage');
     }
     function SendOtpPage():View{
-        return view('pages.auth.send-otp-page');
+        return view('pages.index.forgot_passPage');
     }
     function VerifyOTPPage():View{
-        return view('pages.auth.verify-otp-page');
+        return view('pages.index.otpPage');
     }
 
     function ResetPasswordPage():View{
-        return view('pages.auth.reset-pass-page');
+        return view('pages.index.reset_passwordPage');
     }
 
     function ProfilePage():View{
@@ -52,8 +52,8 @@ class userController extends Controller
             User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password')),
-                'confirm_password' => bcrypt($request->input('confirm_password')),
+                'password' => $request->input('password'),
+                'confirm_password' => $request->input('confirm_password'),
             ]);
     
             return response()->json([
@@ -107,13 +107,13 @@ class userController extends Controller
 
             return response() -> json([
                 'status' => 'success',
-                'message' => '4 Digit OTP Code has been send to your email !'
+                'message' => '6 Digit OTP Code has been send to your email !'
             ],200);
         }
         else{
             return response()->json([
                 'status' => 'failed',
-                'message' => 'unauthorized'
+                'message' => 'Ohh, Email not exist!!'
             ]);
         }
     }

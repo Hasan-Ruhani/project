@@ -17,7 +17,7 @@ class teamController extends Controller
     }
 
     public function profilePage(){
-        return view("pages.profile");
+        return view("pages.index.profile_dashboardPage");
     }
 
     public function profileDetail_page(){

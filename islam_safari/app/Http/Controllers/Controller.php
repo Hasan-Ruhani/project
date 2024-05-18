@@ -9,6 +9,6 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     public function homePage(){
-        return view('pages.home.homePage');
+        return view('pages.index.homePage');
     }
 }

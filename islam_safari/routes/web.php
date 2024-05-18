@@ -26,19 +26,20 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+
+// Web API Routes
+Route::post('/user-registration',[userController::class,'userRegistration']);
+Route::post('/user-login',[userController::class,'userLogin']);
+Route::post('/send-otp',[userController::class,'sendOTPCode']);
+Route::post('/verify-otp',[userController::class,'verifyOTP']);
+Route::post('/reset-password',[userController::class,'resetPassword'])->middleware([TokenVerificationMiddleware::class]);
+
+// User/Admin Logout
+Route::get('/user-logout',[userController::class,'userLogout']);
+
+    // pages
     Route::get('/', [Controller::class, 'homePage']);
-
-    // Web API Routes
-    Route::post('/user-registration',[userController::class,'userRegistration']);
-    Route::post('/user-login',[userController::class,'userLogin']);
-    Route::post('/send-otp',[userController::class,'sendOTPCode']);
-    Route::post('/verify-otp',[userController::class,'verifyOTP']);
-    Route::post('/reset-password',[userController::class,'resetPassword'])->middleware([TokenVerificationMiddleware::class]);
-
-    // User/Admin Logout
-    Route::get('/user-logout',[userController::class,'userLogout']);
-
-    // page
+    Route::get('/contact', [contactController::class, 'contactPage']);
     Route::get('/userLogin',[userController::class,'LoginPage']);
     Route::get('/userRegistration',[userController::class,'RegistrationPage']);
     Route::get('/sendOtp',[userController::class,'SendOtpPage']);

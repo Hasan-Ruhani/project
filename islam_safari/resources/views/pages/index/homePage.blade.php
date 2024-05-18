@@ -1,0 +1,10 @@
+@extends('layout.app')
+@section('content')
+    @include('components.topMenu_bar')
+    @include('components.hero')
+    @include('components.about')
+    @include('components.course')
+    @include('components.islam_info')
+    @include('components.member')
+    @include('components.footer')
+@endsection
