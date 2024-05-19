@@ -26,29 +26,45 @@ class teamController extends Controller
     
 
     function createProfile(Request $request){
-        $user_id = $request->header('id');
+        // Get the user ID from the request header
+    $user_id = $request->header('id');
 
+    // Validate the request
+    $validatedData = $request->validate([
+        'image' => 'nullable|image|max:5120',
+        'designation' => 'nullable|string|max:50',
+        'description' => 'nullable|string|max:2000',
+        'facebook' => 'nullable|string|max:500',
+        'whatsapp' => 'nullable|string|max:500',
+    ]);
+
+    // Set default value for designation if not provided
+    if (empty($validatedData['designation'])) {
+        $validatedData['designation'] = 'Student';
+    }
+
+    // Handle the image upload
+    $img_url = null;
+    if ($request->hasFile('image')) {
         $img = $request->file('image');
-
         $t = time();
         $file_name = $img->getClientOriginalName();
         $img_name = "{$user_id}-{$t}-{$file_name}";
         $img_url = "uploads/{$img_name}";
+        $img->move(public_path('uploads'), $img_name);
+        $validatedData['image'] = $img_url;
+    }
 
-        $img -> move(public_path('uploads'), $img_name);
+    // Add the user ID to the validated data
+    $validatedData['user_id'] = $user_id;
 
-        // save to database
-        return Profile::where($user_id, $request -> input('id')) -> create([
+    // Save to database
+    $profile = Profile::create($validatedData);
 
-            'designation' => $request->input('designation'),
-            'description' => $request->input('description'),
-            'skill' => $request->input('skill'),
-            'image' => $img_url,
-            'facebook' => $request->input('facebook'),
-            'github' => $request->input('github'),
-            'linkedin' => $request->input('linkedin'),
-            'user_id' => $user_id,
-        ]);
+    return response()->json([
+        'message' => 'Profile created successfully',
+        'profile' => $profile
+    ], 201);
     }
 
     public function profileDetail(Request $request):JsonResponse{
@@ -100,17 +116,16 @@ class teamController extends Controller
                     
                     'designation' => $request->input('designation'),
                     'description' => $request->input('description'),
-                    'skill' => $request->input('skill'),
                     'image' => $img_url,
                     'facebook' => $request->input('facebook'),
-                    'github' => $request->input('github'),
-                    'linkedin' => $request->input('linkedin'),
+                    'whatsapp' => $request->input('whatsapp'),
                     ]);
 
                     $user =  User::where('id', $user_id) -> update([
 
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
+                    'number' => $request->input('number'),
                     ]);
 
                     if (!$user  || !$profile ) {
@@ -124,16 +139,15 @@ class teamController extends Controller
                     
                     'designation' => $request->input('designation'),
                     'description' => $request->input('description'),
-                    'skill' => $request->input('skill'),
                     'facebook' => $request->input('facebook'),
-                    'github' => $request->input('github'),
-                    'linkedin' => $request->input('linkedin'),
+                    'whatsapp' => $request->input('whatsapp'),
                 ]);
 
                 $user = User::where('id', $user_id) -> update([
 
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
+                    'number' => $request->input('number'),
                     ]);
 
                     if (!$user  || !$profile ) {

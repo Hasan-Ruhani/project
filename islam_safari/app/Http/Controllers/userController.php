@@ -37,7 +37,7 @@ class userController extends Controller
 
     //.................................................................................
 
-    function userRegistration(Request $request){
+    function userRegistration(Request $request) {
         try {
             // Check if the email already exists
             $existingUser = User::where('email', $request->input('email'))->first();
@@ -47,11 +47,20 @@ class userController extends Controller
                     'message' => 'Email already exists'
                 ], 200);
             }
+            
+            // Check if the password and confirm password match
+            if ($request->input('password') !== $request->input('confirm_password')) {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'Password mismatch'
+                ], 200);
+            }
     
             // Create the new user
             User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
+                'number' => $request->input('number'),
                 'password' => $request->input('password'),
                 'confirm_password' => $request->input('confirm_password'),
             ]);
@@ -68,6 +77,7 @@ class userController extends Controller
             ], 200);
         }
     }
+    
     
 
     function userLogin(Request $request){

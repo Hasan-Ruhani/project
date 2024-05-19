@@ -10,15 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Profile extends Model
 {
     protected $fillable = [
-        'name', 
         'user_id', 
         'designation', 
-        'description', 
-        'skill', 
+        'description',  
         'image', 
         'facebook', 
-        'github', 
-        'linkedin'
+        'whatsapp'
     ];
 
     // public function admin(): BelongsTo

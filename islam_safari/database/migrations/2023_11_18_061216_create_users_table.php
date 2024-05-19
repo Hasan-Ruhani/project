@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table -> string('name', 20);
             $table -> string('email', 50) -> unique();
+            $table -> string('number', 50);
             $table -> string('password', 50);
             $table -> string('confirm_password', 50);
             $table -> string('otp', 10);

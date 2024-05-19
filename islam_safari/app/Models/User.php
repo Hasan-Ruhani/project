@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Model
 {
-    protected $fillable = ['name', 'email', 'password', 'confirm_password', 'otp'];
+    protected $fillable = ['name', 'email', 'number', 'password', 'confirm_password', 'otp'];
     protected $attributes = [
         'otp' => '0'
     ];

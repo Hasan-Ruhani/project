@@ -15,15 +15,13 @@ return new class extends Migration
             $table -> id();
             
             $table -> unsignedBigInteger('user_id') -> unique();
-            $table -> string('designation', 50);
-            $table -> string('description', 2000);
-            $table -> string('skill', 200);
-            $table -> string('image', 1000);
+            $table->string('designation', 50)->default('Student');
+            $table -> string('description', 2000)->nullable();
+            $table->string('image', 1000)->nullable(); // Set default image path
+            // $table->string('image', 1000)->default('path/to/default/image.jpg'); // Set default image path
   
-            $table -> string('facebook', 500);
-            $table -> string('github', 500);
-            $table -> string('linkedin', 500);
-            $table -> enum('status', ['active', 'inactive']);
+            $table->string('facebook', 500)->nullable();
+            $table->string('whatsapp', 500)->nullable();
 
             $table->foreign('user_id')->references('id')->on('users') 
             -> restrictOnDelete() -> cascadeOnUpdate();

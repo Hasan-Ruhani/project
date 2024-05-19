@@ -91,6 +91,7 @@
   
           let name = document.getElementById('name').value;
           let email = document.getElementById('email').value;
+          let number = document.getElementById('number').value;
           let password = document.getElementById('password').value;
           let confirm_password = document.getElementById('cfmPassword').value;
   
@@ -99,6 +100,9 @@
           }
           else if(email.length===0){
               errorToast('Email is required')
+          }
+          else if(number.length===0){
+              errorToast('Phone Number is required')
           }
           else if(password.length===0){
               errorToast('Password is required')
@@ -114,6 +118,7 @@
               let res=await axios.post("/user-registration",{
                   name:name,
                   email:email,
+                  number:number,
                   password:password,
                   confirm_password:confirm_password
               })
