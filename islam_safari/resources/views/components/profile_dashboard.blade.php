@@ -40,7 +40,7 @@
                       <div class="flex items-center">
                         <div class="inline-block h-12 w-12 flex-shrink-0 overflow-hidden rounded-full"
                           aria-hidden="true">
-                          <img class="h-full w-full rounded-full" src="{{asset('assets/default.png')}}" alt="">
+                          <img id="profileImageP" class="h-full w-full rounded-full" src="{{asset('assets/default.png')}}" alt="">
                         </div>
                         
                         <div class="ml-5 rounded-md shadow-sm">
@@ -50,7 +50,7 @@
                               <span>Change</span>
                               <span class="sr-only"> user photo</span>
                             </label>
-                            <input oninput="document.getElementById('profileImage').src=window.URL.createObjectURL(this.files[0])" type="file" id="memberImgUpdate" name="memberImgUpdate" class="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0">
+                            <input id="memberImgUpdateP" name="memberImgUpdate" oninput="document.getElementById('profileImageP').src=window.URL.createObjectURL(this.files[0])" type="file" class="absolute h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0">
                           </div>
                         </div>
                       </div>
@@ -66,7 +66,7 @@
                           <span class="sr-only">user photo</span>
                           <input oninput="document.getElementById('profileImage').src=window.URL.createObjectURL(this.files[0])" type="file" id="memberImgUpdate" name="memberImgUpdate" class="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0">
                       </label>
-                  </div>
+                    </div>
                   </div>
                 </div>
 
@@ -137,6 +137,7 @@
 
               // Use default image if no profile is found
               document.getElementById('profileImage').src = '{{asset('assets/default.png')}}';
+              document.getElementById('profileImageP').src = '{{asset('assets/default.png')}}';
           }
 
               document.getElementById('name').value = data['name'];
@@ -150,6 +151,7 @@
               // Check if the profile has an image, if not, use the default image
               let imageUrl = data['profile'].image ? `${data['profile'].image}` : '{{asset('assets/default.png')}}';
               document.getElementById('profileImage').src = imageUrl;
+              document.getElementById('profileImageP').src = imageUrl;
       }
 
   
@@ -157,53 +159,53 @@
   
   
       async function onCreate() {
-    let name = document.getElementById('name').value;
-    let email = document.getElementById('email').value;
-    let designation = document.getElementById('designation').value || 'Student';
-    let description = document.getElementById('description').value;
-    let number = document.getElementById('number').value;
-    let facebook = document.getElementById('facebook').value;
-    let whatsapp = document.getElementById('whatsapp').value;
-    let updateID = document.getElementById('updateID').value;
-    let filePath = document.getElementById('filePath').value;
-    let memberImgUpdate = document.getElementById('memberImgUpdate').files[0];
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let designation = document.getElementById('designation').value || 'Student';
+        let description = document.getElementById('description').value;
+        let number = document.getElementById('number').value;
+        let facebook = document.getElementById('facebook').value;
+        let whatsapp = document.getElementById('whatsapp').value;
+        let updateID = document.getElementById('updateID').value;
+        let filePath = document.getElementById('filePath').value;
+        let memberImgUpdate = document.getElementById('memberImgUpdate').files[0];
 
-    let formData = new FormData();
-    if (memberImgUpdate) {
-        formData.append('image', memberImgUpdate);
+        let formData = new FormData();
+        if (memberImgUpdate) {
+            formData.append('image', memberImgUpdate);
+        }
+        formData.append('id', updateID);
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('designation', designation);
+        formData.append('description', description);
+        formData.append('number', number);
+        formData.append('facebook', facebook);
+        formData.append('whatsapp', whatsapp);
+        formData.append('file_path', filePath);
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+
+        try {
+            let res = await axios.post("/createProfile", formData, config);
+            if (res.status === 201) {
+                successToast('Request completed on create');
+                location.reload(); // Reload the page after successful update
+            } else {
+                errorToast("Request failed! on create");
+            }
+        } catch (error) {
+            console.error("Error creating profile: ", error);
+            if (error.response && error.response.status === 422) {
+                console.error("Validation errors: ", error.response.data.errors);
+            }
+            errorToast("Request failed due to an error! on create");
+        }
     }
-    formData.append('id', updateID);
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('designation', designation);
-    formData.append('description', description);
-    formData.append('number', number);
-    formData.append('facebook', facebook);
-    formData.append('whatsapp', whatsapp);
-    formData.append('file_path', filePath);
-
-    const config = {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
-    };
-
-    try {
-        let res = await axios.post("/createProfile", formData, config);
-        if (res.status === 201) {
-            successToast('Request completed');
-            location.reload(); // Reload the page after successful update
-        } else {
-            errorToast("Request failed!");
-        }
-    } catch (error) {
-        console.error("Error creating profile: ", error);
-        if (error.response && error.response.status === 422) {
-            console.error("Validation errors: ", error.response.data.errors);
-        }
-        errorToast("Request failed due to an error!");
-    }
-}
 
   
   
@@ -219,9 +221,11 @@
         let updateID = document.getElementById('updateID').value;
         let filePath = document.getElementById('filePath').value;
         let memberImgUpdate = document.getElementById('memberImgUpdate').files[0];
+        let memberImgUpdateP = document.getElementById('memberImgUpdateP').files[0];
 
         let formData = new FormData();
         formData.append('image', memberImgUpdate);
+        formData.append('image', memberImgUpdateP);
         formData.append('id', updateID);
         formData.append('name', name);
         formData.append('email', email);
@@ -242,14 +246,14 @@
             let res = await axios.post("/updateProfile", formData, config);
 
             if (res.status === 200 && res.data === 1) {
-                successToast('Request completed');
+                successToast('Request completed on update');
                 location.reload(); // Reload the page after successful update
             } else {
-                errorToast("Request failed!");
+                errorToast("Request failed! on update");
             }
         } catch (error) {
             console.error("Error updating profile: ", error);
-            errorToast("Request failed due to an error!");
+            errorToast("Request failed due to an error! on update");
         }
     }
   
