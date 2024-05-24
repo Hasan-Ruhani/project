@@ -116,7 +116,6 @@
     </main>
 
 
-
     <script>
 
       FillUpUpdateForm();
@@ -139,7 +138,6 @@
               document.getElementById('profileImage').src = '{{asset('assets/default.png')}}';
               document.getElementById('profileImageP').src = '{{asset('assets/default.png')}}';
           }
-
               document.getElementById('name').value = data['name'];
               document.getElementById('email').value = data['email'];
               document.getElementById('number').value = data['number'];
