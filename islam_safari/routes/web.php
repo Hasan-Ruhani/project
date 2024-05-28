@@ -54,7 +54,6 @@ Route::get('/user-logout',[userController::class,'userLogout']);
     Route::post('/file-upload',[portfolioController::class,'image'])->middleware([TokenVerificationMiddleware::class]);
 
 
-
     // profile page
     Route::get('/profile',[teamController::class,'profilePage'])->middleware([TokenVerificationMiddleware::class]);
 
