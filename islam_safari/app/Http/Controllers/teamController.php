@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class teamController extends Controller
 {
@@ -23,7 +24,6 @@ class teamController extends Controller
     public function profileDetail_page(){
         return view("pages.others.profile_details");
     }
-    
 
     function createProfile(Request $request){
         // Get the user ID from the request header
@@ -66,6 +66,8 @@ class teamController extends Controller
         'profile' => $profile
     ], 201);
     }
+
+    
 
     public function profileDetail(Request $request):JsonResponse{
 

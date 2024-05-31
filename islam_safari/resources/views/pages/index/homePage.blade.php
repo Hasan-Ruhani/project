@@ -5,6 +5,7 @@
     @include('components.about')
     @include('components.course')
     @include('components.islam_info')
+    @include('components.team')
     @include('components.member')
     @include('components.footer')
 @endsection
