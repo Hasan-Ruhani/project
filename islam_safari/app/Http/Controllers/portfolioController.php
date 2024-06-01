@@ -79,7 +79,6 @@ class portfolioController extends Controller
         }
     }    
     
-
     public function updatePortfolio_item(Request $request) {
         $portfolio_id = $request->id;
         $portfolio = PortfolioDetail::find($portfolio_id);

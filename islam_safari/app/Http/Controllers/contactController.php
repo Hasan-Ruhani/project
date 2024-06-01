@@ -76,9 +76,6 @@ class contactController extends Controller
     }
     
 
-    
-
-
 
     public function spcUserContact(Request $request) {
         $user_id = $request->header('id');

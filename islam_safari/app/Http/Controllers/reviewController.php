@@ -66,8 +66,6 @@ public function spcUserReview(Request $request){
     return $profile;
     // return User::with('spcReview') -> get();   // all records
 }
-
- 
     
     // return User::with('spcReview') -> get();
 }
