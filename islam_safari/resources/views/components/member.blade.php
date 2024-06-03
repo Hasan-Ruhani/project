@@ -5,7 +5,7 @@
         <h1 class="display-3 mb-5 wow fadeIn" data-wow-delay="0.1s">Latest From <span class="text-primary">Our Blog</span></h1>
         <div id="memberList" class="row g-4 justify-content-center">
             
-            <div class="col-lg-6 col-xl-4">
+            {{-- <div class="col-lg-6 col-xl-4">
                 <div class="blog-item wow fadeIn" data-wow-delay="0.1s">
                     <div class="blog-img position-relative overflow-hidden">
                         <img src="img/blog-1.jpg" class="img-fluid w-100" alt="">
@@ -27,7 +27,7 @@
                         <a href="#" class="btn btn-primary px-3">More Details</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -65,7 +65,8 @@
                     <div class="col-lg-6 col-xl-4">
                         <div class="blog-item wow fadeIn" data-wow-delay="0.1s">
                             <div class="blog-img position-relative overflow-hidden">
-                                <img src="${item['profile'].image}" class="img-fluid w-100" alt="">
+                               
+                                <img src="${item['profile'].image}" style="height: 250px; width: 500px;" class="img-fluid" alt="">
                                 
                             <div class="p-4">
                                 <div class="blog-meta d-flex justify-content-between pb-2">
@@ -91,6 +92,6 @@
     });
 </script>
 
-
+{{-- <img src="${item['profile'].image}" class="img-fluid w-523 px h-477 px" alt=""> --}}
 
 {{-- <img class="relative w-40" src="${item['profile'].image}" alt=""> --}}

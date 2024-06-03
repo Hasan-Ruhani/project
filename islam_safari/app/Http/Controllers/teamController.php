@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Helper\ResponseHelper;
+use App\Models\Image;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
 
 class teamController extends Controller
 {
