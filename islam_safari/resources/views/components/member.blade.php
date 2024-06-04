@@ -5,29 +5,7 @@
         <h1 class="display-3 mb-5 wow fadeIn" data-wow-delay="0.1s">Latest From <span class="text-primary">Our Blog</span></h1>
         <div id="memberList" class="row g-4 justify-content-center">
             
-            {{-- <div class="col-lg-6 col-xl-4">
-                <div class="blog-item wow fadeIn" data-wow-delay="0.1s">
-                    <div class="blog-img position-relative overflow-hidden">
-                        <img src="img/blog-1.jpg" class="img-fluid w-100" alt="">
-                        <div class="bg-primary d-inline px-3 py-2 text-center text-white position-absolute top-0 end-0">01 Jan 2045</div>
-                    </div>
-                    <div class="p-4">
-                        <div class="blog-meta d-flex justify-content-between pb-2">
-                            <div class="">
-                                <small><i class="fas fa-user me-2 text-muted"></i><a href="" class="text-muted me-2">By Admin</small></a>
-                                <small><i class="fa fa-comment-alt me-2 text-muted"></i><a href="" class="text-muted me-2">12 Comments</small></a>
-                            </div>
-                            <div class="">
-                                <a href=""><i class="fas fa-bookmark text-muted"></i></a>
-                            </div>
-                        </div>
-                        <a href="" class="d-inline-block h4 lh-sm mb-3">Importance of “Piller” of Islam</a>
-                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-                        aliquip ex ea commodo consequat.</p>
-                        <a href="#" class="btn btn-primary px-3">More Details</a>
-                    </div>
-                </div>
-            </div> --}}
+            
         </div>
     </div>
 </div>
@@ -66,16 +44,11 @@
                         <div class="blog-item wow fadeIn" data-wow-delay="0.1s">
                             <div class="blog-img position-relative overflow-hidden">
                                
-                                <img src="${item['profile'].image}" style="height: 250px; width: 500px;" class="img-fluid" alt="">
-                                
+                                <img src="${item['profile'].image}" class="img-fluid w-523 px h-477 px" alt="">
                             <div class="p-4">
                                 <div class="blog-meta d-flex justify-content-between pb-2">
                                     <div class="">
-                                        <small><i class="fas fa-user me-2 text-muted"></i><a href="" class="text-muted me-2">By Admin</small></a>
-                                        <small><i class="fa fa-comment-alt me-2 text-muted"></i><a href="" class="text-muted me-2">${item['profile'].designation}</small></a>
-                                    </div>
-                                    <div class="">
-                                        <a href=""><i class="fas fa-bookmark text-muted"></i></a>
+                                        <small><i class="fas fa-user me-2 text-muted"></i><a href="" class="text-muted me-2">${item['profile'].designation}</small></a>
                                     </div>
                                 </div>
                                 <a href="/profileDetails?id=${item['id']}" class="d-inline-block h4 lh-sm mb-3">${item['name']}</a>
@@ -84,14 +57,28 @@
                                 <a href="#" class="btn btn-primary px-3">More Details</a>
                             </div>
                         </div>
-                    </div>
-                `;
+                    </div>`
+
                 $("#memberList").append(EachItem);
             });
+
+            let fixedCard = `<div class="col-lg-6 col-xl-4">
+                <div class="blog-item wow fadeIn" data-wow-delay="0.1s">
+                    <div class="blog-img position-relative overflow-hidden">
+                        <img src="img/blog-1.jpg" class="img-fluid w-100" alt="">
+                    </div>
+                    <div class="p-4">
+                        <h1>See All</h1>
+                        <a href="#" class="btn btn-primary px-3">More Details</a>
+                    </div>
+                </div>
+            </div>`
+            $("#memberList").append(fixedCard);
         }
     });
 </script>
 
-{{-- <img src="${item['profile'].image}" class="img-fluid w-523 px h-477 px" alt=""> --}}
+
+{{-- <img src="${item['profile'].image}" style="height: 250px; width: 500px;" class="img-fluid" alt=""> --}}
 
 {{-- <img class="relative w-40" src="${item['profile'].image}" alt=""> --}}
