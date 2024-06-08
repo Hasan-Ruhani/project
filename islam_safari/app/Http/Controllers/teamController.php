@@ -159,9 +159,8 @@ class teamController extends Controller
                     } else {
                         return true;
                     }
-        }
-
-    }
+                }
+            }
 
     function deleteProfile(Request $request){
         $user_id = $request -> header('id');
