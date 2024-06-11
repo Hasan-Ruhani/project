@@ -42,6 +42,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item mt-5">
                     <h4 class="text-light mb-4">Explore Link</h4>
@@ -57,6 +58,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item mt-5">
                     <h4 class="text-light mb-4">Latest Post</h4>

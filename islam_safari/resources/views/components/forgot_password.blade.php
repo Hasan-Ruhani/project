@@ -29,6 +29,7 @@
 
 
  <script>
+  
   async function VerifyEmail() {
     let email = document.getElementById('email').value;
     let button = document.querySelector('button');
