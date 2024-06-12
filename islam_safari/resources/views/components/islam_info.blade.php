@@ -1,6 +1,5 @@
 
 
-
 <!-- Sermon Start -->
 <div class="container-fluid sermon py-5">
     <div class="container py-5">

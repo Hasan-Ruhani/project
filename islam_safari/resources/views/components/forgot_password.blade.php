@@ -27,7 +27,6 @@
     </div>
   </main>
 
-
  <script>
   
   async function VerifyEmail() {
