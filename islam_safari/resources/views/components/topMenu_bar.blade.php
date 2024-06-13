@@ -15,6 +15,7 @@
                         <a href="#" class="text-secondary"><span>info@example.com</span></a>
                     </div>
                 </div>
+                
                 <div class="col-lg-5 text-end">
                     <div class="h-100 d-inline-flex align-items-center">
                         <span class="text-body">Follow Us:</span>

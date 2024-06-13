@@ -13,6 +13,7 @@
                     <img src="{{asset('assets/img/team-1.jpg')}}" class="img-fluid" alt="">
                 </div>
             </div>
+            
             <div class="col-lg-8 col-xl-7">
                 <div class="team-item wow fadeIn" data-wow-delay="0.1s">
                     <h1>Anamul Hasan</h1>
