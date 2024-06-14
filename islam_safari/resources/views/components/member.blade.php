@@ -12,7 +12,6 @@
 <!-- Blog End -->
 
 
-
 <div id="memberList"></div>
 
 <script>
@@ -54,7 +53,7 @@
                                 <a href="/profileDetails?id=${item['id']}" class="d-inline-block h4 lh-sm mb-3">${item['name']}</a>
                                
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-                                <a href="#" class="btn btn-primary px-3">More Details</a>
+                                <a href="/profileDetails?id=${item['id']}" class="btn btn-primary px-3">More Details</a>
                             </div>
                         </div>
                     </div>`
@@ -65,7 +64,7 @@
             let fixedCard = `<div class="col-lg-6 col-xl-4">
                 <div class="blog-item wow fadeIn" data-wow-delay="0.1s">
                     <div class="blog-img position-relative overflow-hidden">
-                        <img src="img/blog-1.jpg" class="img-fluid w-100" alt="">
+                        <img src="see_all.jpeg" class="img-fluid w-100" alt="">
                     </div>
                     <div class="p-4">
                         <h1>See All</h1>

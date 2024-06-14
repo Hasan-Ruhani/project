@@ -1,9 +1,11 @@
+
+
 @extends('layout.app')
 @section('content')
-    @include('components.header2')
-    @include('components.profile.profile_details')
-    {{-- @include('components.profile.spcReview')
-    @include('components.profile.createReview') --}}
-    @include('components.profile.spcContact')
+    @include('components.topMenu_bar')
+    {{-- @include('components.hero') --}}
+    @include('components.member_details')
+    @include('components.contact')
+    @include('components.member')
     @include('components.footer')
 @endsection
