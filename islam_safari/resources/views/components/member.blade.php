@@ -11,7 +11,6 @@
 </div>
 <!-- Blog End -->
 
-
 <div id="memberList"></div>
 
 <script>
