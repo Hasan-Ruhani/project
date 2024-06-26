@@ -51,7 +51,7 @@
         <script src="{{asset('assets/js2/toastify-js.js')}}"></script>
         <script src="{{asset('assets/js2/config.js')}}"></script>
     
-        <script defer src="//cdn.tailwindcss.com?plugins=forms"></script>
+        {{-- <script defer src="//cdn.tailwindcss.com?plugins=forms"></script> --}}
         
         <script src="{{asset('assets/js2/axios.min.js')}}"></script>
 
