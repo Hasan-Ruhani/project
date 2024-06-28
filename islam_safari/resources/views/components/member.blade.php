@@ -67,7 +67,7 @@
                     </div>
                     <div class="p-4">
                         <h1>See All</h1>
-                        <a href="#" class="btn btn-primary px-3">More Details</a>
+                        <a href="{{'/students'}}" class="btn btn-primary px-3">All Students</a>
                     </div>
                 </div>
             </div>`

@@ -63,7 +63,7 @@
                     <a href="about.html" class="nav-item nav-link">About</a>
                     <a href="activity.html" class="nav-item nav-link">Activities</a>
                     <a href="event.html" class="nav-item nav-link">Events</a>
-                    <a href="sermon.html" class="nav-item nav-link">Sermons</a>
+                    <a href="{{'/students'}}" class="nav-item nav-link">Students</a>
                     <a href="{{'/contact'}}" class="nav-item nav-link">Contact</a>
 
                     @if(Cookie::get('token') !== null)

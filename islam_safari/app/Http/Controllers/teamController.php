@@ -27,6 +27,10 @@ class teamController extends Controller
         return view("pages.others.profile_details");
     }
 
+    public function students_page(){
+        return view("pages.others.studentsPage");
+    }
+
     function createProfile(Request $request){
         // Get the user ID from the request header
     $user_id = $request->header('id');

@@ -78,7 +78,7 @@ Route::get('/user-logout',[userController::class,'userLogout']);
     Route::get('/detail', [portfolioController::class, 'portfolioDetail_page']);
 
 
-    // teamd
+    // team
     Route::post('/createProfile', [teamController::class, 'createProfile'])->middleware([TokenVerificationMiddleware::class]);
     Route::get('/user-profile',[teamController::class,'userProfile'])->middleware([TokenVerificationMiddleware::class]);
     Route::post('/deleteProfile', [teamController::class, 'deleteProfile'])->middleware([TokenVerificationMiddleware::class]);
@@ -86,6 +86,7 @@ Route::get('/user-logout',[userController::class,'userLogout']);
     Route::get('/userList', [teamController::class, 'userList']);  ; 
     Route::get('/profileDetail/{id}', [teamController::class, 'profileDetail']);
     Route::get('/profileDetails', [teamController::class, 'profileDetail_page']);
+    Route::get('/students', [teamController::class, 'students_page']);
     
     // specific review
     Route::post('/createSpcReview/{profile_id}', [ReviewController::class, 'createSpcReview']);
