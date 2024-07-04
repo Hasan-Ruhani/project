@@ -7,6 +7,8 @@ use App\Models\Image;
 use App\Models\PortfolioDetail;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Log;
+
 class portfolioController extends Controller
 {
     public function portfolio_dash(){
@@ -47,12 +49,20 @@ class portfolioController extends Controller
                     'project_url' => $request->input('project_url')
                 ]);
 
+                
+                // Log::info(gettype($request->hasfile('images')));
+                // Log::error('This is an error message');
+
                 if ($request->hasfile('images')) {
                     foreach ($request->file('images') as $file) {
+
+                        // Log::info($file);
                         $time = time();
                         $file_name = $file->getClientOriginalName();
                         $image_name = "{$time}-{$file_name}";
                         $path = $file->store('multi_img', 'public');
+
+                        Log::info($path);
 
                         // if ($request->hasFile('images')) {
                         //     $images = [];
