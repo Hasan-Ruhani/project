@@ -22,7 +22,8 @@ class ReviewController extends Controller
             ]);
 
             return $review;
-        } else {
+        } 
+        else {
             // Handle the case where the review content is null or empty
             return response()->json(['error' => 'Review content cannot be null or empty'], 400);
         }
