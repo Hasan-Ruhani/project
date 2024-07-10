@@ -21,7 +21,6 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif
-      
         
         <form action="{{ route('file.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
