@@ -40,6 +40,7 @@ class contactController extends Controller
                 'subject' => $request->input('subject'),
                 'message' => $request->input('message'),
             ];
+            
 
            $contact = SpecificContact::create($data);
 
