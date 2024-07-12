@@ -22,7 +22,6 @@ class ReviewController extends Controller
             ]);
 
             return $review;
-            
         } 
         else {
             // Handle the case where the review content is null or empty
