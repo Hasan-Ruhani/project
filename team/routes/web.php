@@ -48,7 +48,6 @@ use Illuminate\Support\Facades\Route;
 
     // Route::get('/portfolio_dash',[portfolioController::class,'portfolio_dash']);
 
-
     Route::get('/file-show',[portfolioController::class,'portfolio_dash'])->middleware([TokenVerificationMiddleware::class]);
     Route::post('/file-upload',[portfolioController::class,'image'])->middleware([TokenVerificationMiddleware::class]);
 
